@@ -7,6 +7,12 @@
 </head>
 <body>
   <h1>MultiGP Events</h1>
+
+  <div class="tabs">
+    <div class="tab active" data-tab="upcoming">Upcoming</div>
+    <div class="tab" data-tab="past">Past</div>
+  </div>
+
   <div id="events">Loading...</div>
 
   <script>
@@ -32,13 +38,6 @@
         if (!response.ok) throw new Error(`HTTP error ${response.status} ${response.statusText}`);
         const json = await response.json();
         const events = json.data || [];
-        const container = document.getElementById("events");
-        container.innerHTML = "";
-
-        if (events.length === 0) {
-          container.textContent = "No events found.";
-          return;
-        }
 
         const now = new Date();
         const upcoming = [];
@@ -50,11 +49,20 @@
           else past.push(ev);
         });
 
-        function renderEventList(title, list) {
-          const header = document.createElement("h2");
-          header.textContent = title;
-          container.appendChild(header);
+        const container = document.getElementById("events");
+        container.innerHTML = "";
 
+        // Render containers for each tab
+        const upcomingDiv = document.createElement("div");
+        upcomingDiv.id = "upcoming-events";
+        container.appendChild(upcomingDiv);
+
+        const pastDiv = document.createElement("div");
+        pastDiv.id = "past-events";
+        pastDiv.style.display = "none";
+        container.appendChild(pastDiv);
+
+        function renderEventList(list, div) {
           list.forEach(ev => {
             const card = document.createElement("div");
             card.className = "event-card";
@@ -75,12 +83,34 @@
             card.appendChild(nameEl);
             card.appendChild(addrEl);
 
-            container.appendChild(card);
+            // Make card clickable
+            card.addEventListener("click", () => {
+              const url = "https://www.multigp.com/races/view/?race=" + ev.city + "/";
+              window.open(url, "_blank");
+            });
+
+            div.appendChild(card);
           });
         }
 
-        if (upcoming.length > 0) renderEventList("Upcoming Events", upcoming);
-        if (past.length > 0) renderEventList("Past Events", past);
+        renderEventList(upcoming, upcomingDiv);
+        renderEventList(past, pastDiv);
+
+        // Tab switching
+        document.querySelectorAll(".tab").forEach(tab => {
+          tab.addEventListener("click", () => {
+            document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+            tab.classList.add("active");
+
+            if (tab.dataset.tab === "upcoming") {
+              upcomingDiv.style.display = "block";
+              pastDiv.style.display = "none";
+            } else {
+              upcomingDiv.style.display = "none";
+              pastDiv.style.display = "block";
+            }
+          });
+        });
 
       } catch (err) {
         console.error("Error loading events:", err);
