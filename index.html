@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>KwadsRUs Racing Club</title>
+  <title>MultiGP Events Demo</title>
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; }
     p { margin-bottom: 20px; white-space: pre-line; }
+    .error { color: red; }
   </style>
 </head>
 <body>
@@ -17,23 +18,29 @@
       const url = "https://www.multigp.com/mgp/multigpwebservice/race/list?pageSize=50";
       const body = {
         apiKey: "e36d83c8-ebf3-91f0-1c86-2c8a5226872e",
-        data: {
-          chapterId: ["1453"]
-        }
+        data: { chapterId: ["1453"] }
       };
 
       try {
+        console.log("Fetching events from:", url);
+        console.log("Request body:", body);
+
         const response = await fetch(url, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body)
         });
 
-        if (!response.ok) throw new Error("HTTP error " + response.status);
+        console.log("Raw response:", response);
+
+        if (!response.ok) {
+          throw new Error(`HTTP error ${response.status} ${response.statusText}`);
+        }
 
         const json = await response.json();
-        const events = json.data || [];
+        console.log("Parsed JSON:", json);
 
+        const events = json.data || [];
         const container = document.getElementById("events");
         container.innerHTML = "";
 
@@ -52,8 +59,9 @@
           container.appendChild(p);
         });
       } catch (err) {
-        document.getElementById("events").textContent = "Error loading events: " + err;
-        console.error(err);
+        console.error("Detailed error:", err);
+        const el = document.getElementById("events");
+        el.innerHTML = `<p class="error">Error loading events:<br>${err.message}</p>`;
       }
     }
 
