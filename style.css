@@ -15,7 +15,7 @@ h1 {
 /* Tabs */
 .tabs {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   margin-bottom: 20px;
 }
 
@@ -41,34 +41,50 @@ h1 {
 
 /* Event cards */
 .event-card {
-  background-color: #fff;
+  display: flex;              /* row layout */
+  align-items: center;        /* vertical center */
+  padding: 10px;
+  margin: 10px;
+  background: #fff;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  padding: 15px 20px;
-  margin-bottom: 15px;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
   cursor: pointer;
+  transition: transform 0.1s ease;
 }
 
 .event-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transform: scale(1.02);
+}
+
+.event-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 12px;
+  flex-shrink: 0;   /* keep image from shrinking */
+  margin-right: 16px;
+}
+
+.event-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .event-date {
-  font-size: 0.85em;
-  color: #888;
+  font-size: 0.9em;
+  color: #555;
   margin-bottom: 4px;
 }
 
 .event-name {
   font-weight: bold;
   font-size: 1.1em;
-  color: #222;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .event-address {
   font-size: 0.9em;
-  color: #555;
+  color: #777;
 }
+

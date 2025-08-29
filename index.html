@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>MultiGP Events Demo</title>
+  <title>KwadsRUs Racing Club</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>MultiGP Events</h1>
+  <h1>MultiGP Sanctioned Events</h1>
 
   <div class="tabs">
     <div class="tab active" data-tab="upcoming">Upcoming</div>
     <div class="tab" data-tab="past">Past</div>
   </div>
 
-  <div id="events">Loading...</div>
+  <div id="events">Loading events...</div>
 
   <script>
     function parseDate(dateStr) {
@@ -45,9 +45,16 @@
 
         events.forEach(ev => {
           const evDate = parseDate(ev.startDate);
-          if (evDate >= now) upcoming.push(ev);
-          else past.push(ev);
+          if (evDate >= now) {
+            upcoming.push(ev);
+          } else {
+            past.push(ev);
+          }
         });
+
+        // Sort events
+        upcoming.sort((a, b) => parseDate(a.startDate) - parseDate(b.startDate)); // soonest first
+        past.sort((a, b) => parseDate(b.startDate) - parseDate(a.startDate));     // most recent first
 
         const container = document.getElementById("events");
         container.innerHTML = "";
@@ -67,25 +74,40 @@
             const card = document.createElement("div");
             card.className = "event-card";
 
+            // Image
+            const img = document.createElement("img");
+            img.className = "event-image";
+            img.src = ev.mainImageFileName || ev.chapterImageFileName || "";
+            img.alt = ev.name;
+            card.appendChild(img);
+
+            // Content wrapper (to the right of image)
+            const content = document.createElement("div");
+            content.className = "event-content";
+
+            // Date
             const dateEl = document.createElement("div");
             dateEl.className = "event-date";
-            dateEl.textContent = ev.startDate || "No date";
+            dateEl.textContent = formatEventDate(ev.startDate);
+            content.appendChild(dateEl);
 
+            // Name
             const nameEl = document.createElement("div");
             nameEl.className = "event-name";
-            nameEl.textContent = ev.name || "No name";
+            nameEl.textContent = ev.name;
+            content.appendChild(nameEl);
 
+            // Address + Flag
             const addrEl = document.createElement("div");
             addrEl.className = "event-address";
-            addrEl.textContent = (ev.address || "") + (ev.city ? ", " + ev.city : "");
+            addrEl.textContent = ev.city + ", " + ev.state + " " + countryCodeToFlagEmoji(ev.country);
+            content.appendChild(addrEl);
 
-            card.appendChild(dateEl);
-            card.appendChild(nameEl);
-            card.appendChild(addrEl);
+            card.appendChild(content);
 
             // Make card clickable
             card.addEventListener("click", () => {
-              const url = "https://www.multigp.com/races/view/?race=" + ev.city + "/";
+              const url = "https://www.multigp.com/races/view/?race=" + ev.id + "/";
               window.open(url, "_blank");
             });
 
@@ -117,6 +139,49 @@
         const el = document.getElementById("events");
         el.innerHTML = `<p class="error">Error loading events:<br>${err.message}</p>`;
       }
+    }
+
+    function formatEventDate(dateStr) {
+      if (!dateStr) return "";
+      const dateObj = new Date(dateStr);
+      const now = new Date();
+      const isPast = dateObj < now;
+
+      const optionsWeekday = { weekday: "long" };
+      const optionsMonth = { month: "long" };
+      const weekday = dateObj.toLocaleDateString(undefined, optionsWeekday);
+      const monthName = dateObj.toLocaleDateString(undefined, optionsMonth);
+      const dayNum = dateObj.getDate();
+
+      function getOrdinal(n) {
+        if (n > 3 && n < 21) return n + "th";
+        switch (n % 10) {
+          case 1: return n + "st";
+          case 2: return n + "nd";
+          case 3: return n + "rd";
+          default: return n + "th";
+        }
+      }
+
+      const ordinalDay = getOrdinal(dayNum);
+      const currentYear = now.getFullYear();
+      const eventYear = dateObj.getFullYear();
+
+      if (isPast || eventYear !== currentYear) {
+        return `${weekday}, ${monthName} ${ordinalDay}${eventYear !== currentYear ? " " + eventYear : ""}`;
+      } else {
+        let hours12 = dateObj.getHours() % 12 || 12;
+        const ampm = dateObj.getHours() >= 12 ? "PM" : "AM";
+        return `${weekday}, ${monthName} ${ordinalDay} @ ${hours12} ${ampm}`;
+      }
+    }
+
+    function countryCodeToFlagEmoji(countryCode) {
+      const code = countryCode.toUpperCase();
+      if (code.length !== 2) return '';
+      const first = String.fromCodePoint(code.charCodeAt(0) - 65 + 0x1F1E6);
+      const second = String.fromCodePoint(code.charCodeAt(1) - 65 + 0x1F1E6);
+      return first + second;
     }
 
     loadEvents();
