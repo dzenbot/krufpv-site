@@ -15,17 +15,18 @@
 
   <script>
     async function loadEvents() {
-      const url = "https://www.multigp.com/mgp/multigpwebservice/race/list?pageSize=50";
+      const apiUrl = "https://www.multigp.com/mgp/multigpwebservice/race/list?pageSize=50";
+      const proxyUrl = "https://corsproxy.io/?" + encodeURIComponent(apiUrl);
       const body = {
         apiKey: "e36d83c8-ebf3-91f0-1c86-2c8a5226872e",
         data: { chapterId: ["1453"] }
       };
 
       try {
-        console.log("Fetching events from:", url);
+        console.log("Fetching events from API via proxy...");
         console.log("Request body:", body);
 
-        const response = await fetch(url, {
+        const response = await fetch(proxyUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body)
@@ -58,6 +59,7 @@
           p.textContent = `${startDate}\n${name}\n${address}`;
           container.appendChild(p);
         });
+
       } catch (err) {
         console.error("Detailed error:", err);
         const el = document.getElementById("events");
