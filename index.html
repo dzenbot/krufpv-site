@@ -5,15 +5,21 @@
   <title>MultiGP Events Demo</title>
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; }
+    h2 { margin-top: 40px; }
     p { margin-bottom: 20px; white-space: pre-line; }
     .error { color: red; }
   </style>
 </head>
 <body>
-  <h1>Upcoming Events</h1>
+  <h1>MultiGP Events</h1>
   <div id="events">Loading...</div>
 
   <script>
+    function parseDate(dateStr) {
+      // MultiGP format: "2025-12-13 12:00 pm"
+      return new Date(dateStr);
+    }
+
     async function loadEvents() {
       const apiUrl = "https://www.multigp.com/mgp/multigpwebservice/race/list?pageSize=50";
       const proxyUrl = "https://corsproxy.io/?" + encodeURIComponent(apiUrl);
@@ -23,24 +29,14 @@
       };
 
       try {
-        console.log("Fetching events from API via proxy...");
-        console.log("Request body:", body);
-
         const response = await fetch(proxyUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body)
         });
 
-        console.log("Raw response:", response);
-
-        if (!response.ok) {
-          throw new Error(`HTTP error ${response.status} ${response.statusText}`);
-        }
-
+        if (!response.ok) throw new Error(`HTTP error ${response.status} ${response.statusText}`);
         const json = await response.json();
-        console.log("Parsed JSON:", json);
-
         const events = json.data || [];
         const container = document.getElementById("events");
         container.innerHTML = "";
@@ -50,18 +46,40 @@
           return;
         }
 
-        events.forEach(ev => {
-          const startDate = ev.startDate || "No date";
-          const name = ev.name || "No name";
-          const address = (ev.address || "") + (ev.city ? ", " + ev.city : "");
+        const now = new Date();
+        const upcoming = [];
+        const past = [];
 
-          const p = document.createElement("p");
-          p.textContent = `${startDate}\n${name}\n${address}`;
-          container.appendChild(p);
+        events.forEach(ev => {
+          const evDate = parseDate(ev.startDate);
+          if (evDate >= now) {
+            upcoming.push(ev);
+          } else {
+            past.push(ev);
+          }
         });
 
+        function renderEventList(title, list) {
+          const header = document.createElement("h2");
+          header.textContent = title;
+          container.appendChild(header);
+
+          list.forEach(ev => {
+            const startDate = ev.startDate || "No date";
+            const name = ev.name || "No name";
+            const address = (ev.address || "") + (ev.city ? ", " + ev.city : "");
+            const p = document.createElement("p");
+            p.textContent = `${startDate}\n${name}\n${address}`;
+            container.appendChild(p);
+          });
+        }
+
+        // Render upcoming first, then past
+        if (upcoming.length > 0) renderEventList("Upcoming Events", upcoming);
+        if (past.length > 0) renderEventList("Past Events", past);
+
       } catch (err) {
-        console.error("Detailed error:", err);
+        console.error("Error loading events:", err);
         const el = document.getElementById("events");
         el.innerHTML = `<p class="error">Error loading events:<br>${err.message}</p>`;
       }
