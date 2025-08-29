@@ -3,12 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>MultiGP Events Demo</title>
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    h2 { margin-top: 40px; }
-    p { margin-bottom: 20px; white-space: pre-line; }
-    .error { color: red; }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>MultiGP Events</h1>
@@ -16,7 +11,6 @@
 
   <script>
     function parseDate(dateStr) {
-      // MultiGP format: "2025-12-13 12:00 pm"
       return new Date(dateStr);
     }
 
@@ -52,11 +46,8 @@
 
         events.forEach(ev => {
           const evDate = parseDate(ev.startDate);
-          if (evDate >= now) {
-            upcoming.push(ev);
-          } else {
-            past.push(ev);
-          }
+          if (evDate >= now) upcoming.push(ev);
+          else past.push(ev);
         });
 
         function renderEventList(title, list) {
@@ -65,16 +56,29 @@
           container.appendChild(header);
 
           list.forEach(ev => {
-            const startDate = ev.startDate || "No date";
-            const name = ev.name || "No name";
-            const address = (ev.address || "") + (ev.city ? ", " + ev.city : "");
-            const p = document.createElement("p");
-            p.textContent = `${startDate}\n${name}\n${address}`;
-            container.appendChild(p);
+            const card = document.createElement("div");
+            card.className = "event-card";
+
+            const dateEl = document.createElement("div");
+            dateEl.className = "event-date";
+            dateEl.textContent = ev.startDate || "No date";
+
+            const nameEl = document.createElement("div");
+            nameEl.className = "event-name";
+            nameEl.textContent = ev.name || "No name";
+
+            const addrEl = document.createElement("div");
+            addrEl.className = "event-address";
+            addrEl.textContent = (ev.address || "") + (ev.city ? ", " + ev.city : "");
+
+            card.appendChild(dateEl);
+            card.appendChild(nameEl);
+            card.appendChild(addrEl);
+
+            container.appendChild(card);
           });
         }
 
-        // Render upcoming first, then past
         if (upcoming.length > 0) renderEventList("Upcoming Events", upcoming);
         if (past.length > 0) renderEventList("Past Events", past);
 
