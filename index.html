@@ -1,14 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>KwadsRUs</title>
+  <meta charset="UTF-8">
+  <title>KwadsRUs Racing Club</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    p { margin-bottom: 20px; white-space: pre-line; }
+  </style>
 </head>
 <body>
   <h1>Upcoming Events</h1>
-  <p>200G Series #36 - Season Opener</p>
-  <p>Langley Air Fair - 200G Series #37 (Day 1)</p>
-  <p>200G Series #38</p>
-  <p>Hobby Show Day 1 - 200G Series #39</p>
-  <p>Hobby Show Day 2 - 200G Series #39</p>
+  <div id="events">Loading...</div>
+
+  <script>
+    async function loadEvents() {
+      const url = "https://www.multigp.com/mgp/multigpwebservice/race/list?pageSize=50";
+      const body = {
+        apiKey: "e36d83c8-ebf3-91f0-1c86-2c8a5226872e",
+        data: {
+          chapterId: ["1453"]
+        }
+      };
+
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        });
+
+        if (!response.ok) throw new Error("HTTP error " + response.status);
+
+        const json = await response.json();
+        const events = json.data || [];
+
+        const container = document.getElementById("events");
+        container.innerHTML = "";
+
+        if (events.length === 0) {
+          container.textContent = "No events found.";
+          return;
+        }
+
+        events.forEach(ev => {
+          const startDate = ev.startDate || "No date";
+          const name = ev.name || "No name";
+          const address = (ev.address || "") + (ev.city ? ", " + ev.city : "");
+
+          const p = document.createElement("p");
+          p.textContent = `${startDate}\n${name}\n${address}`;
+          container.appendChild(p);
+        });
+      } catch (err) {
+        document.getElementById("events").textContent = "Error loading events: " + err;
+        console.error(err);
+      }
+    }
+
+    loadEvents();
+  </script>
 </body>
 </html>
