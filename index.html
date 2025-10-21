@@ -1,190 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>KwadsRUs Racing Club</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#1b1a19">
+    <title>KRU Racing Club</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <h1>MultiGP Sanctioned Events</h1>
+<body class="bkgd" id="bkgd">
 
-  <div class="tabs">
-    <div class="tab active" data-tab="upcoming">Upcoming</div>
-    <div class="tab" data-tab="past">Past</div>
-  </div>
+    <main class="content">
+        <img src="images/main-logo.png" class="main-logo">
 
-  <div id="events">Loading events...</div>
+       
 
-  <script>
-    function parseDate(dateStr) {
-      return new Date(dateStr);
-    }
+      
+    </main>
 
-    async function loadEvents() {
-      const apiUrl = "https://www.multigp.com/mgp/multigpwebservice/race/list?pageSize=50";
-      const proxyUrl = "https://corsproxy.io/?" + encodeURIComponent(apiUrl);
-      const body = {
-        apiKey: "e36d83c8-ebf3-91f0-1c86-2c8a5226872e",
-        data: { chapterId: ["1453"] }
-      };
+    <footer>
+       <div class="sponsors">
+          <p class="sub-title">Sanctioned by</p>
+          <div class="logos-row">
+            <a href="https://www.multigp.com/chapters/view/?chapter=KwadsRUs" target="_blank" rel="noopener">
+              <img src="images/mgp.png">
+            </a>
+            <a href="https://www.maac.ca/en/clubs_details.php?club_id=873" target="_blank" rel="noopener">
+              <img src="images/maac.png">
+            </a>
+          </div>
+        </div>
 
-      try {
-        const response = await fetch(proxyUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body)
-        });
+       <p class="sub-title">Contact or Follow us</p>
+        <div class="logos-row social">
+            <a href="mailto:info@kwadsrus.org" target="_blank" rel="noopener">
+              <img src="images/social-email.png">
+            </a>
+            <a href="https://www.instagram.com/kwadsrus.fpv" target="_blank" rel="noopener">
+              <img src="images/social-insta.png">
+            </a>
+            <a href="https://www.facebook.com/groups/KwadsRUs" target="_blank" rel="noopener">
+              <img src="images/social-fb.png">
+            </a>
+        </div>
+      <p><script>document.write(new Date().getFullYear())</script> © KwadsRUs Racing Club (#S0071141)</p>
+    </footer>
 
-        if (!response.ok) throw new Error(`HTTP error ${response.status} ${response.statusText}`);
-        const json = await response.json();
-        const events = json.data || [];
+    <script>
+        // Array of background image URLs
+        const backgrounds = [
+            'images/background1.jpg',
+            'images/background2.jpg',
+            'images/background3.jpg',
+            'images/background4.jpg',
+            'images/background5.jpg',
+            'images/background6.jpg',
+            'images/background7.jpg',
+            'images/background8.jpg',
+            'images/background9.jpg',
+            'images/background10.jpg',
+        ];
 
-        const now = new Date();
-        const upcoming = [];
-        const past = [];
-
-        events.forEach(ev => {
-          const evDate = parseDate(ev.startDate);
-          if (evDate >= now) {
-            upcoming.push(ev);
-          } else {
-            past.push(ev);
-          }
-        });
-
-        // Sort events
-        upcoming.sort((a, b) => parseDate(a.startDate) - parseDate(b.startDate)); // soonest first
-        past.sort((a, b) => parseDate(b.startDate) - parseDate(a.startDate));     // most recent first
-
-        const container = document.getElementById("events");
-        container.innerHTML = "";
-
-        // Render containers for each tab
-        const upcomingDiv = document.createElement("div");
-        upcomingDiv.id = "upcoming-events";
-        container.appendChild(upcomingDiv);
-
-        const pastDiv = document.createElement("div");
-        pastDiv.id = "past-events";
-        pastDiv.style.display = "none";
-        container.appendChild(pastDiv);
-
-        function renderEventList(list, div) {
-          list.forEach(ev => {
-            const card = document.createElement("div");
-            card.className = "event-card";
-
-            // Image
-            const img = document.createElement("img");
-            img.className = "event-image";
-            img.src = ev.mainImageFileName || ev.chapterImageFileName || "";
-            img.alt = ev.name;
-            card.appendChild(img);
-
-            // Content wrapper (to the right of image)
-            const content = document.createElement("div");
-            content.className = "event-content";
-
-            // Date
-            const dateEl = document.createElement("div");
-            dateEl.className = "event-date";
-            dateEl.textContent = formatEventDate(ev.startDate);
-            content.appendChild(dateEl);
-
-            // Name
-            const nameEl = document.createElement("div");
-            nameEl.className = "event-name";
-            nameEl.textContent = ev.name;
-            content.appendChild(nameEl);
-
-            // Address + Flag
-            const addrEl = document.createElement("div");
-            addrEl.className = "event-address";
-            addrEl.textContent = ev.city + ", " + ev.state + " " + countryCodeToFlagEmoji(ev.country);
-            content.appendChild(addrEl);
-
-            card.appendChild(content);
-
-            // Make card clickable
-            card.addEventListener("click", () => {
-              const url = "https://www.multigp.com/races/view/?race=" + ev.id + "/";
-              window.open(url, "_blank");
-            });
-
-            div.appendChild(card);
-          });
+        // Select a random background on page load
+        function setRandomBackground() {
+            const randomIndex = Math.floor(Math.random() * backgrounds.length);
+            const bkgd = document.getElementById('bkgd');
+            bkgd.style.backgroundImage = `url('${backgrounds[randomIndex]}')`;
         }
 
-        renderEventList(upcoming, upcomingDiv);
-        renderEventList(past, pastDiv);
-
-        // Tab switching
-        document.querySelectorAll(".tab").forEach(tab => {
-          tab.addEventListener("click", () => {
-            document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
-            tab.classList.add("active");
-
-            if (tab.dataset.tab === "upcoming") {
-              upcomingDiv.style.display = "block";
-              pastDiv.style.display = "none";
-            } else {
-              upcomingDiv.style.display = "none";
-              pastDiv.style.display = "block";
-            }
-          });
-        });
-
-      } catch (err) {
-        console.error("Error loading events:", err);
-        const el = document.getElementById("events");
-        el.innerHTML = `<p class="error">Error loading events:<br>${err.message}</p>`;
-      }
-    }
-
-    function formatEventDate(dateStr) {
-      if (!dateStr) return "";
-      const dateObj = new Date(dateStr);
-      const now = new Date();
-      const isPast = dateObj < now;
-
-      const optionsWeekday = { weekday: "long" };
-      const optionsMonth = { month: "long" };
-      const weekday = dateObj.toLocaleDateString(undefined, optionsWeekday);
-      const monthName = dateObj.toLocaleDateString(undefined, optionsMonth);
-      const dayNum = dateObj.getDate();
-
-      function getOrdinal(n) {
-        if (n > 3 && n < 21) return n + "th";
-        switch (n % 10) {
-          case 1: return n + "st";
-          case 2: return n + "nd";
-          case 3: return n + "rd";
-          default: return n + "th";
-        }
-      }
-
-      const ordinalDay = getOrdinal(dayNum);
-      const currentYear = now.getFullYear();
-      const eventYear = dateObj.getFullYear();
-
-      if (isPast || eventYear !== currentYear) {
-        return `${weekday}, ${monthName} ${ordinalDay}${eventYear !== currentYear ? " " + eventYear : ""}`;
-      } else {
-        let hours12 = dateObj.getHours() % 12 || 12;
-        const ampm = dateObj.getHours() >= 12 ? "PM" : "AM";
-        return `${weekday}, ${monthName} ${ordinalDay} @ ${hours12} ${ampm}`;
-      }
-    }
-
-    function countryCodeToFlagEmoji(countryCode) {
-      const code = countryCode.toUpperCase();
-      if (code.length !== 2) return '';
-      const first = String.fromCodePoint(code.charCodeAt(0) - 65 + 0x1F1E6);
-      const second = String.fromCodePoint(code.charCodeAt(1) - 65 + 0x1F1E6);
-      return first + second;
-    }
-
-    loadEvents();
-  </script>
+        // Set background when page loads
+        setRandomBackground();
+    </script>
 </body>
 </html>
