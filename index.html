@@ -1,76 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#1b1a19">
-    <title>KRU Racing Club</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#1b1a19">
+  <title>KRU Racing Club</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body class="bkgd" id="bkgd">
 
-    <main class="content">
-        <img src="images/main-logo.png" class="main-logo">
+  <main class="content">
+    <img src="images/main-logo.png" class="main-logo">
+  </main>
 
-       
-
-      
-    </main>
-
-    <footer>
-       <div class="sponsors">
+  <footer>
+    <div class="footer-sections">
+      <div class="footer-section">
           <p class="sub-title">Sanctioned by</p>
-          <div class="logos-row">
-            <a href="https://www.multigp.com/chapters/view/?chapter=KwadsRUs" target="_blank" rel="noopener">
-              <img src="images/mgp.png">
-            </a>
-            <a href="https://www.maac.ca/en/clubs_details.php?club_id=873" target="_blank" rel="noopener">
-              <img src="images/maac.png">
-            </a>
+          <div class="logos-row sponsor">
+              <a href="https://www.multigp.com/chapters/view/?chapter=KwadsRUs" target="_blank">
+                  <img src="images/mgp.png">
+              </a>
+              <a href="https://www.maac.ca/en/clubs_details.php?club_id=873" target="_blank">
+                  <img src="images/maac.png">
+              </a>
           </div>
-        </div>
+      </div>
 
-       <p class="sub-title">Contact or Follow us</p>
-        <div class="logos-row social">
-            <a href="mailto:info@kwadsrus.org" target="_blank" rel="noopener">
-              <img src="images/social-email.png">
-            </a>
-            <a href="https://www.instagram.com/kwadsrus.fpv" target="_blank" rel="noopener">
-              <img src="images/social-insta.png">
-            </a>
-            <a href="https://www.facebook.com/groups/KwadsRUs" target="_blank" rel="noopener">
-              <img src="images/social-fb.png">
-            </a>
-        </div>
-      <p><script>document.write(new Date().getFullYear())</script> © KwadsRUs Racing Club (#S0071141)</p>
-    </footer>
+      <div class="footer-section">
+          <p class="sub-title">Contact or Follow us</p>
+          <div class="logos-row social">
+              <a href="mailto:info@kwadsrus.org" target="_blank">
+                  <img src="images/social-email.png">
+              </a>
+              <a href="https://www.instagram.com/kwadsrus.fpv" target="_blank">
+                  <img src="images/social-insta.png">
+              </a>
+              <a href="https://www.facebook.com/groups/KwadsRUs" target="_blank">
+                  <img src="images/social-fb.png">
+              </a>
+          </div>
+      </div>
+    </div>
+    <p><script>document.write(new Date().getFullYear())</script> © KwadsRUs Racing Club (#S0071141)</p>
+  </footer>
 
-    <script>
-        // Array of background image URLs
-        const backgrounds = [
-            'images/background1.jpg',
-            'images/background2.jpg',
-            'images/background3.jpg',
-            'images/background4.jpg',
-            'images/background5.jpg',
-            'images/background6.jpg',
-            'images/background7.jpg',
-            'images/background8.jpg',
-            'images/background9.jpg',
-            'images/background10.jpg',
-        ];
+  <script>
+    const backgrounds = [
+        'images/background1.jpg',
+        'images/background2.jpg',
+        'images/background3.jpg',
+        'images/background4.jpg',
+        'images/background5.jpg',
+        'images/background6.jpg',
+        'images/background7.jpg',
+        'images/background8.jpg',
+        'images/background9.jpg',
+        'images/background10.jpg',
+    ];
 
-        // Select a random background on page load
-        function setRandomBackground() {
-            const randomIndex = Math.floor(Math.random() * backgrounds.length);
-            const bkgd = document.getElementById('bkgd');
-            bkgd.style.backgroundImage = `url('${backgrounds[randomIndex]}')`;
-        }
+    function setRandomBackground() {
+        const randomIndex = Math.floor(Math.random() * backgrounds.length);
+        const bkgd = document.getElementById('bkgd');
+        bkgd.style.backgroundImage = `url('${backgrounds[randomIndex]}')`;
+    }
 
-        // Set background when page loads
-        setRandomBackground();
-    </script>
+    setRandomBackground();
+  </script>
 </body>
 </html>
