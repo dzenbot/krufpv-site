@@ -38,10 +38,12 @@ async function loadUpcomingEvents() {
     // Filter and check for past events
     for (var i = 0; i < events.length; i++) {
       var ev = events[i];
-      var evDate = new Date(ev.startDate);
-      if (evDate >= now) {
+      // Safari-safe date parsing
+      var evDate = parseDate(ev.startDate);
+      console.log("Event:", ev.name, "Date:", ev.startDate, "Parsed:", evDate, "Valid:", !isNaN(evDate.getTime()));
+      if (evDate && !isNaN(evDate.getTime()) && evDate >= now) {
         upcoming.push(ev);
-      } else {
+      } else if (evDate && !isNaN(evDate.getTime()) && evDate < now) {
         hasPastEvents = true;
       }
     }
@@ -53,8 +55,8 @@ async function loadUpcomingEvents() {
       return new Date(a.startDate) - new Date(b.startDate);
     });
     
-    // Limit the amount of events being displayed
-    var displayEvents = upcoming.slice(0, 7);
+    // Limit to 5 events
+    var displayEvents = upcoming.slice(0, 5);
 
     console.log("Display events count:", displayEvents.length);
     
@@ -63,6 +65,14 @@ async function loadUpcomingEvents() {
 
     if (displayEvents.length === 0) {
       console.log("No events to display");
+      
+      // Get the loading container (parent of loadingText)
+      var loadingContainer = loadingText.parentElement;
+      
+      // Re-add the loading container to the main container
+      container.innerHTML = "";
+      container.appendChild(loadingContainer);
+      
       if (hasPastEvents) {
         loadingText.textContent = "No races scheduled yet";
       } else if (events.length === 0) {
@@ -71,6 +81,7 @@ async function loadUpcomingEvents() {
         loadingText.textContent = "No races scheduled yet";
       }
       loadingText.classList.add("visible");
+      console.log("Fallback message set:", loadingText.textContent);
       return;
     }
 
@@ -141,7 +152,7 @@ function createEventCard(ev) {
 
   var chevron = document.createElement("div");
   chevron.className = "event-chevron";
-  chevron.innerHTML = "&#10095;";
+  chevron.innerHTML = "&#8250;";
   card.appendChild(chevron);
 
   card.addEventListener("click", function() {
@@ -154,7 +165,9 @@ function createEventCard(ev) {
 
 function formatEventDate(dateStr) {
   if (!dateStr) return "";
-  var dateObj = new Date(dateStr);
+  var dateObj = parseDate(dateStr);
+  if (!dateObj || isNaN(dateObj.getTime())) return "";
+  
   var now = new Date();
 
   var optionsWeekday = { weekday: "short" };
@@ -171,6 +184,22 @@ function formatEventDate(dateStr) {
   } else {
     return weekday + ", " + monthName + " " + dayNum;
   }
+}
+
+// Safari-safe date parser
+function parseDate(dateStr) {
+  if (!dateStr) return null;
+  
+  // Safari doesn't like dates with timezone in certain formats
+  // Try to parse and handle common formats
+  var date = new Date(dateStr);
+  
+  // If invalid, try replacing space with 'T' for ISO format
+  if (isNaN(date.getTime())) {
+    date = new Date(dateStr.replace(' ', 'T'));
+  }
+  
+  return date;
 }
 
 // Load events when page loads
