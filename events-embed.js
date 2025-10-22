@@ -1,5 +1,4 @@
 async function loadUpcomingEvents() {
-  console.log("Starting loadUpcomingEvents");
   
   var apiUrl = "https://www.multigp.com/mgp/multigpwebservice/race/list?pageSize=50";
   var proxyUrl = "https://corsproxy.io/?" + encodeURIComponent(apiUrl);
@@ -11,26 +10,18 @@ async function loadUpcomingEvents() {
   var container = document.getElementById("upcoming-events-container");
   var titleEl = document.querySelector(".events-title");
   var loadingText = document.querySelector(".loading-text");
-  
-  console.log("Container:", container);
-  console.log("TitleEl:", titleEl);
-  console.log("LoadingText:", loadingText);
-  
+    
   try {
-    console.log("Fetching data...");
     var response = await fetch(proxyUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body)
     });
 
-    console.log("Response received:", response.status);
     if (!response.ok) throw new Error("HTTP error " + response.status);
     var json = await response.json();
     var events = json.data || [];
     
-    console.log("Events loaded:", events.length);
-
     var now = new Date();
     var upcoming = [];
     var hasPastEvents = false;
@@ -38,33 +29,27 @@ async function loadUpcomingEvents() {
     // Filter and check for past events
     for (var i = 0; i < events.length; i++) {
       var ev = events[i];
-      // Safari-safe date parsing
       var evDate = parseDate(ev.startDate);
-      console.log("Event:", ev.name, "Date:", ev.startDate, "Parsed:", evDate, "Valid:", !isNaN(evDate.getTime()));
+
       if (evDate && !isNaN(evDate.getTime()) && evDate >= now) {
         upcoming.push(ev);
       } else if (evDate && !isNaN(evDate.getTime()) && evDate < now) {
         hasPastEvents = true;
       }
     }
-    
-    console.log("Upcoming events found:", upcoming.length);
-    
+        
     // Sort upcoming events
     upcoming.sort(function(a, b) {
-      return new Date(a.startDate) - new Date(b.startDate);
+      return parseDate(a.startDate) - parseDate(b.startDate);
     });
     
     // Limit to 5 events
     var displayEvents = upcoming.slice(0, 5);
-
-    console.log("Display events count:", displayEvents.length);
     
     // Remove spinner and loading text
     container.innerHTML = "";
 
     if (displayEvents.length === 0) {
-      console.log("No events to display");
       
       // Get the loading container (parent of loadingText)
       var loadingContainer = loadingText.parentElement;
@@ -81,7 +66,6 @@ async function loadUpcomingEvents() {
         loadingText.textContent = "No races scheduled yet";
       }
       loadingText.classList.add("visible");
-      console.log("Fallback message set:", loadingText.textContent);
       return;
     }
 
@@ -90,26 +74,20 @@ async function loadUpcomingEvents() {
     titleEl.textContent = count + " Upcoming Event" + (count !== 1 ? "s" : "");
     titleEl.classList.add("visible");
     
-    console.log("Title updated:", titleEl.textContent);
-
     // Hide loading text
     if (loadingText && loadingText.style) {
       loadingText.style.display = "none";
     }
 
     // Render events with staggered animation
-    console.log("Starting to render events...");
     for (var j = 0; j < displayEvents.length; j++) {
       (function(index, event) {
         setTimeout(function() {
-          console.log("Creating card for:", event.name);
           var card = createEventCard(event);
           container.appendChild(card);
-          console.log("Card appended. Container has", container.children.length, "children");
           // Trigger animation
           setTimeout(function() {
             card.classList.add("visible");
-            console.log("Card marked visible");
           }, 10);
         }, index * 100);
       })(j, displayEvents[j]);
@@ -125,7 +103,6 @@ async function loadUpcomingEvents() {
 }
 
 function createEventCard(ev) {
-  console.log("createEventCard called for:", ev.name);
   var card = document.createElement("div");
   card.className = "event-card-inline";
 
@@ -159,7 +136,6 @@ function createEventCard(ev) {
     window.open("https://www.multigp.com/races/view/?race=" + ev.id + "/", "_blank");
   });
 
-  console.log("Card created successfully");
   return card;
 }
 
@@ -186,7 +162,6 @@ function formatEventDate(dateStr) {
   }
 }
 
-// Safari-safe date parser
 function parseDate(dateStr) {
   if (!dateStr) return null;
   
@@ -223,7 +198,6 @@ function parseDate(dateStr) {
 }
 
 // Load events when page loads
-console.log("Script loaded, document.readyState:", document.readyState);
 if (document.readyState === "loading") {
   console.log("Waiting for DOMContentLoaded");
   document.addEventListener("DOMContentLoaded", function() {
