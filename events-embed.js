@@ -1,4 +1,6 @@
 async function loadUpcomingEvents() {
+  console.log("Starting loadUpcomingEvents");
+  
   var apiUrl = "https://www.multigp.com/mgp/multigpwebservice/race/list?pageSize=50";
   var proxyUrl = "https://corsproxy.io/?" + encodeURIComponent(apiUrl);
   var body = {
@@ -10,16 +12,24 @@ async function loadUpcomingEvents() {
   var titleEl = document.querySelector(".events-title");
   var loadingText = document.querySelector(".loading-text");
   
+  console.log("Container:", container);
+  console.log("TitleEl:", titleEl);
+  console.log("LoadingText:", loadingText);
+  
   try {
+    console.log("Fetching data...");
     var response = await fetch(proxyUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body)
     });
 
+    console.log("Response received:", response.status);
     if (!response.ok) throw new Error("HTTP error " + response.status);
     var json = await response.json();
     var events = json.data || [];
+    
+    console.log("Events loaded:", events.length);
 
     var now = new Date();
     var upcoming = [];
@@ -36,6 +46,8 @@ async function loadUpcomingEvents() {
       }
     }
     
+    console.log("Upcoming events found:", upcoming.length);
+    
     // Sort upcoming events
     upcoming.sort(function(a, b) {
       return new Date(a.startDate) - new Date(b.startDate);
@@ -44,10 +56,13 @@ async function loadUpcomingEvents() {
     // Limit to 5 events
     var displayEvents = upcoming.slice(0, 5);
 
+    console.log("Display events count:", displayEvents.length);
+    
     // Remove spinner and loading text
     container.innerHTML = "";
 
     if (displayEvents.length === 0) {
+      console.log("No events to display");
       if (hasPastEvents) {
         loadingText.textContent = "No races scheduled yet";
       } else if (events.length === 0) {
@@ -63,6 +78,8 @@ async function loadUpcomingEvents() {
     var count = displayEvents.length;
     titleEl.textContent = count + " Upcoming Event" + (count !== 1 ? "s" : "");
     titleEl.classList.add("visible");
+    
+    console.log("Title updated:", titleEl.textContent);
 
     // Hide loading text
     if (loadingText && loadingText.style) {
@@ -70,14 +87,18 @@ async function loadUpcomingEvents() {
     }
 
     // Render events with staggered animation
+    console.log("Starting to render events...");
     for (var j = 0; j < displayEvents.length; j++) {
       (function(index, event) {
         setTimeout(function() {
+          console.log("Creating card for:", event.name);
           var card = createEventCard(event);
           container.appendChild(card);
+          console.log("Card appended. Container has", container.children.length, "children");
           // Trigger animation
           setTimeout(function() {
             card.classList.add("visible");
+            console.log("Card marked visible");
           }, 10);
         }, index * 100);
       })(j, displayEvents[j]);
@@ -93,6 +114,7 @@ async function loadUpcomingEvents() {
 }
 
 function createEventCard(ev) {
+  console.log("createEventCard called for:", ev.name);
   var card = document.createElement("div");
   card.className = "event-card-inline";
 
@@ -107,7 +129,7 @@ function createEventCard(ev) {
 
   var dateEl = document.createElement("div");
   dateEl.className = "event-date-inline";
-  dateEl.textContent = formatEventDate(ev.startDate) + " - " + ev.city + ", " + ev.state + " " + countryCodeToFlagEmoji(ev.country);
+  dateEl.textContent = formatEventDate(ev.startDate) + " - " + ev.city + ", " + ev.state;
   content.appendChild(dateEl);
 
   var nameEl = document.createElement("div");
@@ -126,6 +148,7 @@ function createEventCard(ev) {
     window.open("https://www.multigp.com/races/view/?race=" + ev.id + "/", "_blank");
   });
 
+  console.log("Card created successfully");
   return card;
 }
 
@@ -150,17 +173,15 @@ function formatEventDate(dateStr) {
   }
 }
 
-function countryCodeToFlagEmoji(countryCode) {
-  var code = countryCode.toUpperCase();
-  if (code.length !== 2) return "";
-  var first = String.fromCodePoint(code.charCodeAt(0) - 65 + 0x1F1E6);
-  var second = String.fromCodePoint(code.charCodeAt(1) - 65 + 0x1F1E6);
-  return first + second;
-}
-
 // Load events when page loads
+console.log("Script loaded, document.readyState:", document.readyState);
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", loadUpcomingEvents);
+  console.log("Waiting for DOMContentLoaded");
+  document.addEventListener("DOMContentLoaded", function() {
+    console.log("DOMContentLoaded fired");
+    loadUpcomingEvents();
+  });
 } else {
+  console.log("Document already loaded, calling function immediately");
   loadUpcomingEvents();
 }
