@@ -190,8 +190,28 @@ function formatEventDate(dateStr) {
 function parseDate(dateStr) {
   if (!dateStr) return null;
   
-  // Safari doesn't like dates with timezone in certain formats
-  // Try to parse and handle common formats
+  // Handle format: "2025-11-09 12:00 pm"
+  var parts = dateStr.match(/(\d{4})-(\d{2})-(\d{2})\s+(\d{1,2}):(\d{2})\s+(am|pm)/i);
+  
+  if (parts) {
+    var year = parseInt(parts[1], 10);
+    var month = parseInt(parts[2], 10) - 1; // months are 0-indexed
+    var day = parseInt(parts[3], 10);
+    var hours = parseInt(parts[4], 10);
+    var minutes = parseInt(parts[5], 10);
+    var meridiem = parts[6].toLowerCase();
+    
+    // Convert to 24-hour format
+    if (meridiem === 'pm' && hours !== 12) {
+      hours += 12;
+    } else if (meridiem === 'am' && hours === 12) {
+      hours = 0;
+    }
+    
+    return new Date(year, month, day, hours, minutes);
+  }
+  
+  // Fallback to standard parsing
   var date = new Date(dateStr);
   
   // If invalid, try replacing space with 'T' for ISO format
