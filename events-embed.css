@@ -28,6 +28,7 @@
   flex-shrink: 0;
   margin-left: 10px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
 }
 
 #upcoming-events-container {
@@ -113,7 +114,6 @@
   flex-direction: column;
   text-align: left;
   margin-left: 30px;
-
   gap: 0.25rem;
 }
 
@@ -123,6 +123,7 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-weight: 500;
+  transition: all 0.3s ease;
 }
 
 .event-name-inline {
@@ -130,10 +131,11 @@
   color: rgba(255, 255, 255, 0.95);
   font-weight: 600;
   line-height: 1.3;
+  transition: all 0.3s ease;
 }
 
 .event-chevron {
-  font-size: 2rem;
+  font-size: 1rem;
   color: rgba(255, 255, 255, 0.4);
   font-weight: 300;
   transition: all 0.3s ease;
@@ -144,6 +146,20 @@
 .event-card-inline:hover .event-chevron {
   color: rgba(255, 255, 255, 0.8);
   transform: translateX(4px);
+}
+
+.event-card-inline:hover .event-image {
+  transform: translateX(-4px);
+}
+
+.event-card-inline:hover .event-date-inline {
+  font-size: 0.8rem;
+  transform: translateX(-2px);
+}
+
+.event-card-inline:hover .event-name-inline {
+  font-size: 1.0rem;
+  transform: translateX(-2px);
 }
 
 @media (max-width: 768px) {

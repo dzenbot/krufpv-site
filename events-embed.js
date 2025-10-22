@@ -53,8 +53,8 @@ async function loadUpcomingEvents() {
       return new Date(a.startDate) - new Date(b.startDate);
     });
     
-    // Limit to 5 events
-    var displayEvents = upcoming.slice(0, 5);
+    // Limit the amount of events being displayed
+    var displayEvents = upcoming.slice(0, 7);
 
     console.log("Display events count:", displayEvents.length);
     
@@ -141,7 +141,7 @@ function createEventCard(ev) {
 
   var chevron = document.createElement("div");
   chevron.className = "event-chevron";
-  chevron.innerHTML = "&#8250;";
+  chevron.innerHTML = "&#10095;";
   card.appendChild(chevron);
 
   card.addEventListener("click", function() {
