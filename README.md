@@ -1,13 +1,17 @@
-## MultiGP Chapter Landing Page Page Generator
+## MultiGP Chapter Landing Page Generator
 
-This is a work in progress, meant to be built as a template for other chapters to adapt to their own.
-For now, it's not as generic as it should be, to make development easier. The plan is to create a page generator script, so it is easy for anyone to host their own chapter landing page on Github Pages.
+This project is intended to serve as a base template that other chapters can customize to suit their needs.
 
-**Basic features are there:**
+At this stage, the implementation remains chapter-specific to streamline and accelerate initial development.
+The long-term objective is to build a page generator script capable of automatically producing fully configured chapter landing pages, making it simple for any organizer to deploy their own instance on GitHub Pages with minimal manual setup.
 
-  * Load the next upcoming events of the chapter, from RaceSync's using the public API
-  * On click, open the event on MultiGP.com in a new window 
-  * Display full-size images randomly on each page load
-  * Display sanctioning bodies and social links and email contact
+**Core Features:**
+
+ * Dynamically retrieves the chapter’s upcoming events via the RaceSync public API.
+ * Allows users to open event details directly on MultiGP.com in a new browser tab.
+ * Randomly displays a full-size background image upon each page load.
+ * Presents the chapter’s sanctioning bodies, social media links, and contact email for quick access.
+
+**Preview:**
 
 <img width="50%" height="50%" alt="image" src="https://github.com/user-attachments/assets/b2d460df-33d2-4d31-933e-5244af371480" />
