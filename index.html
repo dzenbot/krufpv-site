@@ -8,12 +8,23 @@
   <meta name="theme-color" content="#1b1a19">
   <title>KRU Racing Club</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="events-embed.css">
 </head>
 <body class="bkgd" id="bkgd">
 
   <main class="content">
     <img src="images/main-logo.png" class="main-logo">
   </main>
+
+  <section class="events-section">
+    <p class="sub-title events-title">Upcoming Events</p>
+    <div id="upcoming-events-container">
+      <div class="loading-container">
+        <div class="spinner"></div>
+        <p class="loading-text visible">Loading events...</p>
+      </div>
+    </div>
+  </section>
 
   <footer>
     <div class="footer-sections">
@@ -69,5 +80,6 @@
 
     setRandomBackground();
   </script>
+  <script src="events-embed.js"></script>
 </body>
 </html>
