@@ -1,8 +1,8 @@
 // UI logic and event presentation
 
 async function loadUpcomingEvents() {
-  var container = document.getElementById("upcoming-events-container");
-  var titleEl = document.querySelector(".events-title");
+  var container = document.querySelector(".cards-container");
+  var titleEl = document.querySelector(".section-title");
   var loadingText = document.querySelector(".loading-text");
   var spinner = document.querySelector(".spinner");
 
@@ -83,30 +83,30 @@ async function loadUpcomingEvents() {
 
 function createEventCard(ev) {
   var card = document.createElement("div");
-  card.className = "event-card";
+  card.className = "card";
 
   var img = document.createElement("img");
-  img.className = "event-image";
+  img.className = "card-image";
   img.src = ev.mainImageFileName || ev.chapterImageFileName || "";
   card.appendChild(img);
 
   var content = document.createElement("div");
-  content.className = "event-content";
+  content.className = "card-content";
 
   var dateEl = document.createElement("div");
-  dateEl.className = "event-date";
+  dateEl.className = "card-date";
   dateEl.textContent = RaceSync.formatEventDate(ev.startDate) + " - " + ev.city + ", " + ev.state;
   content.appendChild(dateEl);
 
   var nameEl = document.createElement("div");
-  nameEl.className = "event-name";
+  nameEl.className = "card-name";
   nameEl.textContent = ev.name;
   content.appendChild(nameEl);
 
   card.appendChild(content);
 
   var chevron = document.createElement("div");
-  chevron.className = "event-chevron";
+  chevron.className = "card-chevron";
   chevron.innerHTML = "&#8250;";
   card.appendChild(chevron);
 

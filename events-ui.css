@@ -1,26 +1,5 @@
-.events-section {
-  position: relative;
-  z-index: 2;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 1rem 0 1rem 0; /* consistent horizontal padding */
-  box-sizing: border-box;
-}
 
-.events-title {
-  font-size: 0.8rem;
-  text-align: left;
-  padding-left: 0.25rem;
-  margin-bottom: 1rem;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.events-title.visible {
-  opacity: 1;
-}
-
-#upcoming-events-container {
+.cards-container {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -36,6 +15,25 @@
   justify-content: center;
   gap: 1rem;
   padding: 0 1rem 15rem;
+}
+
+.section-title {
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  text-align: left;
+  padding-left: 0.25rem;
+  margin-bottom: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  user-select: none;
+}
+
+.section-title.visible {
+  opacity: 1;
 }
 
 .spinner {
@@ -67,7 +65,7 @@
   color: rgba(255, 100, 100, 0.8);
 }
 
-.event-card {
+.card {
   display: flex;
   width: 100%;
   align-items: center;
@@ -83,19 +81,19 @@
   transform: translateY(20px);
 }
 
-.event-card.visible {
+.card.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-.event-card:hover {
+.card:hover {
   background: rgba(255, 255, 255, 0.12);
   border-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-.event-content {
+.card-content {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -105,7 +103,7 @@
   min-width: 0;
 }
 
-.event-image {
+.card-image {
   width: 3rem;
   height: 3rem;
   object-fit: cover;
@@ -117,7 +115,7 @@
   user-select: none;
 }
 
-.event-date {
+.card-date {
   font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.6);
   text-transform: uppercase;
@@ -129,7 +127,7 @@
   text-overflow: ellipsis;
 }
 
-.event-name {
+.card-name {
   font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.95);
   font-weight: 600;
@@ -140,7 +138,7 @@
   text-overflow: ellipsis;
 }
 
-.event-chevron {
+.card-chevron {
   display: flex;
   align-items: center;
   font-size: 2rem;
@@ -152,50 +150,49 @@
   flex-shrink: 0;
 }
 
-.event-card:hover .event-chevron {
+.card:hover .card-image {
+  transform: translateX(-4px);
+}
+
+.card:hover .card-date {
+  transform: translateX(-2px);
+}
+
+.card:hover .card-name {
+  transform: translateX(-2px);
+}
+
+.card:hover .card-chevron {
   color: rgba(255, 255, 255, 0.8);
   transform: translateX(4px);
 }
 
-.event-card:hover .event-image {
-  transform: translateX(-4px);
-}
-
-.event-card:hover .event-date {
-  transform: translateX(-2px);
-}
-
-.event-card:hover .event-name {
-  transform: translateX(-2px);
-}
-
 @media (max-width: 768px) {
 
-  .events-section {
+  .section {
     max-width: 90%;
-
   }
 
-  .event-card {
+  .card {
     padding: 0.875rem 1rem;
   }
 
-  .event-content {
+  .card-content {
     margin-left: 20px;
   }
-  .event-image {
+  .card-image {
     margin-left: 3px;
   }
 
-  .event-name {
+  .card-name {
     font-size: 0.9rem;
   }
 
-  .event-date {
+  .card-date {
     font-size: 0.7rem;
   }
 
-  .event-chevron {
+  .card-chevron {
     font-size: 1.75rem;
   }
 }
