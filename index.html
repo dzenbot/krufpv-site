@@ -15,7 +15,7 @@
 
   <main class="content">
     <div>
-      <img src="images/main-logo.png" class="main-logo">
+      <img src="images/chapter-logo.png" class="chapter-logo">
     </div>
 
     <section class="events-section">
@@ -58,31 +58,11 @@
           </div>
       </div>
     </div>
-    <p><script>document.write(new Date().getFullYear())</script> © KwadsRUs Racing Club (#S0071141)</p>
+    <p id="legal-text"></p>
+    <p>Powered by <a href="https://github.com/dzenbot/mgp-landing-generator">mgp-landing-generator</a></p>
   </footer>
 
-  <script>
-    const backgrounds = [
-        'images/background1.jpg',
-        'images/background2.jpg',
-        'images/background3.jpg',
-        'images/background4.jpg',
-        'images/background5.jpg',
-        'images/background6.jpg',
-        'images/background7.jpg',
-        'images/background8.jpg',
-        'images/background9.jpg',
-        'images/background10.jpg',
-    ];
-
-    function setRandomBackground() {
-        const randomIndex = Math.floor(Math.random() * backgrounds.length);
-        const bkgd = document.getElementById('bkgd');
-        bkgd.style.backgroundImage = `url('${backgrounds[randomIndex]}')`;
-    }
-
-    setRandomBackground();
-  </script>
+  <script src="ui.js"></script>
   <script src="events-sync.js"></script>
   <script src="events-ui.js"></script>
 </body>

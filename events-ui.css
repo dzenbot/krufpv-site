@@ -143,6 +143,8 @@
 }
 
 .event-chevron {
+  display: flex;
+  align-items: center;
   font-size: 2rem;
   color: rgba(255, 255, 255, 0.4);
   font-weight: 300;

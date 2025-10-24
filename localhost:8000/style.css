@@ -45,7 +45,7 @@ body, html {
     z-index: 2;
   }
 
-.chapter-logo {
+.main-logo {
     max-width: 600px;
     min-width: 400px;
     width: 50%;
@@ -134,7 +134,7 @@ footer {
       overflow-y: auto;
     }
 
-    .chapter-logo {
+    .main-logo {
       width: 30%;
       min-width: 300px;
     }

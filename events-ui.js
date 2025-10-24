@@ -4,11 +4,18 @@ async function loadUpcomingEvents() {
   var container = document.getElementById("upcoming-events-container");
   var titleEl = document.querySelector(".events-title");
   var loadingText = document.querySelector(".loading-text");
-  
+  var spinner = document.querySelector(".spinner");
+
   try {
     // Load chapter configuration
     var configResponse = await fetch("chapter.json");
     var config = await configResponse.json();
+
+    // Inline the JSON (for local use only)
+    // var config = {
+    //   apiKey: "5dabb882-c10f-5713-5a54-3cc21d69cd50",
+    //   chapterId: "1453"
+    // };
     
     // Fetch events using RaceSync
     var events = await RaceSync.fetchEvents(config.apiKey, config.chapterId);
@@ -38,6 +45,7 @@ async function loadUpcomingEvents() {
         loadingText.textContent = "No races scheduled yet";
       }
       loadingText.classList.add("visible");
+      spinner.style.display = "none";
       return;
     }
 
@@ -104,7 +112,7 @@ function createEventCard(ev) {
   card.appendChild(chevron);
 
   card.addEventListener("click", function() {
-    window.open("https://www.multigp.com/races/view/?race=" + ev.id + "/", "_blank");
+    window.location.href = "https://www.multigp.com/races/view/?race=" + ev.id + "/";
   });
 
   return card;
