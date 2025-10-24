@@ -40,9 +40,9 @@ body, html {
 
 .content {
     position: relative;
-    z-index: 2;
     text-align: center;
     padding: 20px;
+    z-index: 2;
   }
 
 .main-logo {

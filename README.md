@@ -15,3 +15,17 @@ The long-term objective is to build a page generator script capable of automatic
 **Preview:**
 
 <img width="50%" height="50%" alt="image" src="https://github.com/user-attachments/assets/b2d460df-33d2-4d31-933e-5244af371480" />
+
+### Get Started
+
+1. Fork this repository
+
+2. Pull your forked repository to your local directory
+
+3. Edit the `chapter.json` with your Chapter id and your Chapter API key (see here how to generate an API key)
+
+4. Using a terminal of your choice, navigate to the local directory and run a local web server
+
+```python3 -m http.server 8001``` (if you're on MacOS)
+
+5. Open `http://localhost:8001` in the browser of your choice. You should see a list of your chapter's upcoming events.

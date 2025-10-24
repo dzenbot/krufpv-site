@@ -3,17 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#1b1a19">
-  <title>KRU Racing Club</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="events-embed.css">
+  <link rel="stylesheet" href="events-ui.css">
+  <title>KRU Racing Club</title>
 </head>
 <body class="bkgd" id="bkgd">
 
   <main class="content">
-    <img src="images/main-logo.png" class="main-logo">
+    <div>
+      <img src="images/main-logo.png" class="main-logo">
+    </div>
 
     <section class="events-section">
     <p class="sub-title events-title">Upcoming Events</p>
@@ -25,8 +28,6 @@
     </div>
   </section>
   </main>
-
-  
 
   <footer>
     <div class="footer-sections">
@@ -82,6 +83,7 @@
 
     setRandomBackground();
   </script>
-  <script src="events-embed.js"></script>
+  <script src="events-sync.js"></script>
+  <script src="events-ui.js"></script>
 </body>
 </html>
