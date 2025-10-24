@@ -83,24 +83,23 @@ async function loadUpcomingEvents() {
 
 function createEventCard(ev) {
   var card = document.createElement("div");
-  card.className = "event-card-inline";
+  card.className = "event-card";
 
   var img = document.createElement("img");
   img.className = "event-image";
   img.src = ev.mainImageFileName || ev.chapterImageFileName || "";
-  img.alt = ev.name;
   card.appendChild(img);
 
   var content = document.createElement("div");
-  content.className = "event-content-inline";
+  content.className = "event-content";
 
   var dateEl = document.createElement("div");
-  dateEl.className = "event-date-inline";
+  dateEl.className = "event-date";
   dateEl.textContent = RaceSync.formatEventDate(ev.startDate) + " - " + ev.city + ", " + ev.state;
   content.appendChild(dateEl);
 
   var nameEl = document.createElement("div");
-  nameEl.className = "event-name-inline";
+  nameEl.className = "event-name";
   nameEl.textContent = ev.name;
   content.appendChild(nameEl);
 

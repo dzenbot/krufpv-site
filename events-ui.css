@@ -79,8 +79,7 @@
   color: rgba(255, 100, 100, 0.8);
 }
 
-/* Event Card */
-.event-card-inline {
+.event-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -97,19 +96,19 @@
   max-width: 600px;
 }
 
-.event-card-inline.visible {
+.event-card.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-.event-card-inline:hover {
+.event-card:hover {
   background: rgba(255, 255, 255, 0.12);
   border-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-.event-content-inline {
+.event-content {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -119,7 +118,7 @@
   min-width: 0;
 }
 
-.event-date-inline {
+.event-date {
   font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.6);
   text-transform: uppercase;
@@ -131,7 +130,7 @@
   text-overflow: ellipsis;
 }
 
-.event-name-inline {
+.event-name {
   font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.95);
   font-weight: 600;
@@ -154,20 +153,20 @@
   flex-shrink: 0;
 }
 
-.event-card-inline:hover .event-chevron {
+.event-card:hover .event-chevron {
   color: rgba(255, 255, 255, 0.8);
   transform: translateX(4px);
 }
 
-.event-card-inline:hover .event-image {
+.event-card:hover .event-image {
   transform: translateX(-4px);
 }
 
-.event-card-inline:hover .event-date-inline {
+.event-card:hover .event-date {
   transform: translateX(-2px);
 }
 
-.event-card-inline:hover .event-name-inline {
+.event-card:hover .event-name {
   transform: translateX(-2px);
 }
 
@@ -177,15 +176,15 @@
     padding: 0 1rem 1rem;
   }
 
-  .event-card-inline {
+  .event-card {
     padding: 0.875rem 1rem;
   }
 
-  .event-name-inline {
+  .event-name {
     font-size: 0.9rem;
   }
 
-  .event-date-inline {
+  .event-date {
     font-size: 0.7rem;
   }
 

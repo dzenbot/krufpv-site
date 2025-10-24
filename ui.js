@@ -7,7 +7,7 @@ async function initializeDynamicUI() {
       await new Promise(resolve => document.addEventListener("DOMContentLoaded", resolve));
     }
 
-    // Fetch config
+    // === Fetch config ===
     const response = await fetch("chapter.json");
     if (!response.ok) throw new Error(`HTTP error ${response.status}`);
     const config = await response.json();
@@ -16,18 +16,69 @@ async function initializeDynamicUI() {
     const backgrounds = config.backgrounds || [];
     if (backgrounds.length > 0) {
       const randomIndex = Math.floor(Math.random() * backgrounds.length);
-      const bkgd = document.getElementById("bkgd");
+      const bkgd = document.querySelector(".bkgd");
       if (bkgd) {
         bkgd.style.backgroundImage = `url('${backgrounds[randomIndex]}')`;
       }
     }
 
+    // === Update legal text & title ===
     const legalText = document.getElementById("legal-text");
-    const chapterName = config.chapterName || "";
+    const chapterName = config.chapterName || "Your Chapter";
     const year = new Date().getFullYear();
-
-    legalText.textContent = year + " © " + chapterName;
+    if (legalText) legalText.textContent = `${year} © ${chapterName}`;
     document.title = chapterName;
+
+    // === Build footer sections ===
+    const footerContainer = document.querySelector(".footer-sections");
+    if (footerContainer) {
+      footerContainer.innerHTML = ""; // clear static markup if any
+
+      // --- Sanctioned by section ---
+      const sanctionedSection = document.createElement("div");
+      sanctionedSection.className = "footer-section";
+      sanctionedSection.innerHTML = `
+        <p class="sub-title">Sanctioned by</p>
+        <div class="logos-row sponsor">
+          ${config.chapterId ? `
+            <a href="https://www.multigp.com/chapters/view/?chapter=${config.chapterName.replace(/\s+/g, '')}" target="_blank">
+              <img src="images/mgp.png">
+            </a>` : ""}
+          ${config.maacId ? `
+            <a href="https://www.maac.ca/en/clubs_details.php?club_id=${config.maacId}" target="_blank">
+              <img src="images/maac.png">
+            </a>` : ""}
+        </div>
+      `;
+
+      // --- Contact / Social section ---
+      const contactSection = document.createElement("div");
+      contactSection.className = "footer-section";
+
+      const emailLink = config.email
+        ? `<a href="mailto:${config.email}" target="_blank"><img src="images/social-email.png"></a>`
+        : "";
+
+      const instagramLink = config.instagram
+        ? `<a href="https://www.instagram.com/${config.instagram}" target="_blank"><img src="images/social-insta.png"></a>`
+        : "";
+
+      const facebookLink = config.facebook
+        ? `<a href="https://www.facebook.com/${config.facebook.includes("groups/") ? config.facebook : "groups/" + config.facebook}" target="_blank"><img src="images/social-fb.png"></a>`
+        : "";
+
+      contactSection.innerHTML = `
+        <p class="sub-title">Contact or Follow us</p>
+        <div class="logos-row social">
+          ${emailLink}${instagramLink}${facebookLink}
+        </div>
+      `;
+
+      // --- Append both sections ---
+      footerContainer.appendChild(sanctionedSection);
+      footerContainer.appendChild(contactSection);
+    }
+
   } catch (err) {
     console.error("Error initializing chapter page:", err);
   }
