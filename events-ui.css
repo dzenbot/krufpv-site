@@ -3,9 +3,9 @@
   z-index: 2;
   width: 100%;
   max-width: 600px;
-  margin: 0 auto;
-  padding: 0 auto;
   margin-top: 2rem;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
 }
 
 .events-title {
@@ -173,7 +173,6 @@
 @media (max-width: 768px) {
   .events-section {
     max-width: 100%;
-    padding: 0 1rem 1rem;
   }
 
   .event-card {

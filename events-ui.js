@@ -72,6 +72,9 @@ async function loadUpcomingEvents() {
       })(j, displayEvents[j]);
     }
 
+    // scroll to top
+    window.scrollTo(0, 0);
+
   } catch (err) {
     console.error("Error loading events:", err);
     container.innerHTML = "";
