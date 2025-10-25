@@ -59,7 +59,7 @@ async function loadUpcomingEvents() {
 
     // Show title
     const count = displayEvents.length;
-    titleText.textContent = `${count} Upcoming Event${count !== 1 ? "s" : ""}`;
+    titleText.textContent = `${count} Upcoming Event${count !== 1 ? "s" : ""}:`;
     titleText.classList.add("visible");
 
     // Render events with staggered animation

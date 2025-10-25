@@ -3,7 +3,6 @@
   "display": "standalone",
   "background_color": "#1b1a19",
   "theme_color": "#1b1a19",
-  "orientation": "portrait",
   "categories": ["sports", "drone racing"],
   "icons": [
     {
