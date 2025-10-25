@@ -35,10 +35,9 @@
 .cards-container {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  min-height: 100px;
   align-items: center;
   justify-content: center;
+  gap: 0.75rem;
 }
 
 .spinner {
@@ -183,6 +182,7 @@
 
   .section-title {
     font-size: 0.7rem;
+    padding-left: 0.75rem;
   }
 
   .card {
@@ -190,7 +190,7 @@
   }
 
   .card-content {
-    margin-left: 20px;
+    margin-left: 15px;
   }
 
   .card-image {
