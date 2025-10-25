@@ -88,6 +88,7 @@ main {
 .logos-row a:hover img {
   filter: brightness(0.5);
   transition: transform 0.25s ease, filter 0.25s ease;
+  cursor: pointer;
 }
 
 .sponsor {
@@ -102,7 +103,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
   gap: 2rem;
 }
@@ -119,6 +120,17 @@ footer {
   text-align: center;
   position: relative;
   z-index: 2;
+}
+
+.footer-title {
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  transition: opacity 0.3s ease;
+  user-select: none;
 }
 
 @media (min-width: 480px) {
@@ -139,20 +151,8 @@ footer {
     min-width: 300px;
   }
 
-  .footer-sections {
-    flex-direction: column;
-    gap: 0rem;
-  }
-  
-  .footer-section {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
   .logos-row img {
-    height: 30px;
+    height: 35px;
   }
   
   .social img {

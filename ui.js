@@ -24,7 +24,7 @@ async function initializeDynamicUI() {
 
     // === Update legal text & title ===
     const legalText = document.getElementById("legal-text");
-    const chapterName = config.chapterName || "Your Chapter";
+    const chapterName = config.chapterName;
     const year = new Date().getFullYear();
     if (legalText) legalText.textContent = `${year} © ${chapterName}`;
     document.title = chapterName;
@@ -36,24 +36,29 @@ async function initializeDynamicUI() {
 
       // --- Sanctioned by section ---
       const sanctionedSection = document.createElement("div");
-      sanctionedSection.className = "footer-section";
+      sanctionedSection.className = "footer-title";
+
       sanctionedSection.innerHTML = `
         <p class="sub-title">Sanctioned by</p>
         <div class="logos-row sponsor">
           ${config.chapterId ? `
-            <a href="https://www.multigp.com/chapters/view/?chapter=${config.chapterName.replace(/\s+/g, '')}" target="_blank">
-              <img src="images/mgp.png">
+            <a href="https://www.multigp.com/chapters/view/?chapter=${config.chapterId.replace(/\s+/g, '')}" target="_blank">
+              <img src="images/org_mgp.png">
             </a>` : ""}
           ${config.maacId ? `
             <a href="https://www.maac.ca/en/clubs_details.php?club_id=${config.maacId}" target="_blank">
-              <img src="images/maac.png">
+              <img src="images/org_maac.png">
+            </a>` : ""}
+          ${config.amaId ? `
+            <a href="https://www.modelaircraft.org/club-name-search?number=${config.amaId}" target="_blank">
+              <img src="images/org_ama.png">
             </a>` : ""}
         </div>
       `;
 
-      // --- Contact / Social section ---
+      // --- Contact & Social section ---
       const contactSection = document.createElement("div");
-      contactSection.className = "footer-section";
+      contactSection.className = "footer-title";
 
       const emailLink = config.email
         ? `<a href="mailto:${config.email}" target="_blank"><img src="images/social-email.png"></a>`
@@ -68,7 +73,7 @@ async function initializeDynamicUI() {
         : "";
 
       contactSection.innerHTML = `
-        <p class="sub-title">Contact or Follow us</p>
+        <p class="sub-title">Contact & Social</p>
         <div class="logos-row social">
           ${emailLink}${instagramLink}${facebookLink}
         </div>

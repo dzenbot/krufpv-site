@@ -1,85 +1,82 @@
 // UI logic and event presentation
 
 async function loadUpcomingEvents() {
-  var container = document.querySelector(".cards-container");
-  var titleEl = document.querySelector(".section-title");
-  var loadingText = document.querySelector(".loading-text");
-  var spinner = document.querySelector(".spinner");
+  const container = document.querySelector(".cards-container");
+  const titleText = document.querySelector(".section-title");
+  const loadingText = document.querySelector(".loading-text");
+  const spinner = document.querySelector(".spinner");
+
+  // Helper to display an error or status message
+  function showMessage(message, isError = false) {
+    const loadingContainer = loadingText.parentElement;
+    container.innerHTML = "";
+    container.appendChild(loadingContainer);
+
+    loadingText.textContent = message;
+    loadingText.classList.add("visible");
+    loadingText.classList.toggle("error", isError);
+
+    spinner.style.display = "none";
+  }
 
   try {
     // Load chapter configuration
-    var configResponse = await fetch("chapter.json");
-    var config = await configResponse.json();
+    const configResponse = await fetch("chapter.json");
+    const config = await configResponse.json();
 
-    // Inline the JSON (for local use only)
-    // var config = {
-    //   apiKey: "5dabb882-c10f-5713-5a54-3cc21d69cd50",
-    //   chapterId: "1453"
-    // };
-    
-    // Fetch events using RaceSync
-    var events = await RaceSync.fetchEvents(config.apiKey, config.chapterId);
-    
-    // Filter and sort events
-    var now = new Date();
-    var filtered = RaceSync.filterUpcomingEvents(events, now);
-    var upcoming = RaceSync.sortEventsByDate(filtered.upcoming);
-    
-    // Limit to 5 events
-    var displayEvents = upcoming.slice(0, 5);
-    
-    // Remove spinner and loading text
-    container.innerHTML = "";
-
-    // Handle no events case
-    if (displayEvents.length === 0) {
-      var loadingContainer = loadingText.parentElement;
-      container.innerHTML = "";
-      container.appendChild(loadingContainer);
-      
-      if (filtered.hasPastEvents) {
-        loadingText.textContent = "No races scheduled yet";
-      } else if (events.length === 0) {
-        loadingText.textContent = "No events found";
-      } else {
-        loadingText.textContent = "No races scheduled yet";
-      }
-      loadingText.classList.add("visible");
-      spinner.style.display = "none";
+    // Validate config
+    if (!config.apiKey || !config.chapterId) {
+      const missingField = !config.apiKey ? "apiKey" : "chapterId";
+      showMessage(`Missing '${missingField}' in chapter.json`, true);
       return;
     }
 
-    // Show title with count
-    var count = displayEvents.length;
-    titleEl.textContent = count + " Upcoming Event" + (count !== 1 ? "s" : "");
-    titleEl.classList.add("visible");
-    
-    // Hide loading text
-    if (loadingText && loadingText.style) {
-      loadingText.style.display = "none";
+    // Fetch events
+    const events = await RaceSync.fetchEvents(config.apiKey, config.chapterId);
+
+    // Filter and sort events
+    const now = new Date();
+    const filtered = RaceSync.filterUpcomingEvents(events, now);
+    const upcoming = RaceSync.sortEventsByDate(filtered.upcoming);
+
+    const displayEvents = upcoming.slice(0, 5);
+
+    // Handle no events
+    if (displayEvents.length === 0) {
+      if (filtered.hasPastEvents) {
+        showMessage("No races scheduled yet");
+      } else if (events.length === 0) {
+        showMessage("No races found");
+      } else {
+        showMessage("No races scheduled yet");
+      }
+      return;
     }
 
+    // Remove spinner and loading text
+    container.innerHTML = "";
+    if (loadingText && loadingText.style) loadingText.style.display = "none";
+
+    // Show title
+    const count = displayEvents.length;
+    titleText.textContent = `${count} Upcoming Event${count !== 1 ? "s" : ""}`;
+    titleText.classList.add("visible");
+
     // Render events with staggered animation
-    for (var j = 0; j < displayEvents.length; j++) {
-      (function(index, event) {
-        setTimeout(function() {
-          var card = createEventCard(event);
-          container.appendChild(card);
-          setTimeout(function() {
-            card.classList.add("visible");
-          }, 10);
-        }, index * 100);
-      })(j, displayEvents[j]);
-    }
+    displayEvents.forEach((event, index) => {
+      setTimeout(() => {
+        const card = createEventCard(event);
+        container.appendChild(card);
+        setTimeout(() => card.classList.add("visible"), 10);
+      }, index * 100);
+    });
 
   } catch (err) {
     console.error("Error loading events:", err);
-    container.innerHTML = "";
-    loadingText.textContent = "Failed to load events";
-    loadingText.classList.add("visible");
-    loadingText.classList.add("error");
+    showMessage("Failed to load events", true);
   }
 }
+
 
 function createEventCard(ev) {
   var card = document.createElement("div");
