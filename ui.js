@@ -41,6 +41,11 @@ async function initializeDynamicUI() {
     if (legalText) legalText.textContent = `${year} © ${chapterName}`;
     document.title = chapterName;
 
+    // === Meta Tags ===
+    setMetaProperty('og:title', config.chapterName);
+    setMetaProperty('og:description', `Upcoming events from ${config.chapterName}`);
+    setMetaName('description', `${config.chapterDesc}`);
+
     // === Build footer sections ===
     const footerContainer = document.querySelector(".footer-sections");
     if (footerContainer) {
@@ -99,6 +104,26 @@ async function initializeDynamicUI() {
   } catch (err) {
     console.error("Error initializing chapter page:", err);
   }
+}
+
+function setMetaProperty(property, content) {
+  let element = document.querySelector(`meta[property='${property}']`);
+  if (!element) {
+    element = document.createElement('meta');
+    element.setAttribute('property', property);
+    document.head.appendChild(element);
+  }
+  element.setAttribute('content', content);
+}
+
+function setMetaName(name, content) {
+  let element = document.querySelector(`meta[name='${name}']`);
+  if (!element) {
+    element = document.createElement('meta');
+    element.setAttribute('name', name);
+    document.head.appendChild(element);
+  }
+  element.setAttribute('content', content);
 }
 
 initializeDynamicUI();
