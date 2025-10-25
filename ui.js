@@ -1,18 +1,27 @@
 // ui.js - UI utility functions
 
-function setViewportHeight() {
-  const vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-}
-
-// Set on load
-setViewportHeight();
-
-// Update if window is resized or mobile bar toggles
-window.addEventListener('resize', setViewportHeight);
-window.addEventListener('orientationchange', setViewportHeight);
-
 async function initializeDynamicUI() {
+
+  function setMetaProperty(property, content) {
+    let element = document.querySelector(`meta[property='${property}']`);
+    if (!element) {
+      element = document.createElement('meta');
+      element.setAttribute('property', property);
+      document.head.appendChild(element);
+    }
+    element.setAttribute('content', content);
+  }
+
+  function setMetaName(name, content) {
+    let element = document.querySelector(`meta[name='${name}']`);
+    if (!element) {
+      element = document.createElement('meta');
+      element.setAttribute('name', name);
+      document.head.appendChild(element);
+    }
+    element.setAttribute('content', content);
+  }
+
   try {
     // Wait for DOM to be ready
     if (document.readyState === "loading") {
@@ -106,24 +115,16 @@ async function initializeDynamicUI() {
   }
 }
 
-function setMetaProperty(property, content) {
-  let element = document.querySelector(`meta[property='${property}']`);
-  if (!element) {
-    element = document.createElement('meta');
-    element.setAttribute('property', property);
-    document.head.appendChild(element);
-  }
-  element.setAttribute('content', content);
-}
-
-function setMetaName(name, content) {
-  let element = document.querySelector(`meta[name='${name}']`);
-  if (!element) {
-    element = document.createElement('meta');
-    element.setAttribute('name', name);
-    document.head.appendChild(element);
-  }
-  element.setAttribute('content', content);
-}
-
 initializeDynamicUI();
+
+function setViewportHeight() {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+// Set on load
+setViewportHeight();
+
+// Update if window is resized or mobile bar toggles
+window.addEventListener('resize', setViewportHeight);
+window.addEventListener('orientationchange', setViewportHeight);
