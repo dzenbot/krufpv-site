@@ -1,5 +1,17 @@
 // ui.js - UI utility functions
 
+function setViewportHeight() {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+// Set on load
+setViewportHeight();
+
+// Update if window is resized or mobile bar toggles
+window.addEventListener('resize', setViewportHeight);
+window.addEventListener('orientationchange', setViewportHeight);
+
 async function initializeDynamicUI() {
   try {
     // Wait for DOM to be ready
@@ -39,7 +51,7 @@ async function initializeDynamicUI() {
       sanctionedSection.className = "footer-title";
 
       sanctionedSection.innerHTML = `
-        <p class="sub-title">Sanctioned by</p>
+        <p class="sub-title">Sanctioned by:</p>
         <div class="logos-row sponsor">
           ${config.chapterId ? `
             <a href="https://www.multigp.com/chapters/view/?chapter=${config.chapterId.replace(/\s+/g, '')}" target="_blank">
@@ -73,7 +85,7 @@ async function initializeDynamicUI() {
         : "";
 
       contactSection.innerHTML = `
-        <p class="sub-title">Contact & Social</p>
+        <p class="sub-title">Contact & Social:</p>
         <div class="logos-row social">
           ${emailLink}${instagramLink}${facebookLink}
         </div>
