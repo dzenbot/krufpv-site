@@ -51,9 +51,9 @@ async function initializeDynamicUI() {
     document.title = chapterName;
 
     // === Meta Tags ===
-    setMetaProperty('og:title', config.chapterName);
-    setMetaProperty('og:description', `Upcoming events from ${config.chapterName}`);
-    setMetaName('description', `${config.chapterDesc}`);
+    // setMetaProperty('og:title', config.chapterName);
+    // setMetaProperty('og:description', `Upcoming events from ${config.chapterName}`);
+    // setMetaName('description', `${config.chapterDesc}`);
 
     // === Build footer sections ===
     const footerContainer = document.querySelector(".footer-sections");
