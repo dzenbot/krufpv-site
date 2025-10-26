@@ -74,7 +74,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  width: calc(100% - clamp(1rem, 5vw, 2rem));
+  margin: 0 auto;
+  max-width: 900px;
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -130,10 +132,6 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-weight: 500;
-  transition: transform 0.3s ease;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .card-name {
@@ -141,10 +139,14 @@
   color: rgba(255, 255, 255, 0.95);
   font-weight: 600;
   line-height: 1.3;
-  transition: transform 0.3s ease;
-  white-space: nowrap;
+}
+
+.card-name,
+.card-date {
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: transform 0.3s ease;
 }
 
 .card-chevron {
@@ -179,20 +181,22 @@
 @media (max-width: 768px) {
 
   .events-container {
-    padding: 1rem 1rem 1rem 1rem;
+    padding: 1rem 2rem 1rem 2rem;
   }
 
   .section-title {
     font-size: 0.7rem;
-    padding-left: 0.75rem;
+    padding-left: 1rem;
   }
 
   .card {
-    padding: 0.75rem 0.5rem;
+    width: calc(100% - 2rem);
+    margin: 0 1rem;
+    padding: 0.75rem 0.75rem;
   }
 
   .card-content {
-    margin-left: 15px;
+    margin-left: 0.5rem;
   }
 
   .card-image {

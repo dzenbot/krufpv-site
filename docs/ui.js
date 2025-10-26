@@ -73,10 +73,14 @@ async function initializeDynamicUI() {
         ? `<a href="https://www.facebook.com/${config.facebook.includes("groups/") ? config.facebook : "groups/" + config.facebook}" target="_blank"><img src="images/social-fb.png"></a>`
         : "";
 
+      const youtubeLink = config.youtube
+        ? `<a href="https://www.youtube.com/${config.youtube}" target="_blank"><img src="images/social-yt.png"></a>`
+        : "";
+
       contactSection.innerHTML = `
         <p class="sub-title">Contact & Social:</p>
         <div class="logos-row social">
-          ${emailLink}${instagramLink}${facebookLink}
+          ${emailLink}${instagramLink}${facebookLink}${youtubeLink}
         </div>
       `;
 
