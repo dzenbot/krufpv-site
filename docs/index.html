@@ -16,6 +16,14 @@
   <link rel="stylesheet" href="events-ui.css">
   <link rel="manifest" href="/site.webmanifest">
   <title></title>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const raceId = params.get('race');
+    if (raceId) {
+      window.location.replace(`https://www.multigp.com/races/view/?race=${raceId}`);
+    }
+  </script>
 </head>
 <body class="bkgd">
 
