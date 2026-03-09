@@ -31,6 +31,8 @@ async function loadUpcomingEvents() {
       return;
     }
 
+    showMessage(`Loading race list...`);
+
     // Fetch events
     const events = await RaceSync.fetchEvents(config.apiKey, config.chapterId);
 
@@ -45,10 +47,8 @@ async function loadUpcomingEvents() {
     if (displayEvents.length === 0) {
       if (filtered.hasPastEvents) {
         showMessage("No races scheduled yet");
-      } else if (events.length === 0) {
-        showMessage("No races found");
       } else {
-        showMessage("No races scheduled yet");
+        showMessage("No races found");
       }
       return;
     }

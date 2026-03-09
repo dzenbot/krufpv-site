@@ -28,7 +28,7 @@ The long-term objective is to build a page generator script capable of automatic
 
 ```python3 -m http.server 8000``` (if you're on MacOS)
 
-5. Open `http://localhost:8001` in the browser of your choice. You should see a list of your chapter's upcoming events.
+5. Open `http://localhost:8000` in the browser of your choice. You should see a list of your chapter's upcoming events.
 
 6. Complete your chapter info in `chapter.json` such as `chapterName`, `email`, `amaId`, etc.
 
@@ -36,7 +36,7 @@ The long-term objective is to build a page generator script capable of automatic
 
 8. Replace `background1.jpg` with your own full screen photos. You can add as many as you want, just make sure to include their path in `chapter.json`
 
-9. Refresh `http://localhost:8001` and once you are happy with the result, commit and push the changes to your repository on Github.
+9. Refresh `http://localhost:8000` and once you are happy with the result, commit and push the changes to your repository on Github.
 
 10. On Github, go to `Settings/Pages` and under `Branch` pick `Main`, and folder `/Docs`. Github will then kick off the process of deploying the page and should see a github.io link soon after, to preview the page.
 

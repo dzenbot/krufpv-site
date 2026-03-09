@@ -9,7 +9,7 @@ var RaceSync = (function() {
       apiKey: apiKey,
       data: { 
         chapterId: [chapterId],
-        upcoming: { limit: 1 }
+        upcoming: { limit: 10 }
       }
     };
 
