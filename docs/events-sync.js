@@ -1,7 +1,7 @@
 // Pure API connectivity and data fetching (no UI logic)
 
 var RaceSync = (function() {
-  
+
   function fetchEvents(apiKey, chapterId) {
     var apiUrl = "https://www.multigp.com/mgp/multigpwebservice/race/list";
     var proxyUrl = "https://corsproxy.io/?url=" + encodeURIComponent(apiUrl);
@@ -18,25 +18,20 @@ var RaceSync = (function() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body)
     })
-    .then(function(response) {
+    .then(async function(response) {
+      const text = await response.text();
+
       if (!response.ok) {
-        .then(async function(response) {
-          const text = await response.text();
-
-          if (!response.ok) {
-            console.error("Proxy response body:", text);
-            throw new Error("HTTP error " + response.status + " - " + text);
-          }
-
-          try {
-            return JSON.parse(text);
-          } catch (e) {
-            console.error("Non JSON response:", text);
-            throw e;
-          }
-        })
+        console.error("Proxy response body:", text);
+        throw new Error("HTTP error " + response.status + " - " + text);
       }
-      return response.json();
+
+      try {
+        return JSON.parse(text);
+      } catch (e) {
+        console.error("Non JSON response:", text);
+        throw e;
+      }
     })
     .then(function(json) {
       return json.data || [];
