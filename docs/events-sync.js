@@ -4,7 +4,7 @@ var RaceSync = (function() {
   
   function fetchEvents(apiKey, chapterId) {
     var apiUrl = "https://www.multigp.com/mgp/multigpwebservice/race/list";
-    var proxyUrl = "https://corsproxy.io/?" + encodeURIComponent(apiUrl);
+    var proxyUrl = "https://corsproxy.io/?url=" + encodeURIComponent(apiUrl);
     var body = {
       apiKey: apiKey,
       data: { 
@@ -20,7 +20,21 @@ var RaceSync = (function() {
     })
     .then(function(response) {
       if (!response.ok) {
-        throw new Error("HTTP error " + response.status);
+        .then(async function(response) {
+          const text = await response.text();
+
+          if (!response.ok) {
+            console.error("Proxy response body:", text);
+            throw new Error("HTTP error " + response.status + " - " + text);
+          }
+
+          try {
+            return JSON.parse(text);
+          } catch (e) {
+            console.error("Non JSON response:", text);
+            throw e;
+          }
+        })
       }
       return response.json();
     })
