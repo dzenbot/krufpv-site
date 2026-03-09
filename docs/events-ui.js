@@ -31,7 +31,8 @@ async function loadUpcomingEvents() {
       return;
     }
 
-    showMessage(`Loading race list...`);
+    showMessage(`Loading chapter '${config.chapterId}' race list with key '${config.apiKey}'...`);
+    return;
 
     // Fetch events
     const events = await RaceSync.fetchEvents(config.apiKey, config.chapterId);
