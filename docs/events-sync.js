@@ -18,6 +18,8 @@ var RaceSync = (function() {
 
     return fetch(proxyUrl, {
       method: "POST",
+      referrerPolicy: "no-referrer",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body)
     })
     .then(async function(response) {
