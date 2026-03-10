@@ -1,30 +1,44 @@
 // Pure API connectivity and data fetching (no UI logic)
 
 var RaceSync = (function() {
-  
+
   function fetchEvents(apiKey, chapterId) {
     var apiUrl = "https://www.multigp.com/mgp/multigpwebservice/race/list";
-    var proxyUrl = "https://corsproxy.io/?" + encodeURIComponent(apiUrl);
+    var proxyUrl = "https://corsproxy.io/?url=" + encodeURIComponent(apiUrl);
+
     var body = {
       apiKey: apiKey,
-      data: { 
+      data: {
         chapterId: [chapterId],
         upcoming: { limit: 10 }
       }
     };
 
+    console.log("POST body:", body);
+
     return fetch(proxyUrl, {
       method: "POST",
+      referrerPolicy: "no-referrer",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body)
     })
-    .then(function(response) {
+    .then(async function(response) {
+      const text = await response.text();
+      console.log("status:", response.status);
+      console.log("raw response:", text);
+
       if (!response.ok) {
-        throw new Error("HTTP error " + response.status);
+        throw new Error("HTTP error " + response.status + " - " + text);
       }
-      return response.json();
+
+      try {
+        return JSON.parse(text);
+      } catch (e) {
+        throw new Error("Invalid JSON response: " + text);
+      }
     })
     .then(function(json) {
+      console.log("parsed json:", json);
       return json.data || [];
     });
   }
