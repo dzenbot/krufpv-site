@@ -46,14 +46,6 @@ async function initializeDynamicUI() {
             <a href="https://www.multigp.com/chapters/view/?chapter=${config.chapterId.replace(/\s+/g, '')}" target="_blank">
               <img src="images/org_mgp.png">
             </a>` : ""}
-          ${config.maacId ? `
-            <a href="https://www.maac.ca/en/clubs_details.php?club_id=${config.maacId}" target="_blank">
-              <img src="images/org_maac.png">
-            </a>` : ""}
-          ${config.amaId ? `
-            <a href="https://www.modelaircraft.org/club-name-search?number=${config.amaId}" target="_blank">
-              <img src="images/org_ama.png">
-            </a>` : ""}
         </div>
       `;
 
