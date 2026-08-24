@@ -57,7 +57,7 @@ async function loadUpcomingEvents() {
 
     // Show title
     const count = displayEvents.length;
-    titleText.textContent = `${count} Upcoming Event${count !== 1 ? "s" : ""}:`;
+    titleText.textContent = `${count} upcoming event${count !== 1 ? "s" : ""}`;
     titleText.classList.add("visible");
 
     // Render events with staggered animation
@@ -77,7 +77,7 @@ async function loadUpcomingEvents() {
 
 
 function createEventCard(ev) {
-  var card = document.createElement("div");
+  var card = document.createElement("article");
   card.className = "card";
 
   var img = document.createElement("img");
@@ -107,6 +107,15 @@ function createEventCard(ev) {
 
   card.addEventListener("click", function() {
     window.location.href = "https://www.multigp.com/races/view/?race=" + ev.id + "/";
+  });
+  card.tabIndex = 0;
+  card.setAttribute("role", "link");
+  card.setAttribute("aria-label", `View ${ev.name} on MultiGP`);
+  card.addEventListener("keydown", function(event) {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      card.click();
+    }
   });
 
   return card;

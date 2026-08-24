@@ -13,16 +13,6 @@ async function initializeDynamicUI() {
     if (!response.ok) throw new Error(`HTTP error ${response.status}`);
     const config = await response.json();
 
-    // === Update background ===
-    const backgrounds = config.backgrounds || [];
-    if (backgrounds.length > 0) {
-      const randomIndex = Math.floor(Math.random() * backgrounds.length);
-      const bkgd = document.querySelector(".bkgd");
-      if (bkgd) {
-        bkgd.style.backgroundImage = `url('${backgrounds[randomIndex]}')`;
-      }
-    }
-
     // === Update legal text & title ===
     const legalText = document.getElementById("legal-text");
     const chapterName = config.chapterName;
@@ -49,36 +39,29 @@ async function initializeDynamicUI() {
         </div>
       `;
 
-      // --- Contact & Social section ---
-      const contactSection = document.createElement("div");
-      contactSection.className = "footer-title";
-
-      const emailLink = config.email
-        ? `<a href="mailto:${config.email}" target="_blank"><img src="images/social-email.png"></a>`
-        : "";
-
       const instagramLink = config.instagram
-        ? `<a href="https://www.instagram.com/${config.instagram}" target="_blank"><img src="images/social-insta.png"></a>`
+        ? `<a href="https://www.instagram.com/${config.instagram}" target="_blank" rel="noopener" aria-label="Instagram"><img src="images/social-insta.png" alt=""></a>`
         : "";
 
       const facebookLink = config.facebook
-        ? `<a href="https://www.facebook.com/${config.facebook.includes("groups/") ? config.facebook : "groups/" + config.facebook}" target="_blank"><img src="images/social-fb.png"></a>`
+        ? `<a href="https://www.facebook.com/${config.facebook.includes("groups/") ? config.facebook : "groups/" + config.facebook}" target="_blank" rel="noopener" aria-label="Facebook"><img src="images/social-fb.png" alt=""></a>`
         : "";
 
       const youtubeLink = config.youtube
-        ? `<a href="https://www.youtube.com/${config.youtube}" target="_blank"><img src="images/social-yt.png"></a>`
+        ? `<a href="https://www.youtube.com/${config.youtube}" target="_blank" rel="noopener" aria-label="YouTube"><img src="images/social-yt.png" alt=""></a>`
         : "";
 
-      contactSection.innerHTML = `
-        <p class="sub-title">Contact & Social:</p>
-        <div class="logos-row social">
-          ${emailLink}${instagramLink}${facebookLink}${youtubeLink}
-        </div>
-      `;
+      const footerEmail = document.querySelector(".footer-email");
+      if (footerEmail && config.email) {
+        footerEmail.href = `mailto:${config.email}`;
+        footerEmail.textContent = config.email;
+      }
 
-      // --- Append both sections ---
+      const footerSocials = document.getElementById("footer-socials");
+      if (footerSocials) footerSocials.innerHTML = `${instagramLink}${facebookLink}${youtubeLink}`;
+
+      // --- Append affiliation section ---
       footerContainer.appendChild(sanctionedSection);
-      footerContainer.appendChild(contactSection);
     }
 
   } catch (err) {
@@ -87,6 +70,24 @@ async function initializeDynamicUI() {
 }
 
 initializeDynamicUI();
+
+document.addEventListener("DOMContentLoaded", () => {
+  const menuButton = document.querySelector(".menu-button");
+  const nav = document.querySelector("#site-nav");
+  const links = [...document.querySelectorAll("#site-nav .nav-link")];
+  menuButton?.addEventListener("click", () => {
+    const open = nav.classList.toggle("open");
+    menuButton.setAttribute("aria-expanded", String(open));
+  });
+  links.forEach(link => link.addEventListener("click", () => {
+    nav.classList.remove("open");
+    menuButton?.setAttribute("aria-expanded", "false");
+  }));
+  const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+    if (entry.isIntersecting) links.forEach(link => link.classList.toggle("active", link.hash === `#${entry.target.id}`));
+  }), { rootMargin: "-30% 0px -60%" });
+  document.querySelectorAll("#events, #get-started, #gallery, #about").forEach(section => observer.observe(section));
+});
 
 function setViewportHeight() {
   const vh = window.innerHeight * 0.01;
