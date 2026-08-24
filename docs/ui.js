@@ -1,5 +1,82 @@
 // ui.js - UI utility functions
 
+const BACKGROUND_DIRECTORY = "images/background/";
+const BACKGROUND_API = "https://api.github.com/repos/dzenbot/krufpv-site/contents/docs/images/background?ref=main";
+const IMAGE_FILE_PATTERN = /\.(avif|gif|jpe?g|png|webp)$/i;
+
+function imagePathsFromNames(names) {
+  return [...new Set(names)]
+    .filter(name => IMAGE_FILE_PATTERN.test(name))
+    .map(name => `${BACKGROUND_DIRECTORY}${encodeURIComponent(name)}`);
+}
+
+async function discoverBackgrounds() {
+  try {
+    const directoryResponse = await fetch(BACKGROUND_DIRECTORY, { cache: "no-store" });
+    if (directoryResponse.ok) {
+      const directoryHtml = await directoryResponse.text();
+      const directoryDocument = new DOMParser().parseFromString(directoryHtml, "text/html");
+      const names = [...directoryDocument.querySelectorAll("a[href]")]
+        .map(link => decodeURIComponent(link.getAttribute("href").split(/[?#]/)[0]).split("/").filter(Boolean).pop());
+      const localBackgrounds = imagePathsFromNames(names);
+      if (localBackgrounds.length > 0) return localBackgrounds;
+    }
+  } catch {
+    // GitHub Pages does not expose directory listings; use its API below.
+  }
+
+  const apiResponse = await fetch(BACKGROUND_API, {
+    headers: { Accept: "application/vnd.github+json" }
+  });
+  if (!apiResponse.ok) throw new Error(`Background API error ${apiResponse.status}`);
+  const entries = await apiResponse.json();
+  return imagePathsFromNames(entries.filter(entry => entry.type === "file").map(entry => entry.name));
+}
+
+async function initializeRandomBackground() {
+  const heroBackground = document.querySelector(".hero-background");
+  if (!heroBackground) return;
+
+  try {
+    const backgrounds = await discoverBackgrounds();
+    if (backgrounds.length === 0) return;
+
+    const rotationKey = "kwadsrus-background-rotation";
+    const signature = backgrounds.join("|");
+    let rotation;
+
+    try {
+      rotation = JSON.parse(sessionStorage.getItem(rotationKey));
+    } catch {
+      rotation = null;
+    }
+
+    if (!rotation || rotation.signature !== signature || !Array.isArray(rotation.queue) || rotation.queue.length === 0) {
+      const queue = [...backgrounds];
+      for (let index = queue.length - 1; index > 0; index -= 1) {
+        const randomIndex = Math.floor(Math.random() * (index + 1));
+        [queue[index], queue[randomIndex]] = [queue[randomIndex], queue[index]];
+      }
+      rotation = { signature, queue };
+    }
+
+    const selectedBackground = rotation.queue.shift();
+    try {
+      sessionStorage.setItem(rotationKey, JSON.stringify(rotation));
+    } catch {
+      // Rotation still works when browser storage is unavailable.
+    }
+
+    const image = new Image();
+    image.addEventListener("load", () => {
+      heroBackground.style.setProperty("--hero-image", `url('${selectedBackground}')`);
+    });
+    image.src = selectedBackground;
+  } catch (error) {
+    console.warn("Using fallback hero background:", error);
+  }
+}
+
 async function initializeDynamicUI() {
 
   try {
@@ -8,8 +85,10 @@ async function initializeDynamicUI() {
       await new Promise(resolve => document.addEventListener("DOMContentLoaded", resolve));
     }
 
+    initializeRandomBackground();
+
     // === Fetch config ===
-    const response = await fetch("chapter.json");
+    const response = await fetch("chapter.json", { cache: "no-store" });
     if (!response.ok) throw new Error(`HTTP error ${response.status}`);
     const config = await response.json();
 

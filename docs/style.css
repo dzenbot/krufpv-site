@@ -157,7 +157,7 @@ img {
 }
 
 .hero-background {
-  background-image: linear-gradient(90deg,#08090af2 0%,#08090aab 47%,#08090a14 100%),url('images/background4.jpg');
+  background-image: linear-gradient(90deg,#08090af2 0%,#08090aab 47%,#08090a14 100%),var(--hero-image,url('images/background/background4.jpg'));
   background-position: center;
   background-size: cover;
   inset: 0;
@@ -253,6 +253,22 @@ img {
   padding-bottom: 8px
 }
 
+.text-link {
+  border-bottom: 1px solid currentColor
+}
+
+.event-registration {
+  display: block;
+  margin-top: 8px
+}
+
+.text-link:hover {
+  background: #303030;
+  border-bottom-color: #fff;
+  box-shadow: 0 0 0 4px #303030;
+  color: #fff
+}
+
 .events-container {
   padding-top: 55px
 }
@@ -269,6 +285,10 @@ img {
 .get-started {
   background: var(--acid);
   padding: clamp(80px,10vw,150px) clamp(22px,6vw,96px)
+}
+
+.get-started .eyebrow:before {
+  background: #fff
 }
 
 .section-heading.light {
@@ -630,7 +650,7 @@ footer {
   }
 
   .hero-background {
-    background-image: linear-gradient(0deg,#08090af5,#08090a33),url('images/background4.jpg');
+    background-image: linear-gradient(0deg,#08090af5,#08090a33),var(--hero-image,url('images/background/background4.jpg'));
     background-position: 62% center
   }
 
