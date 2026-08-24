@@ -416,6 +416,7 @@ img {
 .gallery-grid {
   display: grid;
   gap: 16px;
+  grid-auto-flow: dense;
   grid-auto-rows: 190px;
   grid-template-columns: repeat(12,1fr);
   margin-top: 60px
@@ -442,6 +443,14 @@ img {
 
 .gallery-grid figure:hover img {
   transform: scale(1.035)
+}
+
+.gallery-loading {
+  color: #727674;
+  font: 600 13px 'Barlow Condensed';
+  grid-column: 1/-1;
+  letter-spacing: .14em;
+  text-transform: uppercase
 }
 
 .about {

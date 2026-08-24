@@ -7,7 +7,27 @@ const IMAGE_FILE_PATTERN = /\.(avif|gif|jpe?g|png|webp)$/i;
 function imagePathsFromNames(names) {
   return [...new Set(names)]
     .filter(name => IMAGE_FILE_PATTERN.test(name))
+    .sort((first, second) => first.localeCompare(second, undefined, { numeric: true }))
     .map(name => `${BACKGROUND_DIRECTORY}${encodeURIComponent(name)}`);
+}
+
+function renderGallery(backgrounds, selectedBackground) {
+  const gallery = document.querySelector(".gallery-grid");
+  if (!gallery) return;
+
+  const galleryBackgrounds = backgrounds.filter(background => background !== selectedBackground);
+  const tileClasses = ["wide", "tall", "", "", "wide", "", "tall", "wide", "wide", "", "wide"];
+  gallery.replaceChildren(...galleryBackgrounds.map((background, index) => {
+    const figure = document.createElement("figure");
+    figure.className = tileClasses[index % tileClasses.length];
+
+    const image = document.createElement("img");
+    image.src = background;
+    image.alt = `KwadsRUs FPV event photo ${index + 1}`;
+    image.loading = "lazy";
+    figure.appendChild(image);
+    return figure;
+  }));
 }
 
 async function discoverBackgrounds() {
@@ -39,7 +59,7 @@ async function initializeRandomBackground() {
 
   try {
     const backgrounds = await discoverBackgrounds();
-    if (backgrounds.length === 0) return;
+    if (backgrounds.length === 0) throw new Error("No background images found");
 
     const rotationKey = "kwadsrus-background-rotation";
     const signature = backgrounds.join("|");
@@ -61,6 +81,7 @@ async function initializeRandomBackground() {
     }
 
     const selectedBackground = rotation.queue.shift();
+    renderGallery(backgrounds, selectedBackground);
     try {
       sessionStorage.setItem(rotationKey, JSON.stringify(rotation));
     } catch {
@@ -74,6 +95,12 @@ async function initializeRandomBackground() {
     image.src = selectedBackground;
   } catch (error) {
     console.warn("Using fallback hero background:", error);
+    const galleryLoading = document.querySelector(".gallery-loading");
+    if (galleryLoading) {
+      galleryLoading.textContent = window.location.protocol === "file:"
+        ? "Open this site through localhost to load photos"
+        : "Photos are temporarily unavailable";
+    }
   }
 }
 
