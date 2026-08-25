@@ -447,25 +447,37 @@ img {
 }
 
 .gallery-grid {
-  display: grid;
-  gap: 16px;
-  grid-auto-flow: dense;
-  grid-auto-rows: 190px;
-  grid-template-columns: repeat(12,1fr);
+  column-count: 2;
+  column-gap: 16px;
   margin-top: 60px
 }
 
 .gallery-grid figure {
-  grid-column: span 4;
+  break-inside: avoid;
+  cursor: zoom-in;
+  margin-bottom: 16px;
   overflow: hidden
 }
 
-.gallery-grid figure.wide {
-  grid-column: span 8
+.gallery-grid figure:focus-visible {
+  outline: 3px solid var(--acid);
+  outline-offset: 4px
 }
 
-.gallery-grid figure.tall {
-  grid-row: span 2
+.gallery-grid figure.ratio-wide {
+  aspect-ratio: 16/9
+}
+
+.gallery-grid figure.ratio-cinematic {
+  aspect-ratio: 16/7
+}
+
+.gallery-grid figure.ratio-photo {
+  aspect-ratio: 3/2
+}
+
+.gallery-grid figure.ratio-classic {
+  aspect-ratio: 4/3
 }
 
 .gallery-grid img {
@@ -478,10 +490,99 @@ img {
   transform: scale(1.035)
 }
 
+body.lightbox-open {
+  overflow: hidden
+}
+
+.lightbox[hidden] {
+  display: none
+}
+
+.lightbox {
+  align-items: center;
+  backdrop-filter: blur(10px);
+  background: rgba(11,12,13,.92);
+  display: grid;
+  grid-template-columns: 72px minmax(0,1fr) 72px;
+  inset: 0;
+  opacity: 0;
+  padding: clamp(18px,4vw,56px);
+  pointer-events: none;
+  position: fixed;
+  transition: opacity .22s ease;
+  z-index: 100
+}
+
+.lightbox.visible {
+  opacity: 1;
+  pointer-events: auto
+}
+
+.lightbox-stage {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  grid-column: 2;
+  justify-content: center;
+  min-width: 0
+}
+
+.lightbox-image {
+  max-height: calc(100vh - 112px);
+  max-width: 100%;
+  object-fit: contain;
+  width: auto
+}
+
+.lightbox button {
+  background: rgba(48,48,48,.72);
+  border: 1px solid #ffffff52;
+  color: #fff;
+  cursor: pointer;
+  transition: background .2s,color .2s
+}
+
+.lightbox button:hover,
+.lightbox button:focus-visible {
+  background: #fff;
+  color: #303030;
+  outline: none
+}
+
+.lightbox-nav {
+  align-items: center;
+  border-radius: 50%;
+  display: flex;
+  height: 56px;
+  justify-content: center;
+  padding: 0;
+  width: 56px
+}
+
+.lightbox-nav svg {
+  fill: none;
+  height: 24px;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.6;
+  width: 24px
+}
+
+.lightbox-prev {
+  grid-column: 1;
+  justify-self: start
+}
+
+.lightbox-next {
+  grid-column: 3;
+  justify-self: end
+}
+
 .gallery-loading {
   color: #727674;
+  column-span: all;
   font: 600 13px 'Barlow Condensed';
-  grid-column: 1/-1;
   letter-spacing: .14em;
   text-transform: uppercase
 }
@@ -533,7 +634,7 @@ img {
 }
 
 .about-image img {
-  aspect-ratio: 4/5;
+  aspect-ratio: 4/3;
   object-fit: cover
 }
 
@@ -633,6 +734,12 @@ footer {
   justify-content: space-between;
   margin-top: 35px;
   padding-top: 24px
+}
+
+@media(max-width:1600px) {
+  .about-image img {
+    aspect-ratio: 4/5
+  }
 }
 
 @media(max-width:760px) {
@@ -743,17 +850,20 @@ footer {
   }
 
   .gallery-grid {
-    grid-auto-rows: 150px;
-    grid-template-columns: 1fr 1fr
+    column-count: 1
   }
 
-  .gallery-grid figure,.gallery-grid figure.wide {
-    grid-column: span 1
+  .lightbox {
+    grid-template-columns: 48px minmax(0,1fr) 48px;
+    padding: 70px 12px 24px
   }
 
-  .gallery-grid figure.wide:first-child {
-    grid-column: span 2
+  .lightbox-nav {
+    font-size: 34px;
+    height: 42px;
+    width: 42px
   }
+
 
   .about {
     grid-template-columns: 1fr

@@ -3,6 +3,10 @@
 const BACKGROUND_DIRECTORY = "images/background/";
 const BACKGROUND_API = "https://api.github.com/repos/dzenbot/krufpv-site/contents/docs/images/background?ref=main";
 const IMAGE_FILE_PATTERN = /\.(avif|gif|jpe?g|png|webp)$/i;
+let lightboxImages = [];
+let lightboxIndex = 0;
+let lightboxTrigger = null;
+let lightboxCloseTimer = null;
 
 function imagePathsFromNames(names) {
   return [...new Set(names)]
@@ -11,15 +15,37 @@ function imagePathsFromNames(names) {
     .map(name => `${BACKGROUND_DIRECTORY}${encodeURIComponent(name)}`);
 }
 
+function shuffled(items) {
+  const result = [...items];
+  for (let index = result.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [result[index], result[randomIndex]] = [result[randomIndex], result[index]];
+  }
+  return result;
+}
+
 function renderGallery(backgrounds, selectedBackground) {
   const gallery = document.querySelector(".gallery-grid");
   if (!gallery) return;
 
-  const galleryBackgrounds = backgrounds.filter(background => background !== selectedBackground);
-  const tileClasses = ["wide", "tall", "", "", "wide", "", "tall", "wide", "wide", "", "wide"];
+  const layouts = [
+    ["ratio-cinematic", "ratio-classic", "ratio-photo", "ratio-wide", "ratio-classic", "ratio-photo", "ratio-wide", "ratio-cinematic", "ratio-photo", "ratio-wide"],
+    ["ratio-photo", "ratio-wide", "ratio-classic", "ratio-cinematic", "ratio-photo", "ratio-wide", "ratio-classic", "ratio-photo", "ratio-wide", "ratio-cinematic"],
+    ["ratio-classic", "ratio-photo", "ratio-cinematic", "ratio-wide", "ratio-photo", "ratio-classic", "ratio-wide", "ratio-cinematic", "ratio-photo", "ratio-wide"]
+  ];
+  const layout = layouts[Math.floor(Math.random() * layouts.length)];
+  const galleryLimit = window.matchMedia("(max-width: 760px)").matches ? 5 : 10;
+  const galleryBackgrounds = shuffled(
+    backgrounds.filter(background => background !== selectedBackground)
+  ).slice(0, galleryLimit);
+  lightboxImages = galleryBackgrounds;
   gallery.replaceChildren(...galleryBackgrounds.map((background, index) => {
     const figure = document.createElement("figure");
-    figure.className = tileClasses[index % tileClasses.length];
+    figure.className = layout[index];
+    figure.dataset.galleryIndex = index;
+    figure.tabIndex = 0;
+    figure.setAttribute("role", "button");
+    figure.setAttribute("aria-label", `View event photo ${index + 1} fullscreen`);
 
     const image = document.createElement("img");
     image.src = background;
@@ -28,6 +54,79 @@ function renderGallery(backgrounds, selectedBackground) {
     figure.appendChild(image);
     return figure;
   }));
+}
+
+function updateLightbox() {
+  const lightbox = document.getElementById("gallery-lightbox");
+  const image = lightbox?.querySelector(".lightbox-image");
+  if (!image || lightboxImages.length === 0) return;
+
+  image.src = lightboxImages[lightboxIndex];
+  image.alt = `KwadsRUs FPV event photo ${lightboxIndex + 1} of ${lightboxImages.length}`;
+}
+
+function openLightbox(index, trigger) {
+  const lightbox = document.getElementById("gallery-lightbox");
+  if (!lightbox || lightboxImages.length === 0) return;
+
+  lightboxIndex = index;
+  lightboxTrigger = trigger;
+  window.clearTimeout(lightboxCloseTimer);
+  updateLightbox();
+  lightbox.hidden = false;
+  document.body.classList.add("lightbox-open");
+  requestAnimationFrame(() => lightbox.classList.add("visible"));
+  lightbox.focus();
+}
+
+function closeLightbox() {
+  const lightbox = document.getElementById("gallery-lightbox");
+  if (!lightbox || lightbox.hidden) return;
+
+  lightbox.classList.remove("visible");
+  document.body.classList.remove("lightbox-open");
+  lightboxCloseTimer = window.setTimeout(() => {
+    lightbox.hidden = true;
+    lightbox.querySelector(".lightbox-image")?.removeAttribute("src");
+    lightboxTrigger?.focus();
+    lightboxTrigger = null;
+  }, 220);
+}
+
+function moveLightbox(offset) {
+  if (lightboxImages.length === 0) return;
+  lightboxIndex = (lightboxIndex + offset + lightboxImages.length) % lightboxImages.length;
+  updateLightbox();
+}
+
+function initializeLightbox() {
+  const gallery = document.querySelector(".gallery-grid");
+  const lightbox = document.getElementById("gallery-lightbox");
+  if (!gallery || !lightbox) return;
+
+  const openSelectedPhoto = target => {
+    const figure = target.closest("figure[data-gallery-index]");
+    if (figure) openLightbox(Number(figure.dataset.galleryIndex), figure);
+  };
+
+  gallery.addEventListener("click", event => openSelectedPhoto(event.target));
+  gallery.addEventListener("keydown", event => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openSelectedPhoto(event.target);
+    }
+  });
+  lightbox.querySelector(".lightbox-prev")?.addEventListener("click", () => moveLightbox(-1));
+  lightbox.querySelector(".lightbox-next")?.addEventListener("click", () => moveLightbox(1));
+  lightbox.addEventListener("click", event => {
+    if (event.target === lightbox) closeLightbox();
+  });
+  document.addEventListener("keydown", event => {
+    if (lightbox.hidden) return;
+    if (event.key === "Escape") closeLightbox();
+    if (event.key === "ArrowLeft") moveLightbox(-1);
+    if (event.key === "ArrowRight") moveLightbox(1);
+  });
 }
 
 async function discoverBackgrounds() {
@@ -72,12 +171,7 @@ async function initializeRandomBackground() {
     }
 
     if (!rotation || rotation.signature !== signature || !Array.isArray(rotation.queue) || rotation.queue.length === 0) {
-      const queue = [...backgrounds];
-      for (let index = queue.length - 1; index > 0; index -= 1) {
-        const randomIndex = Math.floor(Math.random() * (index + 1));
-        [queue[index], queue[randomIndex]] = [queue[randomIndex], queue[index]];
-      }
-      rotation = { signature, queue };
+      rotation = { signature, queue: shuffled(backgrounds) };
     }
 
     const selectedBackground = rotation.queue.shift();
@@ -178,6 +272,7 @@ async function initializeDynamicUI() {
 initializeDynamicUI();
 
 document.addEventListener("DOMContentLoaded", () => {
+  initializeLightbox();
   const menuButton = document.querySelector(".menu-button");
   const nav = document.querySelector("#site-nav");
   const links = [...document.querySelectorAll("#site-nav .nav-link")];
