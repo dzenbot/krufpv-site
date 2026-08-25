@@ -171,7 +171,7 @@ img {
 }
 
 .eyebrow {
-  font: 600 13px 'Barlow Condensed';
+  font: 600 15px 'Barlow Condensed';
   letter-spacing: .19em;
   margin-bottom: 24px;
   text-transform: uppercase
@@ -393,19 +393,52 @@ img {
 
 .regulations {
   align-items: start;
+  column-gap: 40px;
   display: grid;
-  gap: 40px;
   grid-template-columns: .6fr 1.1fr 1.5fr;
-  padding-top: 58px
+  padding-top: 58px;
+  row-gap: 22px
 }
 
 .regulations .eyebrow {
+  grid-column: 1;
+  grid-row: 1;
   margin-top: 10px
 }
 
 .regulations h3 {
   font-size: 48px;
+  grid-column: 2;
+  grid-row: 1;
   margin: 0
+}
+
+.regulations-copy {
+  display: contents
+}
+
+.regulations-copy>p {
+  grid-column: 3;
+  grid-row: 1
+}
+
+.regulations-resources {
+  grid-column: 3;
+  grid-row: 2
+}
+
+.regulations-banner {
+  grid-column: 1/3;
+  grid-row: 2;
+  height: clamp(120px,14vw,200px);
+  margin-top: 18px;
+  overflow: hidden
+}
+
+.regulations-banner img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%
 }
 
 .regulations .fine-print {
@@ -694,6 +727,19 @@ footer {
   .regulations {
     gap: 18px;
     grid-template-columns: 1fr
+  }
+
+  .regulations .eyebrow,
+  .regulations h3,
+  .regulations-copy>p,
+  .regulations-resources,
+  .regulations-banner {
+    grid-column: 1;
+    grid-row: auto
+  }
+
+  .regulations-banner {
+    height: 120px
   }
 
   .gallery-grid {

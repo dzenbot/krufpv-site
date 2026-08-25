@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const observer = new IntersectionObserver(entries => entries.forEach(entry => {
     if (entry.isIntersecting) links.forEach(link => link.classList.toggle("active", link.hash === `#${entry.target.id}`));
   }), { rootMargin: "-30% 0px -60%" });
-  document.querySelectorAll("#events, #get-started, #gallery, #about").forEach(section => observer.observe(section));
+  document.querySelectorAll("#upcoming, #get-started, #gallery, #about").forEach(section => observer.observe(section));
 });
 
 function setViewportHeight() {
