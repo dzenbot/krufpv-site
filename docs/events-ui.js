@@ -20,16 +20,6 @@ async function loadUpcomingEvents() {
   }
 
   try {
-    // Load chapter configuration
-    const configResponse = await fetch("chapter.json");
-    const config = await configResponse.json();
-
-    // Validate config
-    if (!config.chapterId) {
-      showMessage("Missing 'chapterId' in chapter.json", true);
-      return;
-    }
-
     // Events are synchronized server-side into a local file for GitHub Pages.
     const eventCollections = await RaceSync.fetchEvents();
 
