@@ -82,7 +82,7 @@ img {
 }
 
 .site-header nav>.nav-link {
-  font: 600 15px 'Barlow Condensed';
+  font: 500 17px 'Barlow Condensed';
   letter-spacing: .12em;
   position: relative;
   text-transform: uppercase
@@ -651,15 +651,21 @@ footer {
   background: #070809;
   border-top: 1px solid #292b2a;
   color: #fff;
+  column-gap: 40px;
   display: grid;
-  gap: 40px;
   grid-template-columns: .7fr 1fr 1.3fr;
-  padding: 65px clamp(22px,6vw,96px) 28px
+  padding: 65px clamp(22px,6vw,96px) 14px;
+  row-gap: 0
 }
 
 .footer-logo img {
   height: auto;
   width: min(100%, 300px)
+}
+
+.footer-brand {
+  grid-column: 1;
+  grid-row: 1
 }
 
 .footer-contact p {
@@ -677,7 +683,14 @@ footer {
 .footer-contact .footer-email {
   color: var(--acid);
   display: inline-block;
-  margin-top: 8px
+  margin-top: 8px;
+  text-decoration: none;
+  text-underline-offset: 3px
+}
+
+.footer-contact .footer-email:hover {
+  color: var(--acid);
+  text-decoration: underline
 }
 
 .footer-contact .social {
@@ -697,17 +710,21 @@ footer {
 .footer-sections {
   display: flex;
   gap: 55px;
-  grid-column: 2;
-  grid-row: 1;
+  margin-top: 36px;
+  padding-bottom: 18px;
   justify-content: flex-start;
   text-align: left
 }
 
 .footer-title {
-  color: #fff;
+  color: #8f9290;
   font: 600 12px 'Barlow Condensed';
   letter-spacing: .12em;
   text-transform: uppercase
+}
+
+.footer-title .logos-row {
+  margin-top: 7px
 }
 
 .logos-row {
@@ -722,7 +739,15 @@ footer {
 }
 
 .sponsor img {
-  height: 38px
+  height: 48px
+}
+
+.sponsor a {
+  transition: opacity .2s ease
+}
+
+.sponsor a:hover {
+  opacity: .75
 }
 
 .footer-bottom {
@@ -732,8 +757,18 @@ footer {
   font-size: 11px;
   grid-column: 1/-1;
   justify-content: space-between;
-  margin-top: 35px;
+  margin-top: 18px;
   padding-top: 24px
+}
+
+.footer-bottom a {
+  text-decoration: none;
+  text-underline-offset: 3px
+}
+
+footer .footer-bottom a:hover {
+  color: inherit;
+  text-decoration: underline
 }
 
 @media(max-width:1600px) {
@@ -879,12 +914,6 @@ footer {
 
   footer {
     grid-template-columns: 1fr 1fr
-  }
-
-  .footer-sections {
-    grid-column: 1/-1;
-    grid-row: 2;
-    justify-content: flex-start
   }
 
   .footer-contact {
