@@ -1,216 +1,168 @@
 .events-container {
-  padding: 2rem 0rem 2rem;
+  padding: 2rem 0
 }
 
 .loading-container {
-  display: flex;
-  flex-direction: column;
   align-items: center;
+  display: flex;
   justify-content: center;
-  gap: 1rem;
-  pointer-events: none;
+  min-height: 110px;
+  pointer-events: none
 }
 
-.section-title {
-  color: white;
-  font-size: 0.8rem;
-  font-weight: 300;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  text-shadow: 0 2px 4px rgba(48, 48, 48, 0.5);
-  text-align: left;
-  padding-left: 2rem;
-  margin-bottom: 1.25rem;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  user-select: none;
-}
-
-.section-title.visible {
-  opacity: 1;
+.events-container .section-title {
+  color: #53585a;
+  font: 500 18px 'Barlow Condensed';
+  letter-spacing: .18em;
+  margin-bottom: 24px;
+  text-transform: uppercase
 }
 
 .cards-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
+  width: 100%
 }
 
 .spinner {
-  width: 40px;
-  height: 40px;
-  border: 3px solid rgba(255, 255, 255, 0.2);
-  border-top-color: rgba(255, 255, 255, 0.8);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+  display: none
 }
 
 .loading-text {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.85rem;
+  color: #727674;
+  font: 600 13px 'Barlow Condensed';
+  letter-spacing: .14em;
   text-align: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.loading-text.visible {
-  opacity: 1;
+  text-transform: uppercase
 }
 
 .loading-text.error {
-  color: rgba(255, 100, 100, 0.8);
+  color: #a3261e
 }
 
 .card {
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: calc(100% - clamp(1rem, 5vw, 2rem));
-  margin: 0 auto;
-  max-width: none;
-  background: white;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(17, 19, 21, 0.13);
-  border-radius: 0;
-  padding: 1rem 1.25rem;
-  opacity: 0;
-  transform: translateY(10px);
+  background: transparent;
   cursor: pointer;
-  transition:
-    transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-    background 0.3s ease-in-out,
-    box-shadow 0.3s ease-in-out;
+  display: grid;
+  gap: clamp(18px,3vw,38px);
+  grid-template-columns: clamp(76px,8vw,100px) minmax(0,1fr) auto;
+  min-height: 132px;
+  padding: 18px 22px;
+  transition: background-color .2s ease
 }
 
-.card.visible {
-  opacity: 1;
-  transform: translateY(0);
+.card + .card {
+  border-top: 1px solid var(--ink)
 }
 
 .card:hover {
-  background: #f8f8f4;
-  border-color: rgba(17, 19, 21, 0.35);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(48, 48, 48, 0.3);
-  cursor: pointer;
+  background: rgba(255,255,255,.5)
 }
 
-.card-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  margin-left: 30px;
-  gap: 0.25rem;
-  min-width: 0;
+.card:focus-visible {
+  background: rgba(255,255,255,.5);
+  outline: 2px solid var(--ink);
+  outline-offset: 2px
 }
 
 .card-image {
-  width: 3rem;
-  height: 3rem;
+  aspect-ratio: 1;
+  height: auto;
   object-fit: cover;
-  border-radius: 8px;
-  flex-shrink: 0;
-  margin-left: 10px;
-  box-shadow: 0 2px 6px rgba(48, 48, 48, 0.1);
-  transition: transform 0.3s ease;
-  user-select: none;
+  width: 100%
+}
+
+.card-content {
+  min-width: 0;
+  text-align: left
 }
 
 .card-date {
-  font-size: 0.75rem;
-  color: #727674;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  font-weight: 500;
+  align-items: baseline;
+  color: #5d615f;
+  display: flex;
+  flex-wrap: wrap;
+  font: 500 16px 'Barlow Condensed';
+  letter-spacing: .08em;
+  margin-bottom: 7px;
+  text-transform: uppercase
+}
+
+.event-location {
+  margin-left: 12px
+}
+
+.event-location:before {
+  content: "·";
+  margin-right: 12px
 }
 
 .card-name {
-  font-size: 0.95rem;
-  color: #111315;
-  font-weight: 600;
-  line-height: 1.3;
-}
-
-.card-name,
-.card-date {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  transition: transform 0.3s ease;
+  color: var(--ink);
+  font: 500 clamp(24px,2.5vw,38px)/1 'Barlow Condensed';
+  text-transform: uppercase
 }
 
 .card-chevron {
-  display: flex;
   align-items: center;
+  color: var(--ink);
+  display: flex;
   flex-shrink: 0;
-  margin-left: 1rem;
-  font-size: 2rem;
-  font-weight: 300;
-  color: #6c706e;
-  transition: transform 0.3s ease;
+  justify-content: center;
   user-select: none;
+  width: 28px
 }
 
-.card:hover .card-image {
-  transform: translateX(-4px);
+.card-chevron svg {
+  fill: none;
+  height: 24px;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.6;
+  width: 24px
 }
 
-.card:hover .card-date {
-  transform: translateX(-2px);
+.recent-events-group {
+  margin-top: clamp(52px,7vw,88px)
 }
 
-.card:hover .card-name {
-  transform: translateX(-2px);
+.empty-events {
+  color: #727674;
+  font-size: 15px;
+  padding: 28px 22px
 }
 
-.card:hover .card-chevron {
-  color: rgba(255, 255, 255, 0.8);
-  transform: translateX(4px);
-}
-
-@media (max-width: 768px) {
-
+@media(max-width:760px) {
   .events-container {
-    padding: 1rem 2rem 1rem 2rem;
-  }
-
-  .section-title {
-    font-size: 0.7rem;
-    padding-left: 1rem;
+    padding: 1rem 0
   }
 
   .card {
-    width: calc(100% - 2rem);
-    margin: 0 1rem;
-    padding: 0.75rem 0.75rem;
-  }
-
-  .card-content {
-    margin-left: 0.5rem;
-  }
-
-  .card-image {
-    margin-left: 3px;
-  }
-
-  .card-name {
-    font-size: 0.9rem;
+    gap: 14px;
+    grid-template-columns: 70px minmax(0,1fr) 24px;
+    min-height: 104px;
+    padding: 14px 12px
   }
 
   .card-date {
-    font-size: 0.7rem;
+    font-size: 14px;
+    letter-spacing: .06em;
+    line-height: 1.3
+  }
+
+  .event-location {
+    margin-left: 8px
+  }
+
+  .event-location:before {
+    margin-right: 8px
+  }
+
+  .card-name {
+    font-size: 22px
   }
 
   .card-chevron {
-    font-size: 1.75rem;
+    width: 24px
   }
 }

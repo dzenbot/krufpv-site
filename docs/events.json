@@ -1,0 +1,70 @@
+{
+  "source": "MultiGP public chapter events",
+  "events": [
+    {
+      "id": "32730",
+      "name": "200G Practice Sesh",
+      "startDate": "Aug 28, 1:00PM",
+      "location": "KRU Racing Club Field",
+      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/race/32730/mainImage-941.png",
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=32730/200G-Practice-Sesh"
+    },
+    {
+      "id": "32476",
+      "name": "Langley Air Fair - 200G Series",
+      "startDate": "Aug 29, 8:00AM",
+      "location": "Langley Regional Airport (YLY)",
+      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/race/32476/mainImage-125.png",
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=32476/Langley-Air-Fair---200G-Series"
+    }
+  ],
+  "recentEvents": [
+    {
+      "id": "32493",
+      "name": "2026 Canadian Time Trial",
+      "startDate": "Aug 8, 2026 10:00 AM",
+      "location": "KRU Racing Club Field",
+      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=32493/2026-Canadian-Time-Trial"
+    },
+    {
+      "id": "32601",
+      "name": "CTT Practice Sesh",
+      "startDate": "Aug 7, 2026 2:00 PM",
+      "location": "KRU Racing Club Field",
+      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=32601/CTT-Practice-Sesh"
+    },
+    {
+      "id": "32582",
+      "name": "CTT Practice Sesh",
+      "startDate": "Jul 31, 2026 12:00 PM",
+      "location": "KRU Racing Club Field",
+      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=32582/CTT-Practice-Sesh"
+    },
+    {
+      "id": "32460",
+      "name": "Open Practice Sesh",
+      "startDate": "Jul 19, 2026 2:00 PM",
+      "location": "KRU Racing Club Field",
+      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=32460/Open-Practice-Sesh-2"
+    },
+    {
+      "id": "32426",
+      "name": "Open Practice Sesh",
+      "startDate": "Jul 12, 2026 12:00 PM",
+      "location": "KRU Racing Club Field",
+      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=32426/Open-Practice-Sesh"
+    }
+  ]
+}

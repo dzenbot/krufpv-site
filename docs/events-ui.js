@@ -25,49 +25,61 @@ async function loadUpcomingEvents() {
     const config = await configResponse.json();
 
     // Validate config
-    if (!config.apiKey || !config.chapterId) {
-      const missingField = !config.apiKey ? "apiKey" : "chapterId";
-      showMessage(`Missing '${missingField}' in chapter.json`, true);
+    if (!config.chapterId) {
+      showMessage("Missing 'chapterId' in chapter.json", true);
       return;
     }
 
-    // Fetch events
-    const events = await RaceSync.fetchEvents(config.apiKey, config.chapterId);
+    // Events are synchronized server-side into a local file for GitHub Pages.
+    const eventCollections = await RaceSync.fetchEvents();
 
     // Filter and sort events
     const now = new Date();
-    const filtered = RaceSync.filterUpcomingEvents(events, now);
+    const filtered = RaceSync.filterUpcomingEvents(eventCollections.upcoming, now);
     const upcoming = RaceSync.sortEventsByDate(filtered.upcoming);
 
     const displayEvents = upcoming.slice(0, 5);
-
-    // Handle no events
-    if (displayEvents.length === 0) {
-      if (filtered.hasPastEvents) {
-        showMessage("No races scheduled yet");
-      } else {
-        showMessage("No races found");
-      }
-      return;
-    }
 
     // Remove spinner and loading text
     container.innerHTML = "";
     if (loadingText && loadingText.style) loadingText.style.display = "none";
 
-    // Show title
     const count = displayEvents.length;
-    titleText.textContent = `${count} upcoming event${count !== 1 ? "s" : ""}`;
-    titleText.classList.add("visible");
+    if (count > 0) {
+      titleText.textContent = `${count} upcoming event${count !== 1 ? "s" : ""}`;
+      displayEvents.forEach(event => {
+        container.appendChild(createEventCard(event));
+      });
 
-    // Render events with staggered animation
-    displayEvents.forEach((event, index) => {
-      setTimeout(() => {
-        const card = createEventCard(event);
-        container.appendChild(card);
-        setTimeout(() => card.classList.add("visible"), 10);
-      }, index * 100);
-    });
+      if (eventCollections.recent.length > 0) {
+        const eventsContainer = document.querySelector(".events-container");
+        const recentGroup = document.createElement("div");
+        recentGroup.className = "recent-events-group";
+        const recentTitle = document.createElement("p");
+        recentTitle.className = "section-title";
+        recentTitle.textContent = "Recent events";
+        const recentCards = document.createElement("div");
+        recentCards.className = "cards-container";
+        eventCollections.recent.slice(0, 3).forEach(event => {
+          recentCards.appendChild(createEventCard(event));
+        });
+        recentGroup.append(recentTitle, recentCards);
+        eventsContainer.appendChild(recentGroup);
+      }
+    } else if (eventCollections.recent.length > 0) {
+      const recentEvents = eventCollections.recent.slice(0, 5);
+      titleText.textContent = `${recentEvents.length} recent event${recentEvents.length !== 1 ? "s" : ""}`;
+      recentEvents.forEach(event => {
+        container.appendChild(createEventCard(event));
+      });
+    } else {
+      titleText.textContent = "Upcoming events";
+      const emptyMessage = document.createElement("p");
+      emptyMessage.className = "empty-events";
+      emptyMessage.textContent = "No events scheduled yet";
+      container.appendChild(emptyMessage);
+    }
+    titleText.classList.add("visible");
 
   } catch (err) {
     console.error("Error loading events:", err);
@@ -77,12 +89,17 @@ async function loadUpcomingEvents() {
 
 
 function createEventCard(ev) {
-  var card = document.createElement("article");
+  var card = document.createElement("a");
   card.className = "card";
+  card.href = ev.url || "https://www.multigp.com/races/view/?race=" + ev.id;
+  card.target = "_blank";
+  card.rel = "noopener";
+  card.setAttribute("aria-label", `View ${ev.name} on MultiGP`);
 
   var img = document.createElement("img");
   img.className = "card-image";
   img.src = ev.mainImageFileName || ev.chapterImageFileName || "";
+  img.alt = "";
   card.appendChild(img);
 
   var content = document.createElement("div");
@@ -90,7 +107,16 @@ function createEventCard(ev) {
 
   var dateEl = document.createElement("div");
   dateEl.className = "card-date";
-  dateEl.textContent = RaceSync.formatEventDate(ev.startDate) + " - " + ev.city + ", " + ev.state;
+  var dateText = document.createElement("span");
+  dateText.className = "event-date";
+  dateText.textContent = RaceSync.formatEventDate(ev.startDate);
+  dateEl.appendChild(dateText);
+  if (ev.location) {
+    var locationText = document.createElement("span");
+    locationText.className = "event-location";
+    locationText.textContent = ev.location;
+    dateEl.appendChild(locationText);
+  }
   content.appendChild(dateEl);
 
   var nameEl = document.createElement("div");
@@ -102,21 +128,9 @@ function createEventCard(ev) {
 
   var chevron = document.createElement("div");
   chevron.className = "card-chevron";
-  chevron.innerHTML = "&#8250;";
+  chevron.setAttribute("aria-hidden", "true");
+  chevron.innerHTML = '<svg viewBox="0 0 24 24"><path d="m9.5 5 7 7-7 7"/></svg>';
   card.appendChild(chevron);
-
-  card.addEventListener("click", function() {
-    window.location.href = "https://www.multigp.com/races/view/?race=" + ev.id + "/";
-  });
-  card.tabIndex = 0;
-  card.setAttribute("role", "link");
-  card.setAttribute("aria-label", `View ${ev.name} on MultiGP`);
-  card.addEventListener("keydown", function(event) {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      card.click();
-    }
-  });
 
   return card;
 }

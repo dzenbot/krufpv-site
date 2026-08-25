@@ -2,45 +2,21 @@
 
 var RaceSync = (function() {
 
-  function fetchEvents(apiKey, chapterId) {
-    var apiUrl = "https://www.multigp.com/mgp/multigpwebservice/race/list";
-    var proxyUrl = "https://corsproxy.io/?url=" + encodeURIComponent(apiUrl);
-
-    var body = {
-      apiKey: apiKey,
-      data: {
-        chapterId: [chapterId],
-        upcoming: { limit: 10 }
-      }
-    };
-
-    console.log("POST body:", body);
-
-    return fetch(proxyUrl, {
-      method: "POST",
-      referrerPolicy: "no-referrer",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body)
-    })
-    .then(async function(response) {
-      const text = await response.text();
-      console.log("status:", response.status);
-      console.log("raw response:", text);
-
-      if (!response.ok) {
-        throw new Error("HTTP error " + response.status + " - " + text);
-      }
-
-      try {
-        return JSON.parse(text);
-      } catch (e) {
-        throw new Error("Invalid JSON response: " + text);
-      }
-    })
-    .then(function(json) {
-      console.log("parsed json:", json);
-      return json.data || [];
-    });
+  function fetchEvents() {
+    return fetch("events.json", { cache: "no-store" })
+      .then(function(response) {
+        if (!response.ok) throw new Error("Events file error " + response.status);
+        return response.json();
+      })
+      .then(function(json) {
+        if (!json || !Array.isArray(json.events)) {
+          throw new Error("Invalid events file");
+        }
+        return {
+          upcoming: json.events,
+          recent: Array.isArray(json.recentEvents) ? json.recentEvents : []
+        };
+      });
   }
 
   function filterUpcomingEvents(events, currentDate) {
@@ -74,6 +50,35 @@ var RaceSync = (function() {
 
   function parseDate(dateStr) {
     if (!dateStr) return null;
+
+    // Completed race details use "Aug 8, 2026 10:00 AM".
+    var detailedParts = dateStr.match(/^([A-Za-z]{3})\s+(\d{1,2}),\s*(\d{4})\s+(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
+    if (detailedParts) {
+      var detailedMonth = new Date(detailedParts[1] + " 1, 2000").getMonth();
+      var detailedHours = parseInt(detailedParts[4], 10);
+      if (detailedParts[6].toLowerCase() === "pm" && detailedHours !== 12) detailedHours += 12;
+      if (detailedParts[6].toLowerCase() === "am" && detailedHours === 12) detailedHours = 0;
+      return new Date(
+        parseInt(detailedParts[3], 10),
+        detailedMonth,
+        parseInt(detailedParts[2], 10),
+        detailedHours,
+        parseInt(detailedParts[5], 10)
+      );
+    }
+
+    // MultiGP's public chapter feed uses "Aug 28, 1:00PM" without a year.
+    var compactParts = dateStr.match(/^([A-Za-z]{3})\s+(\d{1,2}),\s*(\d{1,2}):(\d{2})(AM|PM)$/i);
+    if (compactParts) {
+      var currentDate = new Date();
+      var compactMonth = new Date(compactParts[1] + " 1, 2000").getMonth();
+      var compactYear = currentDate.getFullYear();
+      if (currentDate.getMonth() >= 10 && compactMonth <= 2) compactYear += 1;
+      var compactHours = parseInt(compactParts[3], 10);
+      if (compactParts[5].toLowerCase() === "pm" && compactHours !== 12) compactHours += 12;
+      if (compactParts[5].toLowerCase() === "am" && compactHours === 12) compactHours = 0;
+      return new Date(compactYear, compactMonth, parseInt(compactParts[2], 10), compactHours, parseInt(compactParts[4], 10));
+    }
     
     // Handle format: "2025-11-09 12:00 pm"
     var parts = dateStr.match(/(\d{4})-(\d{2})-(\d{2})\s+(\d{1,2}):(\d{2})\s+(am|pm)/i);
@@ -118,11 +123,17 @@ var RaceSync = (function() {
     var currentYear = now.getFullYear();
     var eventYear = dateObj.getFullYear();
 
-    if (eventYear !== currentYear) {
-      return weekday + ", " + monthName + " " + dayNum + ", " + eventYear;
-    } else {
-      return weekday + ", " + monthName + " " + dayNum;
-    }
+    var formattedDate = eventYear !== currentYear
+      ? weekday + ", " + monthName + " " + dayNum + ", " + eventYear
+      : weekday + ", " + monthName + " " + dayNum;
+    var includesTime = /\d{1,2}:\d{2}/.test(dateStr);
+    if (!includesTime) return formattedDate;
+
+    var hours = dateObj.getHours();
+    var minutes = String(dateObj.getMinutes()).padStart(2, "0");
+    var meridiem = hours >= 12 ? "PM" : "AM";
+    var displayHours = hours % 12 || 12;
+    return formattedDate + " @ " + displayHours + ":" + minutes + " " + meridiem;
   }
 
   // Public API
