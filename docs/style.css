@@ -15,15 +15,20 @@
 }
 
 html {
+  background: #0b0c0d;
   scroll-behavior: smooth;
   scroll-padding-top: 82px
 }
 
 body {
-  background: var(--paper);
+  background: #0b0c0d;
   color: var(--ink);
   font: 16px Inter,Arial,sans-serif;
   overflow-x: hidden
+}
+
+main {
+  background: var(--paper)
 }
 
 a {
@@ -913,7 +918,22 @@ footer .footer-bottom a:hover {
   }
 
   footer {
-    grid-template-columns: 1fr 1fr
+    column-gap: 20px;
+    grid-template-columns: minmax(0,1fr) minmax(0,1fr)
+  }
+
+  .footer-brand {
+    display: contents
+  }
+
+  .footer-logo {
+    grid-column: 1;
+    grid-row: 1
+  }
+
+  .footer-sections {
+    grid-column: 1/-1;
+    grid-row: 2
   }
 
   .footer-contact {
@@ -922,12 +942,18 @@ footer .footer-bottom a:hover {
   }
 
   .footer-contact p {
-    font-size: 28px
+    font-size: 21px;
+    white-space: nowrap
   }
 
   .footer-bottom {
     flex-direction: column;
     gap: 18px
+  }
+
+  .credit-source {
+    display: block;
+    margin-top: 4px
   }
 
   .footer-logo img {
