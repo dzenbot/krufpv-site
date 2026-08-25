@@ -334,6 +334,10 @@ img {
   text-transform: uppercase
 }
 
+.steps h3 {
+  margin-top: 28px
+}
+
 .steps p,.regulations p {
   line-height: 1.65
 }
@@ -868,7 +872,7 @@ footer .footer-bottom a:hover {
   }
 
   .steps h3 {
-    margin: 22px 0 12px
+    margin: 14px 0 12px
   }
 
   .regulations {
