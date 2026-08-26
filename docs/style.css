@@ -162,11 +162,17 @@ img {
 }
 
 .hero-background {
-  background-image: linear-gradient(90deg,#08090af2 0%,#08090aab 47%,#08090a14 100%),var(--hero-image,url('images/background/background4.jpg'));
+  background-image: linear-gradient(90deg,#08090af2 0%,#08090aab 47%,#08090a14 100%),var(--hero-image,none);
   background-position: center;
   background-size: cover;
   inset: 0;
+  opacity: 0;
+  transition: opacity .45s ease;
   position: absolute
+}
+
+.hero-background.is-loaded {
+  opacity: 1
 }
 
 .hero-content {
@@ -843,7 +849,7 @@ footer .footer-bottom a:hover {
   }
 
   .hero-background {
-    background-image: linear-gradient(0deg,#08090af5,#08090a33),var(--hero-image,url('images/background/background4.jpg'));
+    background-image: linear-gradient(0deg,#08090af5,#08090a33),var(--hero-image,none);
     background-position: 62% center
   }
 

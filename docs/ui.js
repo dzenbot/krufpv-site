@@ -185,10 +185,17 @@ async function initializeRandomBackground() {
     const image = new Image();
     image.addEventListener("load", () => {
       heroBackground.style.setProperty("--hero-image", `url('${selectedBackground}')`);
+      requestAnimationFrame(() => heroBackground.classList.add("is-loaded"));
+    });
+    image.addEventListener("error", () => {
+      heroBackground.style.setProperty("--hero-image", "url('images/background/background4.jpg')");
+      requestAnimationFrame(() => heroBackground.classList.add("is-loaded"));
     });
     image.src = selectedBackground;
   } catch (error) {
     console.warn("Using fallback hero background:", error);
+    heroBackground.style.setProperty("--hero-image", "url('images/background/background4.jpg')");
+    requestAnimationFrame(() => heroBackground.classList.add("is-loaded"));
     const galleryLoading = document.querySelector(".gallery-loading");
     if (galleryLoading) {
       galleryLoading.textContent = window.location.protocol === "file:"
