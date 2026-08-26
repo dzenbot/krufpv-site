@@ -27,21 +27,24 @@ async function loadUpcomingEvents() {
     const now = new Date();
     const filtered = RaceSync.filterUpcomingEvents(eventCollections.upcoming, now);
     const upcoming = RaceSync.sortEventsByDate(filtered.upcoming);
-
-    const displayEvents = upcoming.slice(0, 5);
+    const recent = eventCollections.recent.slice().sort((a, b) => {
+      return RaceSync.parseDate(b.startDate) - RaceSync.parseDate(a.startDate);
+    });
+    const recentCount = Math.min(5, Math.max(0, 5 - upcoming.length));
+    const recentEvents = recent.slice(0, recentCount);
 
     // Remove spinner and loading text
     container.innerHTML = "";
     if (loadingText && loadingText.style) loadingText.style.display = "none";
 
-    const count = displayEvents.length;
+    const count = upcoming.length;
     if (count > 0) {
       titleText.textContent = `${count} upcoming event${count !== 1 ? "s" : ""}`;
-      displayEvents.forEach(event => {
+      upcoming.forEach(event => {
         container.appendChild(createEventCard(event));
       });
 
-      if (eventCollections.recent.length > 0) {
+      if (recentEvents.length > 0) {
         const eventsContainer = document.querySelector(".events-container");
         const recentGroup = document.createElement("div");
         recentGroup.className = "recent-events-group";
@@ -50,14 +53,13 @@ async function loadUpcomingEvents() {
         recentTitle.textContent = "Recent events";
         const recentCards = document.createElement("div");
         recentCards.className = "cards-container";
-        eventCollections.recent.slice(0, 3).forEach(event => {
+        recentEvents.forEach(event => {
           recentCards.appendChild(createEventCard(event));
         });
         recentGroup.append(recentTitle, recentCards);
         eventsContainer.appendChild(recentGroup);
       }
-    } else if (eventCollections.recent.length > 0) {
-      const recentEvents = eventCollections.recent.slice(0, 5);
+    } else if (recentEvents.length > 0) {
       titleText.textContent = `${recentEvents.length} recent event${recentEvents.length !== 1 ? "s" : ""}`;
       recentEvents.forEach(event => {
         container.appendChild(createEventCard(event));
