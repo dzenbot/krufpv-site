@@ -27,6 +27,42 @@
       "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
       "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
       "url": "https://www.multigp.com/races/view/?race=32743/200G-MAX-Series-44"
+    },
+    {
+      "id": "32745",
+      "name": "200G MAX Series #45",
+      "startDate": "Oct 24, 12:00PM",
+      "location": "Cotonfield Dog Center",
+      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=32745/200G-MAX-Series-45"
+    },
+    {
+      "id": "32744",
+      "name": "200G MAX Series #46",
+      "startDate": "Nov 14, 12:00PM",
+      "location": "Cotonfield Dog Center",
+      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=32744/200G-MAX-Series-46"
+    },
+    {
+      "id": "32746",
+      "name": "200G MAX Series #47",
+      "startDate": "Dec 5, 12:00PM",
+      "location": "Cotonfield Dog Center",
+      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=32746/200G-MAX-Series-47"
+    },
+    {
+      "id": "32747",
+      "name": "200G MAX Series #48",
+      "startDate": "Dec 26, 12:00PM",
+      "location": "Cotonfield Dog Center",
+      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=32747/200G-MAX-Series-48"
     }
   ],
   "recentEvents": [
