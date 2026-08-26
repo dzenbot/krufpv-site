@@ -1,6 +1,11 @@
 name: Update MultiGP events
 
 on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - docs/events.json
   schedule:
     - cron: "17 */3 * * *"
   workflow_dispatch:
