@@ -781,6 +781,10 @@ footer {
   text-underline-offset: 3px
 }
 
+.footer-credit {
+  margin: 0
+}
+
 footer .footer-bottom a:hover {
   color: inherit;
   text-decoration: underline
