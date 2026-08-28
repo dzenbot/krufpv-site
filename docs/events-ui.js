@@ -72,11 +72,38 @@ async function loadUpcomingEvents() {
       container.appendChild(emptyMessage);
     }
     titleText.classList.add("visible");
+    scheduleMobileEventLayout();
 
   } catch (err) {
     console.error("Error loading events:", err);
     showMessage("Failed to load events", true);
   }
+}
+
+function updateMobileEventLayout() {
+  const isMobile = window.matchMedia("(max-width: 760px)").matches;
+
+  document.querySelectorAll(".card-date").forEach(dateRow => {
+    const location = dateRow.querySelector(".event-location");
+    if (!location) return;
+
+    dateRow.classList.remove("hide-location");
+    if (isMobile && dateRow.scrollWidth > dateRow.clientWidth) {
+      dateRow.classList.add("hide-location");
+    }
+  });
+}
+
+let mobileEventLayoutFrame;
+
+function scheduleMobileEventLayout() {
+  cancelAnimationFrame(mobileEventLayoutFrame);
+  mobileEventLayoutFrame = requestAnimationFrame(updateMobileEventLayout);
+}
+
+window.addEventListener("resize", scheduleMobileEventLayout);
+if (document.fonts && document.fonts.ready) {
+  document.fonts.ready.then(scheduleMobileEventLayout);
 }
 
 

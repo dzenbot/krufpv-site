@@ -145,13 +145,20 @@
   }
 
   .card-date {
+    flex-wrap: nowrap;
     font-size: 14px;
     letter-spacing: .06em;
-    line-height: 1.3
+    line-height: 1.3;
+    overflow: hidden;
+    white-space: nowrap
   }
 
   .event-location {
     margin-left: 8px
+  }
+
+  .card-date.hide-location .event-location {
+    display: none
   }
 
   .event-location:before {
@@ -159,7 +166,10 @@
   }
 
   .card-name {
-    font-size: 22px
+    font-size: 22px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
   }
 
   .card-chevron {
