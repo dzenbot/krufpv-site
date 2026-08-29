@@ -2,15 +2,6 @@
   "source": "MultiGP public chapter events",
   "events": [
     {
-      "id": "32730",
-      "name": "200G MAX Practice Sesh",
-      "startDate": "Aug 28, 1:00PM",
-      "location": "KRU Racing Club Field",
-      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/race/32730/mainImage-941.png",
-      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
-      "url": "https://www.multigp.com/races/view/?race=32730/200G-MAX-Practice-Sesh"
-    },
-    {
       "id": "32476",
       "name": "Langley Air Fair - 200G MAX Series #43",
       "startDate": "Aug 29, 7:00AM",
@@ -76,6 +67,15 @@
   ],
   "recentEvents": [
     {
+      "id": "32730",
+      "name": "200G MAX Practice Sesh",
+      "startDate": "Aug 28, 2026 1:00 PM",
+      "location": "KRU Racing Club Field",
+      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/race/32730/mainImage-941.png",
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=32730/200G-MAX-Practice-Sesh"
+    },
+    {
       "id": "32493",
       "name": "2026 Canadian Time Trial",
       "startDate": "Aug 8, 2026 10:00 AM",
@@ -110,15 +110,6 @@
       "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
       "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
       "url": "https://www.multigp.com/races/view/?race=32460/Open-Practice-Sesh-2"
-    },
-    {
-      "id": "32426",
-      "name": "Open Practice Sesh",
-      "startDate": "Jul 12, 2026 12:00 PM",
-      "location": "KRU Racing Club Field",
-      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
-      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
-      "url": "https://www.multigp.com/races/view/?race=32426/Open-Practice-Sesh"
     }
   ]
 }
