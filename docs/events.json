@@ -2,15 +2,6 @@
   "source": "MultiGP public chapter events",
   "events": [
     {
-      "id": "32476",
-      "name": "Langley Air Fair - 200G MAX Series #43",
-      "startDate": "Aug 29, 7:00AM",
-      "location": "Langley Regional Airport (YLY)",
-      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/race/32476/mainImage-125.png",
-      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
-      "url": "https://www.multigp.com/races/view/?race=32476/Langley-Air-Fair---200G-MAX-Series-43"
-    },
-    {
       "id": "32757",
       "name": "Outdoor Season Closer",
       "startDate": "Sep 12, 10:00AM",
@@ -67,6 +58,24 @@
   ],
   "recentEvents": [
     {
+      "id": "32774",
+      "name": "Langley Air Fair - Oval",
+      "startDate": "Aug 29, 2026 7:00 AM",
+      "location": "Langley Regional Airport (YLY)",
+      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=32774/Langley-Air-Fair---Oval"
+    },
+    {
+      "id": "32476",
+      "name": "Langley Air Fair - 200G MAX Series #43",
+      "startDate": "Aug 29, 2026 7:00 AM",
+      "location": "Langley Regional Airport (YLY)",
+      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/race/32476/mainImage-125.png",
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=32476/Langley-Air-Fair---200G-MAX-Series-43"
+    },
+    {
       "id": "32730",
       "name": "200G MAX Practice Sesh",
       "startDate": "Aug 28, 2026 1:00 PM",
@@ -92,24 +101,6 @@
       "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
       "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
       "url": "https://www.multigp.com/races/view/?race=32601/CTT-Practice-Sesh"
-    },
-    {
-      "id": "32582",
-      "name": "CTT Practice Sesh",
-      "startDate": "Jul 31, 2026 12:00 PM",
-      "location": "KRU Racing Club Field",
-      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
-      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
-      "url": "https://www.multigp.com/races/view/?race=32582/CTT-Practice-Sesh"
-    },
-    {
-      "id": "32460",
-      "name": "Open Practice Sesh",
-      "startDate": "Jul 19, 2026 2:00 PM",
-      "location": "KRU Racing Club Field",
-      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
-      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
-      "url": "https://www.multigp.com/races/view/?race=32460/Open-Practice-Sesh-2"
     }
   ]
 }
