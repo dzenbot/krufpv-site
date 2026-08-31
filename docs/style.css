@@ -689,9 +689,11 @@ footer {
 }
 
 .footer-contact {
+  align-self: end;
   grid-column: 3;
   grid-row: 1;
   justify-self: end;
+  margin-bottom: 18px;
   text-align: right
 }
 
@@ -782,7 +784,13 @@ footer {
 }
 
 .footer-credit {
-  margin: 0
+  margin: 0;
+  text-align: right
+}
+
+.photography-credit {
+  display: block;
+  margin-top: 4px
 }
 
 footer .footer-bottom a:hover {
@@ -951,8 +959,10 @@ footer .footer-bottom a:hover {
   }
 
   .footer-contact {
+    align-self: start;
     grid-column: 2;
-    grid-row: 1
+    grid-row: 1;
+    margin-bottom: 0
   }
 
   .footer-contact p {
@@ -965,9 +975,8 @@ footer .footer-bottom a:hover {
     gap: 18px
   }
 
-  .credit-source {
-    display: block;
-    margin-top: 4px
+  .footer-credit {
+    text-align: left
   }
 
   .footer-logo img {
