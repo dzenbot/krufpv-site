@@ -2,6 +2,15 @@
   "source": "MultiGP public chapter events",
   "events": [
     {
+      "id": "32785",
+      "name": "Open Practice Sesh",
+      "startDate": "Sep 11, 2:00PM",
+      "location": "KRU Racing Club Field",
+      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=32785/Open-Practice-Sesh-7"
+    },
+    {
       "id": "32757",
       "name": "Outdoor Season Closer",
       "startDate": "Sep 12, 10:00AM",
