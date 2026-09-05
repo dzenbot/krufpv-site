@@ -1,6 +1,7 @@
 # KwadsRUs Racing Club Website
 
 Website for the KwadsRUs FPV drone racing club in Metro Vancouver, BC.
+
 [Visit krufpv.org](https://krufpv.org/)
 
 ![KwadsRUs website screenshot](img/site-screenshot.jpg)
