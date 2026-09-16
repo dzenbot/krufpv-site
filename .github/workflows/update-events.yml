@@ -6,6 +6,9 @@ on:
       - main
     paths-ignore:
       - docs/events.json
+  schedule:
+    - cron: "0 22 */2 * *"
+      timezone: "America/Vancouver"
   workflow_dispatch:
 
 permissions:
