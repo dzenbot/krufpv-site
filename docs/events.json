@@ -2,15 +2,6 @@
   "source": "MultiGP public chapter events",
   "events": [
     {
-      "id": "32907",
-      "name": "FREE Open Practice Sesh",
-      "startDate": "Sep 20, 1:00PM",
-      "location": "KRU Racing Club Field",
-      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
-      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
-      "url": "https://www.multigp.com/races/view/?race=32907/FREE-Open-Practice-Sesh"
-    },
-    {
       "id": "32743",
       "name": "200G MAX Series #44",
       "startDate": "Sep 26, 12:00PM",
@@ -58,6 +49,15 @@
   ],
   "recentEvents": [
     {
+      "id": "32907",
+      "name": "FREE Open Practice Sesh",
+      "startDate": "Sep 20, 2026 1:00 PM",
+      "location": "KRU Racing Club Field",
+      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=32907/FREE-Open-Practice-Sesh"
+    },
+    {
       "id": "32757",
       "name": "Outdoor Season Closer",
       "startDate": "Sep 12, 2026 10:00 AM",
@@ -92,15 +92,6 @@
       "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/race/32476/mainImage-125.png",
       "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
       "url": "https://www.multigp.com/races/view/?race=32476/Langley-Air-Fair---200G-MAX-Series-43"
-    },
-    {
-      "id": "32730",
-      "name": "200G MAX Practice Sesh",
-      "startDate": "Aug 28, 2026 1:00 PM",
-      "location": "KRU Racing Club Field",
-      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/race/32730/mainImage-941.png",
-      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
-      "url": "https://www.multigp.com/races/view/?race=32730/200G-MAX-Practice-Sesh"
     }
   ]
 }
