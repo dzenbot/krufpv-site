@@ -2,6 +2,15 @@
   "source": "MultiGP public chapter events",
   "events": [
     {
+      "id": "33029",
+      "name": "200G MAX Open Practice",
+      "startDate": "Oct 11, 12:00PM",
+      "location": "KRU Racing Club Field",
+      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=33029/200G-MAX-Open-Practice"
+    },
+    {
       "id": "32745",
       "name": "200G MAX Series #45",
       "startDate": "Oct 24, 12:00PM",
