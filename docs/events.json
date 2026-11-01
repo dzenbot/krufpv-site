@@ -2,15 +2,6 @@
   "source": "MultiGP public chapter events",
   "events": [
     {
-      "id": "33126",
-      "name": "200G MAX Tryout @ Draganfly",
-      "startDate": "Oct 31, 12:00PM",
-      "location": null,
-      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
-      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
-      "url": "https://www.multigp.com/races/view/?race=33126/200G-MAX-Tryout--Draganfly"
-    },
-    {
       "id": "32744",
       "name": "200G MAX Series #46",
       "startDate": "Nov 14, 12:00PM",
@@ -39,6 +30,15 @@
     }
   ],
   "recentEvents": [
+    {
+      "id": "33126",
+      "name": "200G MAX Tryout @ Draganfly",
+      "startDate": "Oct 31, 2026 12:00 PM",
+      "location": null,
+      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=33126/200G-MAX-Tryout--Draganfly"
+    },
     {
       "id": "32745",
       "name": "200G MAX Series #45",
@@ -74,15 +74,6 @@
       "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
       "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
       "url": "https://www.multigp.com/races/view/?race=32907/Open-Practice-Sesh-8"
-    },
-    {
-      "id": "32757",
-      "name": "Outdoor Season Closer",
-      "startDate": "Sep 12, 2026 10:00 AM",
-      "location": "KRU Racing Club Field",
-      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
-      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
-      "url": "https://www.multigp.com/races/view/?race=32757/Outdoor-Season-Closer"
     }
   ]
 }
