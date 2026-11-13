@@ -37,12 +37,6 @@ a {
   transition: color .2s
 }
 
-.section-dark a:not(.button):hover,
-footer a:not(.button):hover,
-.site-header nav>.nav-link:hover {
-  color: var(--acid-bright)
-}
-
 img {
   display: block;
   width: 100%
@@ -188,15 +182,6 @@ img {
   text-transform: uppercase
 }
 
-.eyebrow:before {
-  background: var(--acid);
-  content: "";
-  display: inline-block;
-  height: 2px;
-  margin: 0 12px 3px 0;
-  width: 34px
-}
-
 .hero h1,.section-heading h2,.about h2 {
   font: 700 clamp(68px,9vw,138px)/.8 'Barlow Condensed';
   letter-spacing: -.035em;
@@ -268,16 +253,21 @@ img {
   border-bottom: 1px solid currentColor
 }
 
+.section-dark,footer,.site-header {
+  --link-highlight-background: var(--acid);
+  --link-highlight-text: var(--ink)
+}
+
+:is(a.text-link,a.nav-link,.steps a,.regulations a,.footer-contact a.footer-email,.footer-bottom a):is(:hover,:focus-visible) {
+  background: var(--link-highlight-background, #303030);
+  border-bottom-color: currentColor;
+  box-shadow: 0 0 0 4px var(--link-highlight-background, #303030);
+  color: var(--link-highlight-text, #fff)
+}
+
 .event-registration {
   display: block;
   margin-top: 8px
-}
-
-.text-link:hover {
-  background: #303030;
-  border-bottom-color: #fff;
-  box-shadow: 0 0 0 4px #303030;
-  color: #fff
 }
 
 .events-container {
@@ -294,12 +284,9 @@ img {
 }
 
 .get-started {
+  --link-highlight-text: var(--acid-bright);
   background: var(--acid);
   padding: clamp(80px,10vw,150px) clamp(22px,6vw,96px)
-}
-
-.get-started .eyebrow:before {
-  background: #fff
 }
 
 .section-heading.light {
@@ -330,7 +317,8 @@ img {
   border: 0
 }
 
-.steps span {
+.steps article > span {
+  color: rgba(0, 0, 0, .5);
   font: 700 16px 'Barlow Condensed'
 }
 
@@ -349,14 +337,10 @@ img {
 }
 
 .steps .resource-label {
-  font: 700 13px 'Barlow Condensed';
-  letter-spacing: .1em;
+  color: rgba(0, 0, 0, .5);
+  font: 500 20px 'Barlow Condensed';
   margin-top: 22px;
-  text-transform: uppercase
-}
-
-.steps .resource-label+.link-row a {
-  margin-top: 10px
+  text-transform: none
 }
 
 .steps a.inline-link {
@@ -370,17 +354,10 @@ img {
 .steps a,.regulations a {
   border-bottom: 1px solid;
   display: inline-block;
-  font: 700 14px 'Barlow Condensed';
+  font: 700 16px 'Barlow Condensed';
   letter-spacing: .08em;
   margin-top: 22px;
   text-transform: uppercase
-}
-
-.steps a:hover,.regulations a:hover {
-  background: #303030;
-  border-bottom-color: var(--acid-bright);
-  box-shadow: 0 0 0 4px #303030;
-  color: var(--acid-bright)
 }
 
 .link-row {
@@ -395,13 +372,13 @@ img {
   gap: 0
 }
 
-.simulator-links {
+.resource-links {
   display: grid;
   grid-template-columns: repeat(2,minmax(0,1fr));
   margin-top: 10px
 }
 
-.steps .resource-label+.simulator-links a {
+.steps .resource-label+.resource-links a {
   justify-self: start;
   margin-top: 0
 }
@@ -410,20 +387,14 @@ img {
   align-items: start;
   column-gap: 40px;
   display: grid;
-  grid-template-columns: .6fr 1.1fr 1.5fr;
+  grid-template-columns: 1.7fr 1.5fr;
   padding-top: 58px;
   row-gap: 22px
 }
 
-.regulations .eyebrow {
-  grid-column: 1;
-  grid-row: 1;
-  margin-top: 10px
-}
-
 .regulations h3 {
   font-size: 48px;
-  grid-column: 2;
+  grid-column: 1;
   grid-row: 1;
   margin: 0
 }
@@ -433,17 +404,17 @@ img {
 }
 
 .regulations-copy>p {
-  grid-column: 3;
+  grid-column: 2;
   grid-row: 1
 }
 
 .regulations-resources {
-  grid-column: 3;
+  grid-column: 2;
   grid-row: 2
 }
 
 .regulations-banner {
-  grid-column: 1/3;
+  grid-column: 1;
   grid-row: 2;
   height: clamp(120px,14vw,200px);
   margin-top: 18px;
@@ -614,7 +585,7 @@ body.lightbox-open {
   margin-bottom: 40px
 }
 
-.about-copy>p:not(.eyebrow) {
+.about-copy>p {
   color: #c1c3c0;
   font-size: 17px;
   line-height: 1.75;
@@ -705,11 +676,6 @@ footer {
   text-underline-offset: 3px
 }
 
-.footer-contact .footer-email:hover {
-  color: var(--acid);
-  text-decoration: underline
-}
-
 .footer-contact .social {
   gap: 20px;
   justify-content: flex-end
@@ -791,11 +757,6 @@ footer {
 .photography-credit {
   display: block;
   margin-top: 4px
-}
-
-footer .footer-bottom a:hover {
-  color: inherit;
-  text-decoration: underline
 }
 
 @media(max-width:1600px) {
@@ -898,7 +859,6 @@ footer .footer-bottom a:hover {
     grid-template-columns: 1fr
   }
 
-  .regulations .eyebrow,
   .regulations h3,
   .regulations-copy>p,
   .regulations-resources,
