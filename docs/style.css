@@ -100,7 +100,11 @@ img {
   width: 100%
 }
 
-.site-header nav>.nav-link:hover:after,.site-header nav>.nav-link.active:after {
+.site-header nav>.nav-link:is(:hover,:focus-visible) {
+  color: var(--acid-bright)
+}
+
+.site-header nav>.nav-link:is(:hover,:focus-visible,.active):after {
   transform: scaleX(1)
 }
 
@@ -253,12 +257,12 @@ img {
   border-bottom: 1px solid currentColor
 }
 
-.section-dark,footer,.site-header {
+.section-dark,footer {
   --link-highlight-background: var(--acid);
   --link-highlight-text: var(--ink)
 }
 
-:is(a.text-link,a.nav-link,.steps a,.regulations a,.footer-contact a.footer-email,.footer-bottom a):is(:hover,:focus-visible) {
+:is(a.text-link,.steps a,.regulations a,.footer-contact a.footer-email,.footer-bottom a):is(:hover,:focus-visible) {
   background: var(--link-highlight-background, #303030);
   border-bottom-color: currentColor;
   box-shadow: 0 0 0 4px var(--link-highlight-background, #303030);
