@@ -205,6 +205,10 @@ img {
   text-transform: uppercase
 }
 
+.hero h1 {
+  font-size: clamp(88px,9vw,138px)
+}
+
 .hero h1 em,.about h2 em {
   color: var(--acid);
   font-style: italic
@@ -843,9 +847,12 @@ footer {
     position: absolute;
     text-align: right;
     top: 68px;
-    transition: opacity .18s ease, visibility .18s;
     visibility: hidden;
     width: 100%
+  }
+
+  .site-header nav.menu-transition {
+    transition: opacity .18s ease, visibility .18s
   }
 
   .site-header nav.open {
@@ -898,7 +905,7 @@ footer {
   }
 
   .hero h1 {
-    font-size: 65px
+    font-size: clamp(50px, calc(23px + 8.5vw), 88px)
   }
 
   .section-heading {

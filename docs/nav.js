@@ -4,6 +4,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const links = [...document.querySelectorAll("#site-nav .nav-link")];
   const homeLinks = [...document.querySelectorAll('a[href="#home"]')];
 
+  let navigationScrollTimer;
+
+  function finishNavigationScroll() {
+    window.clearTimeout(navigationScrollTimer);
+    navigationScrollTimer = undefined;
+  }
+
   function closeMenu() {
     nav.classList.remove("open");
     menuButton?.setAttribute("aria-expanded", "false");
@@ -15,17 +22,42 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  const mobileLayout = window.matchMedia("(max-width: 760px)");
+  mobileLayout.addEventListener("change", () => {
+    finishNavigationScroll();
+    nav.classList.remove("menu-transition");
+    closeMenu();
+  });
+
   menuButton?.addEventListener("click", () => {
+    nav.classList.add("menu-transition");
     const open = nav.classList.toggle("open");
     menuButton.setAttribute("aria-expanded", String(open));
   });
-  links.forEach(link => link.addEventListener("click", closeMenu));
+  window.addEventListener("scroll", () => {
+    if (navigationScrollTimer === undefined) return;
+    window.clearTimeout(navigationScrollTimer);
+    navigationScrollTimer = window.setTimeout(finishNavigationScroll, 150);
+  }, { passive: true });
+
+  links.forEach(link => link.addEventListener("click", event => {
+    closeMenu();
+    if (mobileLayout.matches || event.defaultPrevented ||
+        event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+    setActiveSection(link.hash.slice(1));
+    window.clearTimeout(navigationScrollTimer);
+    navigationScrollTimer = window.setTimeout(finishNavigationScroll, 250);
+  }));
   homeLinks.forEach(link => link.addEventListener("click", () => {
+    finishNavigationScroll();
     closeMenu();
     setActiveSection("events");
   }));
   const observer = new IntersectionObserver(entries => entries.forEach(entry => {
-    if (entry.isIntersecting) setActiveSection(entry.target.id);
+    if (navigationScrollTimer === undefined && entry.isIntersecting) {
+      setActiveSection(entry.target.id);
+    }
   }), { rootMargin: "-30% 0px -60%" });
   document.querySelectorAll("#events, #upcoming, #get-started, #gallery, #about").forEach(section => observer.observe(section));
 });
