@@ -24,7 +24,7 @@ function shuffled(items) {
   return result;
 }
 
-function renderGallery(backgrounds, selectedBackground) {
+function renderGallery(backgrounds, mobile) {
   const gallery = document.querySelector(".gallery-grid");
   if (!gallery) return;
 
@@ -34,10 +34,7 @@ function renderGallery(backgrounds, selectedBackground) {
     ["ratio-classic", "ratio-photo", "ratio-cinematic", "ratio-wide", "ratio-photo", "ratio-classic", "ratio-wide", "ratio-cinematic", "ratio-photo", "ratio-wide"]
   ];
   const layout = layouts[Math.floor(Math.random() * layouts.length)];
-  const galleryLimit = window.matchMedia("(max-width: 760px)").matches ? 5 : 10;
-  const galleryBackgrounds = shuffled(
-    backgrounds.filter(background => background !== selectedBackground)
-  ).slice(0, galleryLimit);
+  const galleryBackgrounds = backgrounds.slice(0, mobile ? 8 : 10);
   lightboxImages = galleryBackgrounds;
   gallery.replaceChildren(...galleryBackgrounds.map((background, index) => {
     const figure = document.createElement("figure");
@@ -175,7 +172,13 @@ async function initializeRandomBackground() {
     }
 
     const selectedBackground = rotation.queue.shift();
-    renderGallery(backgrounds, selectedBackground);
+    const galleryBackgrounds = shuffled(backgrounds.filter(background => background !== selectedBackground));
+    const mobileGallery = window.matchMedia("(max-width: 760px)");
+    renderGallery(galleryBackgrounds, mobileGallery.matches);
+    mobileGallery.addEventListener("change", event => {
+      closeLightbox();
+      renderGallery(galleryBackgrounds, event.matches);
+    });
     try {
       sessionStorage.setItem(rotationKey, JSON.stringify(rotation));
     } catch {
@@ -219,38 +222,7 @@ if (document.readyState === "loading") {
   initializeDynamicUI();
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  initializeLightbox();
-  const menuButton = document.querySelector(".menu-button");
-  const nav = document.querySelector("#site-nav");
-  const links = [...document.querySelectorAll("#site-nav .nav-link")];
-  const homeLinks = [...document.querySelectorAll('a[href="#home"]')];
-
-  function closeMenu() {
-    nav.classList.remove("open");
-    menuButton?.setAttribute("aria-expanded", "false");
-  }
-
-  function setActiveSection(sectionId) {
-    links.forEach(link => {
-      link.classList.toggle("active", sectionId !== "events" && link.hash === `#${sectionId}`);
-    });
-  }
-
-  menuButton?.addEventListener("click", () => {
-    const open = nav.classList.toggle("open");
-    menuButton.setAttribute("aria-expanded", String(open));
-  });
-  links.forEach(link => link.addEventListener("click", closeMenu));
-  homeLinks.forEach(link => link.addEventListener("click", () => {
-    closeMenu();
-    setActiveSection("events");
-  }));
-  const observer = new IntersectionObserver(entries => entries.forEach(entry => {
-    if (entry.isIntersecting) setActiveSection(entry.target.id);
-  }), { rootMargin: "-30% 0px -60%" });
-  document.querySelectorAll("#events, #upcoming, #get-started, #gallery, #about").forEach(section => observer.observe(section));
-});
+document.addEventListener("DOMContentLoaded", initializeLightbox);
 
 function setViewportHeight() {
   const vh = window.innerHeight * 0.01;

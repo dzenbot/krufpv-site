@@ -141,7 +141,20 @@ img {
   display: block;
   height: 2px;
   margin: 6px 0;
+  transition: transform .18s ease, opacity .18s ease;
   width: 100%
+}
+
+.menu-button[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg)
+}
+
+.menu-button[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0
+}
+
+.menu-button[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg)
 }
 
 .section-dark {
@@ -288,9 +301,10 @@ img {
 }
 
 .get-started {
+  --section-gutter: clamp(22px,6vw,96px);
   --link-highlight-text: var(--acid-bright);
   background: var(--acid);
-  padding: clamp(80px,10vw,150px) clamp(22px,6vw,96px)
+  padding: clamp(80px,10vw,150px) var(--section-gutter)
 }
 
 .section-heading.light {
@@ -319,6 +333,18 @@ img {
 
 .steps article:last-child {
   border: 0
+}
+
+@media (width > 760px) {
+  .steps article:has(.resource-label) {
+    display: grid;
+    grid-row: span 5;
+    grid-template-rows: subgrid
+  }
+
+  .steps article:last-child {
+    grid-row: span 5
+  }
 }
 
 .steps article > span {
@@ -377,6 +403,7 @@ img {
 }
 
 .resource-links {
+  align-self: start;
   display: grid;
   grid-template-columns: repeat(2,minmax(0,1fr));
   margin-top: 10px
@@ -388,11 +415,12 @@ img {
 }
 
 .regulations {
+  --regulations-top-space: 58px;
   align-items: start;
   column-gap: 40px;
   display: grid;
   grid-template-columns: 1.7fr 1.5fr;
-  padding-top: 58px;
+  padding-top: var(--regulations-top-space);
   row-gap: 22px
 }
 
@@ -774,13 +802,26 @@ footer {
     scroll-padding-top: 68px
   }
 
+  html {
+    scroll-behavior: auto
+  }
+
+  html:has(.site-header nav.open) {
+    overflow: hidden
+  }
+
   .site-header {
     height: 68px
   }
 
+  .site-header:has(nav.open) {
+    background: #0b0c0d;
+    border-bottom-color: transparent
+  }
+
   .wordmark img {
     height: auto;
-    width: 180px
+    width: min(210px, 65vw)
   }
 
   .menu-button {
@@ -789,35 +830,61 @@ footer {
 
   .site-header nav {
     background: #0b0c0d;
-    display: none;
+    display: flex;
     flex-direction: column;
-    gap: 0;
+    gap: 16px;
+    height: calc(100vh - 68px);
+    height: calc(100dvh - 68px);
     left: 0;
+    opacity: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     padding: 22px;
     position: absolute;
+    text-align: right;
     top: 68px;
+    transition: opacity .18s ease, visibility .18s;
+    visibility: hidden;
     width: 100%
   }
 
   .site-header nav.open {
-    display: flex
+    opacity: 1;
+    visibility: visible
   }
 
   .site-header nav>.nav-link {
-    border-top: 1px solid #303230;
-    font-size: 18px;
-    padding: 16px 0
+    flex-shrink: 0;
+    font-size: 28px;
+    padding: 24px 0
+  }
+
+  .site-header nav>.nav-link:is(:hover,:focus-visible) {
+    color: inherit
+  }
+
+  .site-header nav>.nav-link.active {
+    color: var(--acid)
+  }
+
+  .site-header nav>.nav-link::after {
+    display: none
   }
 
   .header-socials {
     border-left: 0;
-    border-top: 1px solid #303230;
+    flex-shrink: 0;
     gap: 18px;
-    padding: 18px 0 4px
+    justify-content: flex-end;
+    padding: 24px 0
+  }
+
+  .header-socials a:hover {
+    transform: none
   }
 
   .header-socials img {
-    height: 24px
+    height: 34px
   }
 
   .hero {
@@ -840,12 +907,18 @@ footer {
     padding-bottom: 38px
   }
 
+  .get-started .section-heading {
+    border-bottom: 0;
+    padding-bottom: 0
+  }
+
   .section-heading>p {
     font-size: 15px
   }
 
   .steps {
-    grid-template-columns: 1fr
+    grid-template-columns: 1fr;
+    margin-top: 12px
   }
 
   .steps article,.steps article:first-child {
@@ -858,25 +931,42 @@ footer {
     margin: 14px 0 12px
   }
 
-  .regulations {
-    gap: 18px;
-    grid-template-columns: 1fr
+  .get-started {
+    padding-bottom: 0
   }
 
-  .regulations h3,
-  .regulations-copy>p,
-  .regulations-resources,
-  .regulations-banner {
+  .regulations {
+    --regulations-row-gap: 18px;
+    gap: var(--regulations-row-gap);
+    grid-template-columns: minmax(0,1fr)
+  }
+
+  .regulations h3,.regulations-copy>p,.regulations-resources,.regulations-banner {
     grid-column: 1;
     grid-row: auto
   }
 
   .regulations-banner {
-    height: 120px
+    aspect-ratio: 8/3;
+    height: auto;
+    margin-inline: calc(-1 * var(--section-gutter));
+    margin-top: calc(var(--regulations-top-space) - var(--regulations-row-gap))
   }
 
   .gallery-grid {
-    column-count: 1
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+  }
+
+  .gallery-grid figure[class] {
+    aspect-ratio: 4/3;
+    margin-bottom: 0
+  }
+
+  .gallery-grid figure:is(:first-child, :nth-child(4)) {
+    aspect-ratio: 16/9;
+    grid-column: 1/-1
   }
 
   .lightbox {
@@ -892,15 +982,40 @@ footer {
 
 
   .about {
-    grid-template-columns: 1fr
+    --about-gutter: clamp(22px,6vw,96px);
+    gap: 0;
+    grid-template-columns: minmax(0,1fr);
+    padding: 0 0 clamp(80px,10vw,150px)
   }
 
-  .about-image {
-    grid-row: 1
+  .about-copy,.about-image {
+    display: contents
+  }
+
+  .about-image img,.about h2 {
+    grid-area: 1 / 1
   }
 
   .about-image img {
     aspect-ratio: 4/3
+  }
+
+  .about h2 {
+    align-self: end;
+    background: linear-gradient(transparent,#000c);
+    font-size: clamp(38px,9vw,68px);
+    margin: 0;
+    padding: 48px var(--about-gutter) 24px;
+    z-index: 1
+  }
+
+  .about-image p {
+    grid-row: 2;
+    margin-bottom: 45px
+  }
+
+  .about-copy>p,.about-actions,.about-image p {
+    padding-inline: var(--about-gutter)
   }
 
   footer {
