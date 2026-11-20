@@ -1,0 +1,162 @@
+{
+  "years": [
+    2026,
+    2025,
+    2024
+  ],
+  "overall": [
+    {
+      "username": "Zenith",
+      "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/20676/profileImage-513.png",
+      "races": 9,
+      "elo": 1548,
+      "points": 72,
+      "position": 1
+    },
+    {
+      "username": "DCHFPV",
+      "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/25493/profileImage-949.png",
+      "races": 9,
+      "elo": 1528,
+      "points": 62,
+      "position": 2
+    },
+    {
+      "username": "Krowfpv",
+      "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/25867/profileImage-113.png",
+      "races": 8,
+      "elo": 1507,
+      "points": 43,
+      "position": 3
+    },
+    {
+      "username": "FWMFPV",
+      "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/24824/profileImage-105.png",
+      "races": 4,
+      "elo": 1523,
+      "points": 26,
+      "position": 4
+    },
+    {
+      "username": "Nevr",
+      "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/48305/profileImage-2918.png",
+      "races": 3,
+      "elo": 0,
+      "points": 23,
+      "position": 5
+    },
+    {
+      "username": "Pairadime",
+      "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/30767/profileImage-89.png",
+      "races": 5,
+      "elo": 1492,
+      "points": 18,
+      "position": 6
+    },
+    {
+      "username": "LowJack",
+      "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/35736/profileImage-691.png",
+      "races": 8,
+      "elo": 1474,
+      "points": 18,
+      "position": 7
+    },
+    {
+      "username": "kLawlz",
+      "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/21990/profileImage-175.jpg",
+      "races": 2,
+      "elo": 1506,
+      "points": 17,
+      "position": 8
+    },
+    {
+      "username": "darb",
+      "avatar": "https://www.multigp.com/mgp/images/profile.jpg",
+      "races": 3,
+      "elo": 1505,
+      "points": 15,
+      "position": 9
+    },
+    {
+      "username": "Sasquatch_eh",
+      "avatar": "https://www.multigp.com/mgp/images/profile.jpg",
+      "races": 2,
+      "elo": 0,
+      "points": 14,
+      "position": 10
+    },
+    {
+      "username": "Snoopquad",
+      "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/29103/profileImage-995.png",
+      "races": 6,
+      "elo": 1475,
+      "points": 12,
+      "position": 11
+    },
+    {
+      "username": "FPVArthur",
+      "avatar": "https://www.multigp.com/mgp/images/profile.jpg",
+      "races": 2,
+      "elo": 0,
+      "points": 12,
+      "position": 12
+    },
+    {
+      "username": "Aphinity",
+      "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/24900/profileImage-480.png",
+      "races": 4,
+      "elo": 1493,
+      "points": 11,
+      "position": 13
+    },
+    {
+      "username": "Doodlefish",
+      "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/48772/profileImage-1262.png",
+      "races": 2,
+      "elo": 0,
+      "points": 7,
+      "position": 14
+    },
+    {
+      "username": "VitaFPV",
+      "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/35039/profileImage-29.png",
+      "races": 2,
+      "elo": 1477,
+      "points": 4,
+      "position": 15
+    },
+    {
+      "username": "crls",
+      "avatar": "https://www.multigp.com/mgp/images/profile.jpg",
+      "races": 1,
+      "elo": 0,
+      "points": 4,
+      "position": 16
+    },
+    {
+      "username": "Akronautic",
+      "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/50055/profileImage-3406.png",
+      "races": 2,
+      "elo": 0,
+      "points": 4,
+      "position": 17
+    },
+    {
+      "username": "Maddog",
+      "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/25988/profileImage-242.png",
+      "races": 1,
+      "elo": 1490,
+      "points": 1,
+      "position": 18
+    },
+    {
+      "username": "Smileofdeath",
+      "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/39086/profileImage-317.png",
+      "races": 1,
+      "elo": 1482,
+      "points": 1,
+      "position": 19
+    }
+  ],
+  "seasons": {}
+}

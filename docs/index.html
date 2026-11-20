@@ -10,8 +10,8 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="KwadsRUs Racing Club">
     <meta property="og:description" content="FPV drone racing in Metro Vancouver. Come fly with us.">
-    <link rel="stylesheet" href="style.css?v=20261116-19">
-    <link rel="stylesheet" href="events-ui.css?v=20260827-18">
+    <link rel="stylesheet" href="style.css?v=20261120-5">
+    <link rel="stylesheet" href="events-ui.css?v=20261120-1">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="icon" href="favicon.ico">
     <title>
@@ -48,6 +48,7 @@
         <a class="nav-link" href="#upcoming">
           Events
         </a>
+        <a class="nav-link" href="#standings" hidden>Standings</a>
         <a class="nav-link" href="#get-started">
           Get started
         </a>
@@ -101,16 +102,14 @@
           <div>
             <h2>
               Upcoming Events
-              <br>
-              on MultiGP
             </h2>
           </div>
           <p>
-            Come race, spectate, or just ask questions.
+            Come race, spectate, or just meet the pilots and ask questions.
             <span class="event-registration">
               Event details and
               <a class="text-link" href="https://www.multigp.com/chapters/view/?chapter=KwadsRUs" target="_blank" rel="noopener">
-                registration open on MultiGP
+                registration open on multigp.com
               </a>
             </span>
           </p>
@@ -128,6 +127,20 @@
               </p>
             </div>
           </div>
+        </div>
+      </section>
+      <section id="standings" aria-labelledby="standings-title" hidden>
+        <div class="section-heading">
+          <h2 id="standings-title">Standings</h2>
+          <p>200G MAX Series results. <a class="text-link" href="https://www.multigp.com/multigp-series/?seriesId=1013">View on MultiGP</a></p>
+        </div>
+        <div class="standings-seasons" role="group" aria-label="Season"></div>
+        <p id="standings-status" role="status">Loading standings…</p>
+        <div class="standings-table" hidden>
+          <table aria-label="200G MAX Series leaderboard">
+            <thead><tr><th scope="col">Rank</th><th scope="col">Pilot</th><th scope="col">Races</th><th scope="col">Elo</th><th scope="col">Points</th></tr></thead>
+            <tbody></tbody>
+          </table>
         </div>
       </section>
       <section id="get-started" class="get-started">
@@ -378,11 +391,12 @@
     </footer>
     <script src="ui.js?v=20261116-2">
     </script>
-    <script src="nav.js?v=20261116-2">
+    <script src="standings.js?v=20261120-1"></script>
+    <script src="nav.js?v=20261117-1">
     </script>
     <script src="events-sync.js?v=20260825-3">
     </script>
-    <script src="events-ui.js?v=20260827-8">
+    <script src="events-ui.js?v=20261120-1">
     </script>
   </body>
 </html>

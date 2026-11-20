@@ -87,12 +87,12 @@
   text-transform: uppercase
 }
 
-.event-location {
+.event-location,.event-city {
   margin-left: 12px
 }
 
-.event-location:before {
-  content: "·";
+.event-location:before,.event-city:before {
+  content: "•";
   margin-right: 12px
 }
 
@@ -174,5 +174,33 @@
 
   .card-chevron {
     width: 24px
+  }
+}
+
+.card-date {
+  flex-wrap: nowrap
+}
+
+.card-date.hide-location .event-location {
+  display: none
+}
+
+.event-date,.event-city {
+  flex-shrink: 0
+}
+
+@media(max-width:760px) {
+  .card-date {
+    flex-wrap: wrap;
+    overflow: visible;
+    row-gap: 4px
+  }
+
+  .event-city {
+    margin-left: 8px
+  }
+
+  .event-city:before {
+    margin-right: 8px
   }
 }

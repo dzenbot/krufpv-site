@@ -58,8 +58,7 @@ jq --slurp '{
   ]
 }' "$upcoming_file" "$completed_file" > "$generated_file"
 
-# The completed-events summary omits start times. Enrich each retained event
-# from the public race detail fragment, falling back to its summary date.
+# Enrich retained events with city/province and missing start times from race details.
 while IFS= read -r race_id; do
   detail_file="$temporary_directory/race-${race_id}.html"
   if curl --fail --silent --show-error --retry 2 \
@@ -68,6 +67,30 @@ while IFS= read -r race_id; do
     --user-agent "KwadsRUs-GitHub-Pages/1.0" \
     "https://www.multigp.com/MultiGP/views/viewRace.php?race=${race_id}" \
     --output "$detail_file"; then
+    city_region="$(python3 - "$detail_file" <<'CITY'
+import html
+import re
+import sys
+from pathlib import Path
+text = Path(sys.argv[1]).read_text()
+match = re.search(r'<a[^>]+href="https://www.google.com/maps/[^"]*"[^>]*>([^<]+)</a>', text)
+if match:
+    value = html.unescape(match[1]).strip()
+    provinces = {"British Columbia": "BC", "Alberta": "AB", "Ontario": "ON", "Quebec": "QC",
+                 "Manitoba": "MB", "Saskatchewan": "SK", "Nova Scotia": "NS",
+                 "New Brunswick": "NB", "Newfoundland and Labrador": "NL",
+                 "Prince Edward Island": "PE", "Yukon": "YT", "Nunavut": "NU",
+                 "Northwest Territories": "NT"}
+    for name, code in provinces.items():
+        value = value.replace(", " + name, ", " + code)
+    print(value)
+CITY
+)"
+    if [[ -n "$city_region" ]]; then
+      updated_file="$temporary_directory/events-city.json"
+      jq --arg id "$race_id" --arg cityRegion "$city_region"         '(.events[], .recentEvents[] | select(.id == $id) | .cityRegion) = $cityRegion'         "$generated_file" > "$updated_file"
+      mv "$updated_file" "$generated_file"
+    fi
     race_date="$(perl -0777 -ne 'print $1 if /<span class="startDate">\s*([^<]+?)\s*<\/span>/s' "$detail_file")"
     race_time="$(perl -0777 -ne 'print $1 if /fa-clock[^>]*><\/i>[^<]*<small>\s*([^<]+?)\s*<\/small>/s' "$detail_file")"
     if [[ -n "$race_date" && -n "$race_time" ]]; then
@@ -78,6 +101,6 @@ while IFS= read -r race_id; do
       mv "$updated_file" "$generated_file"
     fi
   fi
-done < <(jq -r '.recentEvents[].id' "$generated_file")
+done < <(jq -r '(.events + .recentEvents)[].id' "$generated_file")
 
 mv "$generated_file" "$output_file"

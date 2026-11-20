@@ -1080,3 +1080,98 @@ footer {
     transition: none!important
   }
 }
+
+#standings {
+  padding: clamp(80px,10vw,150px) clamp(22px,6vw,96px);
+  background: #fff
+}
+
+.standings-seasons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px
+}
+
+.standings-seasons button {
+  background: transparent;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  cursor: pointer;
+  font: 600 18px 'Barlow Condensed';
+  padding: 8px 16px
+}
+
+.standings-seasons button[aria-pressed="true"] {
+  background: var(--acid)
+}
+
+#standings-status:not(:empty),.standings-table {
+  margin-top: 18px
+}
+
+.standings-table {
+  overflow-x: auto
+}
+
+.standings-table table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%
+}
+
+.standings-table th,.standings-table td {
+  border-bottom: 1px solid var(--line);
+  padding: 10px clamp(8px,2vw,24px);
+  text-align: center
+}
+
+.standings-table tr > :not(:nth-child(2)) {
+  width: clamp(42px,9vw,110px)
+}
+
+.standings-table tbody tr:nth-child(even) {
+  background: rgba(0, 0, 0, .03)
+}
+
+.standings-table th:nth-child(2) {
+  text-align: left
+}
+
+.standings-table th a {
+  align-items: center;
+  display: flex;
+  gap: clamp(12px,2vw,20px)
+}
+
+.standings-table img {
+  border-radius: 50%;
+  flex: 0 0 32px;
+  height: 32px;
+  object-fit: cover;
+  width: 32px
+}
+
+#upcoming .section-heading,#standings .section-heading {
+  grid-template-columns: minmax(0,1fr);
+  gap: 24px
+}
+
+#upcoming .section-heading>p,#standings .section-heading>p {
+  max-width: 760px
+}
+
+.standings-table tbody th {
+  font-weight: 400
+}
+
+.standings-table tbody td:last-child {
+  font-weight: 700
+}
+
+.standings-pilot-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}

@@ -81,14 +81,12 @@ async function loadUpcomingEvents() {
 }
 
 function updateMobileEventLayout() {
-  const isMobile = window.matchMedia("(max-width: 760px)").matches;
-
   document.querySelectorAll(".card-date").forEach(dateRow => {
-    const location = dateRow.querySelector(".event-location");
-    if (!location) return;
-
     dateRow.classList.remove("hide-location");
-    if (isMobile && dateRow.scrollWidth > dateRow.clientWidth) {
+    const venue = dateRow.querySelector(".event-location");
+    const city = dateRow.querySelector(".event-city");
+    const wrapsWithVenue = venue && city && city.offsetTop > dateRow.firstElementChild.offsetTop;
+    if (dateRow.scrollWidth > dateRow.clientWidth || wrapsWithVenue) {
       dateRow.classList.add("hide-location");
     }
   });
@@ -135,6 +133,12 @@ function createEventCard(ev) {
     locationText.className = "event-location";
     locationText.textContent = ev.location;
     dateEl.appendChild(locationText);
+  }
+  if (ev.cityRegion) {
+    const city = document.createElement("span");
+    city.className = "event-city";
+    city.textContent = ev.cityRegion;
+    dateEl.appendChild(city);
   }
   content.appendChild(dateEl);
 

@@ -59,5 +59,5 @@ document.addEventListener("DOMContentLoaded", () => {
       setActiveSection(entry.target.id);
     }
   }), { rootMargin: "-30% 0px -60%" });
-  document.querySelectorAll("#events, #upcoming, #get-started, #gallery, #about").forEach(section => observer.observe(section));
+  document.querySelectorAll("#events, #upcoming, #standings:not([hidden]), #get-started, #gallery, #about").forEach(section => observer.observe(section));
 });
