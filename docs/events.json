@@ -1,0 +1,137 @@
+{
+  "source": "MultiGP race/list API",
+  "events": [
+    {
+      "id": "32746",
+      "name": "200G MAX Series #47",
+      "startDate": "2026-12-05 12:00 pm",
+      "location": "Cotonfield Dog Center",
+      "cityRegion": "Abbotsford, BC",
+      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/race/32746/mainImage-303.png",
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=32746"
+    },
+    {
+      "id": "32747",
+      "name": "200G MAX Series #48",
+      "startDate": "2026-12-26 12:00 pm",
+      "location": "Cotonfield Dog Center",
+      "cityRegion": "Abbotsford, BC",
+      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/race/32747/mainImage-567.png",
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=32747"
+    },
+    {
+      "id": "33233",
+      "name": "200G MAX Series #49",
+      "startDate": "2027-01-09 12:00 pm",
+      "location": "Cotonfield Dog Center",
+      "cityRegion": "Abbotsford, BC",
+      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/race/33233/mainImage-979.png",
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=33233"
+    },
+    {
+      "id": "33232",
+      "name": "200G MAX Series #50",
+      "startDate": "2027-01-23 12:00 pm",
+      "location": "Cotonfield Dog Center",
+      "cityRegion": "Abbotsford, BC",
+      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/race/33232/mainImage-337.png",
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=33232"
+    },
+    {
+      "id": "33234",
+      "name": "200G MAX Series #51",
+      "startDate": "2027-02-06 12:00 pm",
+      "location": null,
+      "cityRegion": "Pitt Meadows, BC",
+      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/race/33234/mainImage-648.png",
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=33234"
+    },
+    {
+      "id": "33231",
+      "name": "200G MAX Series #52",
+      "startDate": "2027-02-20 12:00 pm",
+      "location": "Cotonfield Dog Center",
+      "cityRegion": "Abbotsford, BC",
+      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/race/33231/mainImage-643.png",
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=33231"
+    },
+    {
+      "id": "33230",
+      "name": "200G MAX Series #53",
+      "startDate": "2027-03-06 12:00 pm",
+      "location": "Cotonfield Dog Center",
+      "cityRegion": "Abbotsford, BC",
+      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/race/33230/mainImage-332.png",
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=33230"
+    },
+    {
+      "id": "33229",
+      "name": "200G MAX Series #54",
+      "startDate": "2027-03-27 12:00 pm",
+      "location": "Cotonfield Dog Center",
+      "cityRegion": "Abbotsford, BC",
+      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/race/33229/mainImage-233.png",
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=33229"
+    }
+  ],
+  "recentEvents": [
+    {
+      "id": "32744",
+      "name": "200G MAX Series #46",
+      "startDate": "2026-11-14 12:00 pm",
+      "location": "Cotonfield Dog Center",
+      "cityRegion": "Abbotsford, BC",
+      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/race/32744/mainImage-869.png",
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=32744"
+    },
+    {
+      "id": "33126",
+      "name": "200G MAX Tryout @ Draganfly",
+      "startDate": "2026-10-31 12:00 pm",
+      "location": null,
+      "cityRegion": "Pitt Meadows, BC",
+      "mainImageFileName": null,
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=33126"
+    },
+    {
+      "id": "32745",
+      "name": "200G MAX Series #45",
+      "startDate": "2026-10-24 12:00 pm",
+      "location": "Cotonfield Dog Center",
+      "cityRegion": "Abbotsford, BC",
+      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/race/32745/mainImage-15.png",
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=32745"
+    },
+    {
+      "id": "33029",
+      "name": "200G MAX Open Practice",
+      "startDate": "2026-10-11 01:00 pm",
+      "location": "KRU Racing Club Field",
+      "cityRegion": "Pitt Meadows, BC",
+      "mainImageFileName": null,
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=33029"
+    },
+    {
+      "id": "32743",
+      "name": "200G MAX Series #44",
+      "startDate": "2026-09-26 12:00 pm",
+      "location": "Cotonfield Dog Center",
+      "cityRegion": "Abbotsford, BC",
+      "mainImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/race/32743/mainImage-967.png",
+      "chapterImageFileName": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/chapter/1453/mainImage-717.png",
+      "url": "https://www.multigp.com/races/view/?race=32743"
+    }
+  ]
+}

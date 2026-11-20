@@ -18,6 +18,9 @@ permissions:
 jobs:
   update-events:
     runs-on: ubuntu-latest
+    env:
+      MULTIGP_API_KEY: ${{ secrets.MULTIGP_API_KEY }}
+      MULTIGP_SESSION_ID: ${{ secrets.MULTIGP_SESSION_ID }}
     steps:
       - name: Check out the site
         uses: actions/checkout@v4
@@ -27,7 +30,6 @@ jobs:
 
       - name: Fetch 200G MAX standings
         run: python3 scripts/update-standings.py
-        continue-on-error: true
 
       - name: Commit changes
         run: |
