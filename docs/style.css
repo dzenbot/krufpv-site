@@ -77,14 +77,17 @@ img {
 
 .site-header nav {
   display: flex;
+  flex-shrink: 0;
   gap: clamp(22px,3vw,48px)
 }
 
 .site-header nav>.nav-link {
+  flex-shrink: 0;
   font: 500 17px 'Barlow Condensed';
   letter-spacing: .12em;
   position: relative;
-  text-transform: uppercase
+  text-transform: uppercase;
+  white-space: nowrap
 }
 
 .site-header nav>.nav-link:after {
@@ -1174,4 +1177,18 @@ footer {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap
+}
+
+@media(max-width:760px) {
+  .events-section,.gallery,#standings {
+    padding-block: 48px
+  }
+
+  .get-started {
+    padding-top: 48px
+  }
+
+  .about {
+    padding-bottom: 48px
+  }
 }

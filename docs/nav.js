@@ -23,6 +23,26 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const mobileLayout = window.matchMedia("(max-width: 760px)");
+  const header = document.querySelector(".site-header");
+  const wordmark = header.querySelector(".wordmark");
+  const galleryLink = nav.querySelector('a[href="#gallery"]');
+
+  function updateNavigationLayout() {
+    galleryLink.hidden = false;
+    if (mobileLayout.matches) return;
+
+    const headerStyle = getComputedStyle(header);
+    const availableWidth = header.clientWidth -
+      parseFloat(headerStyle.paddingLeft) - parseFloat(headerStyle.paddingRight);
+    const requiredWidth = wordmark.getBoundingClientRect().width +
+      nav.getBoundingClientRect().width + 20;
+    galleryLink.hidden = requiredWidth > availableWidth;
+  }
+
+  window.addEventListener("resize", updateNavigationLayout);
+  document.fonts?.ready.then(updateNavigationLayout);
+  updateNavigationLayout();
+
   mobileLayout.addEventListener("change", () => {
     finishNavigationScroll();
     nav.classList.remove("menu-transition");

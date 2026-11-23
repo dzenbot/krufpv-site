@@ -99,7 +99,10 @@
 .card-name {
   color: var(--ink);
   font: 500 clamp(24px,2.5vw,38px)/1 'Barlow Condensed';
-  text-transform: uppercase
+  text-transform: uppercase;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
 }
 
 .card-chevron {
@@ -141,7 +144,11 @@
     gap: 14px;
     grid-template-columns: 70px minmax(0,1fr) 24px;
     min-height: 104px;
-    padding: 14px 12px
+    padding: 14px 0
+  }
+
+  .card-chevron {
+    width: 24px
   }
 
   .card-date {
@@ -178,7 +185,10 @@
 }
 
 .card-date {
-  flex-wrap: nowrap
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
 }
 
 .card-date.hide-location .event-location {
@@ -191,9 +201,10 @@
 
 @media(max-width:760px) {
   .card-date {
-    flex-wrap: wrap;
-    overflow: visible;
-    row-gap: 4px
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
   }
 
   .event-city {
