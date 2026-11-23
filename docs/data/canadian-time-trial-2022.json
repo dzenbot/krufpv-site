@@ -1,0 +1,105 @@
+{
+  "year": 2022,
+  "name": "2022 Canadian Time Trial",
+  "source": "MultiGP Canada - 2022 Canadian Series Leaderboard - Master Leaderboard.csv",
+  "pilots": [
+    {
+      "position": 9,
+      "username": "FWMFPV",
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/24824/profileImage-105.png",
+      "fastest3Laps": "51.241",
+      "chapterName": "KwadsRUs"
+    },
+    {
+      "position": 14,
+      "username": "Zenith",
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/20676/profileImage-513.png",
+      "fastest3Laps": "55.135",
+      "chapterName": "KwadsRUs"
+    },
+    {
+      "position": 16,
+      "username": "DCHFPV",
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/25493/profileImage-949.png",
+      "fastest3Laps": "57.239",
+      "chapterName": "KwadsRUs"
+    },
+    {
+      "position": 25,
+      "username": "Sickpixel",
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/34550/",
+      "fastest3Laps": "65.445",
+      "chapterName": "KwadsRUs"
+    },
+    {
+      "position": 28,
+      "username": "kLawlz",
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/21990/profileImage-175.jpg",
+      "fastest3Laps": "67.418",
+      "chapterName": "KwadsRUs"
+    },
+    {
+      "position": 32,
+      "username": "plaing",
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/24387/profileImage-49.png",
+      "fastest3Laps": "71.010",
+      "chapterName": "KwadsRUs"
+    },
+    {
+      "position": 36,
+      "username": "mattdfpv",
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/29766/profileImage-903.png",
+      "fastest3Laps": "76.586",
+      "chapterName": "KwadsRUs"
+    },
+    {
+      "position": 39,
+      "username": "Maddog",
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/25988/profileImage-242.png",
+      "fastest3Laps": "79.868",
+      "chapterName": "KwadsRUs"
+    },
+    {
+      "position": 40,
+      "username": "Pairadime",
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/30767/profileImage-89.png",
+      "fastest3Laps": "81.392",
+      "chapterName": "KwadsRUs"
+    },
+    {
+      "position": 41,
+      "username": "Krowfpv",
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/25867/profileImage-113.png",
+      "fastest3Laps": "84.094",
+      "chapterName": "KwadsRUs"
+    },
+    {
+      "position": 42,
+      "username": "Neato",
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/23786/profileImage-965.png",
+      "fastest3Laps": "86.496",
+      "chapterName": "KwadsRUs"
+    },
+    {
+      "position": 47,
+      "username": "Snoopquad",
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/29103/profileImage-995.png",
+      "fastest3Laps": "107.938",
+      "chapterName": "KwadsRUs"
+    },
+    {
+      "position": 49,
+      "username": "Aphinity",
+      "profilePictureUrl": null,
+      "fastest3Laps": "116.648",
+      "chapterName": "KwadsRUs"
+    },
+    {
+      "position": 51,
+      "username": "Braedon",
+      "profilePictureUrl": null,
+      "fastest3Laps": "126.666",
+      "chapterName": "KwadsRUs"
+    }
+  ]
+}

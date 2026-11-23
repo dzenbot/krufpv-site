@@ -1,0 +1,105 @@
+{
+  "year": 2026,
+  "source": "https://www.multigp.com/MultiGP/views/viewZipperSeasonResults.php?season1=2026&exportjson=true",
+  "pilots": [
+    {
+      "position": 198,
+      "username": "Zenith",
+      "pilotId": "20676",
+      "chapterName": "KwadsRUs",
+      "season1": "2026",
+      "season1Score": "37.52704",
+      "season2": null,
+      "season2Score": 2000000,
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/20676/profileImage-513.png"
+    },
+    {
+      "position": 369,
+      "username": "DCHFPV",
+      "pilotId": "25493",
+      "chapterName": "KwadsRUs",
+      "season1": "2026",
+      "season1Score": "44.734976",
+      "season2": null,
+      "season2Score": 2000000,
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/25493/profileImage-949.png"
+    },
+    {
+      "position": 389,
+      "username": "Neato",
+      "pilotId": "23786",
+      "chapterName": "KwadsRUs",
+      "season1": "2026",
+      "season1Score": "45.84576",
+      "season2": null,
+      "season2Score": 2000000,
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/23786/profileImage-965.png"
+    },
+    {
+      "position": 456,
+      "username": "FWMFPV",
+      "pilotId": "24824",
+      "chapterName": "KwadsRUs",
+      "season1": "2026",
+      "season1Score": "48.448",
+      "season2": null,
+      "season2Score": 2000000,
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/24824/profileImage-105.png"
+    },
+    {
+      "position": 459,
+      "username": "crls",
+      "pilotId": "45601",
+      "chapterName": "KwadsRUs",
+      "season1": "2026",
+      "season1Score": "48.718848",
+      "season2": null,
+      "season2Score": 2000000,
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/45601/"
+    },
+    {
+      "position": 587,
+      "username": "BootyGr3ase",
+      "pilotId": "26355",
+      "chapterName": "KwadsRUs",
+      "season1": "2026",
+      "season1Score": "57.197056",
+      "season2": null,
+      "season2Score": 2000000,
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/26355/profileImage-8130.png"
+    },
+    {
+      "position": 636,
+      "username": "Krowfpv",
+      "pilotId": "25867",
+      "chapterName": "KwadsRUs",
+      "season1": "2026",
+      "season1Score": "61.131008",
+      "season2": null,
+      "season2Score": 2000000,
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/25867/profileImage-113.png"
+    },
+    {
+      "position": 712,
+      "username": "Pairadime",
+      "pilotId": "30767",
+      "chapterName": "KwadsRUs",
+      "season1": "2026",
+      "season1Score": "73.233152",
+      "season2": null,
+      "season2Score": 2000000,
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/30767/profileImage-89.png"
+    },
+    {
+      "position": 738,
+      "username": "LowJack",
+      "pilotId": "35736",
+      "chapterName": "KwadsRUs",
+      "season1": "2026",
+      "season1Score": "79.678976",
+      "season2": null,
+      "season2Score": 2000000,
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/35736/profileImage-691.png"
+    }
+  ]
+}

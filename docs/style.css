@@ -1147,6 +1147,14 @@ footer {
   gap: clamp(12px,2vw,20px)
 }
 
+.standings-table tbody tr {
+  transition: background-color .15s ease-in-out
+}
+
+.standings-table tbody tr:is(:hover,:focus-within) {
+  background: #ededed
+}
+
 .standings-table img {
   border-radius: 50%;
   flex: 0 0 32px;
@@ -1190,5 +1198,148 @@ footer {
 
   .about {
     padding-bottom: 48px
+  }
+}
+
+.standings-avatar {
+  background: #d6d8d9;
+  border-radius: 50%;
+  display: block;
+  flex: 0 0 32px;
+  height: 32px;
+  overflow: hidden;
+  width: 32px
+}
+
+.standings-table.qualifier-table td {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums
+}
+
+.standings-table.qualifier-table tbody td:last-child {
+  font-weight: 400
+}
+
+.standings-table.qualifier-table thead th {
+  white-space: pre-line
+}
+
+.standings-heading-line {
+  white-space: nowrap
+}
+
+.standings-table.qualifier-table tr > :nth-child(n+3) {
+  width: 180px
+}
+
+.standings-table.qualifier-table table {
+  min-width: 540px
+}
+
+@media(max-width:760px) {
+  .qualifier-time-heading .standings-heading-line,
+  .qualifier-time-heading br {
+    display: none
+  }
+
+  .qualifier-time-heading::after {
+    content: attr(data-mobile-label);
+    white-space: nowrap
+  }
+
+  .standings-table.qualifier-table tr > :nth-child(n+3) {
+    width: 90px;
+    padding-inline: 6px
+  }
+
+  .standings-table.qualifier-table table {
+    min-width: 0
+  }
+}
+
+@media(max-width:760px) {
+  .standings-table:not(.qualifier-table) table {
+    min-width: 340px
+  }
+
+  .standings-table:not(.qualifier-table) tr > :nth-child(n+3) {
+    width: 62px;
+    padding-inline: 6px
+  }
+
+  .standings-table tr > :first-child {
+    width: 52px;
+    padding-inline: 6px 12px
+  }
+
+  .standings-table tr > :nth-child(2) {
+    padding-left: 8px;
+    padding-right: 6px
+  }
+}
+
+.standings-seasons button {
+  transition: background-color .18s ease
+}
+
+.standings-seasons button:not([aria-pressed="true"]):hover {
+  background: #000;
+  color: #fff
+}
+
+.standings-seasons button:focus-visible {
+  background: var(--acid-bright);
+  outline: 2px solid var(--ink);
+  outline-offset: 3px
+}
+
+.standings-toolbar {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  justify-content: space-between;
+  margin-top: 24px
+}
+
+.standings-toolbar .standings-seasons {
+  margin-top: 0
+}
+
+.standings-source {
+  margin-left: auto;
+  text-align: right
+}
+
+@media(max-width:760px) {
+  .standings-source {
+    display: none
+  }
+}
+
+#standings-status.standings-empty {
+  align-items: center;
+  color: #b4b7ba;
+  display: flex;
+  font: 700 clamp(30px,4vw,46px)/1.2 'Barlow Condensed';
+  justify-content: center;
+  min-height: 260px;
+  padding: 32px 16px;
+  text-align: center;
+  text-transform: uppercase
+}
+
+#standings-status.standings-loading {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 260px;
+  padding: 32px 16px;
+  text-align: center
+}
+
+@media(width > 760px) {
+  .standings-table tr > :first-child {
+    width: 150px
   }
 }

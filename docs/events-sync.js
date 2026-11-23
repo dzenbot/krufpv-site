@@ -3,7 +3,7 @@
 var RaceSync = (function() {
 
   function fetchEvents() {
-    return fetch("events.json", { cache: "no-store" })
+    return fetch("data/events.json", { cache: "no-store" })
       .then(function(response) {
         if (!response.ok) throw new Error("Events file error " + response.status);
         return response.json();

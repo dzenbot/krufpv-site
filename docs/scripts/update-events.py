@@ -40,7 +40,7 @@ def event(race):
 
 def main():
     chapter = sys.argv[1] if len(sys.argv) > 1 else "1453"
-    destination = sys.argv[2] if len(sys.argv) > 2 else "docs/events.json"
+    destination = sys.argv[2] if len(sys.argv) > 2 else "docs/data/events.json"
     races = request("race/list", {"chapterId": [chapter]})
     if not isinstance(races, list):
         raise RuntimeError("MultiGP race data must be an array")

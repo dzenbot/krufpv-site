@@ -1,17 +1,34 @@
 {
+  "seriesId": 1013,
+  "name": "200G MAX Series 2024-2026",
   "source": "MultiGP series/view?id=1013 API",
-  "years": [
-    2026,
-    2025,
-    2024
-  ],
-  "overall": [
+  "completedRaces": {
+    "26496": true,
+    "26666": true,
+    "28470": true,
+    "28484": true,
+    "28482": true,
+    "28490": true,
+    "28483": true,
+    "28544": true,
+    "29006": true,
+    "29321": true,
+    "30302": true,
+    "30299": true,
+    "30274": true,
+    "30303": true,
+    "30305": true,
+    "32743": true,
+    "32745": true,
+    "32744": true
+  },
+  "pilots": [
     {
       "position": 1,
       "username": "Zenith",
       "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/20676/profileImage-513.png",
       "races": 9,
-      "elo": 1548,
+      "elo": 1575,
       "points": 72
     },
     {
@@ -19,7 +36,7 @@
       "username": "DCHFPV",
       "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/25493/profileImage-949.png",
       "races": 9,
-      "elo": 1528,
+      "elo": 1546,
       "points": 62
     },
     {
@@ -27,7 +44,7 @@
       "username": "Krowfpv",
       "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/25867/profileImage-113.png",
       "races": 8,
-      "elo": 1507,
+      "elo": 1515,
       "points": 43
     },
     {
@@ -43,7 +60,7 @@
       "username": "Nevr",
       "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/48305/profileImage-2918.png",
       "races": 3,
-      "elo": 0,
+      "elo": 1521,
       "points": 23
     },
     {
@@ -51,7 +68,7 @@
       "username": "Pairadime",
       "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/30767/profileImage-89.png",
       "races": 5,
-      "elo": 1492,
+      "elo": 1486,
       "points": 18
     },
     {
@@ -59,7 +76,7 @@
       "username": "LowJack",
       "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/35736/profileImage-691.png",
       "races": 8,
-      "elo": 1474,
+      "elo": 1458,
       "points": 18
     },
     {
@@ -67,7 +84,7 @@
       "username": "kLawlz",
       "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/21990/profileImage-175.jpg",
       "races": 2,
-      "elo": 1506,
+      "elo": 1519,
       "points": 17
     },
     {
@@ -83,23 +100,23 @@
       "username": "Sasquatch_eh",
       "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/49775/",
       "races": 2,
-      "elo": 0,
+      "elo": 1505,
       "points": 14
     },
     {
       "position": 11,
-      "username": "Snoopquad",
-      "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/29103/profileImage-995.png",
-      "races": 6,
-      "elo": 1475,
+      "username": "FPVArthur",
+      "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/50197/",
+      "races": 2,
+      "elo": 1498,
       "points": 12
     },
     {
       "position": 12,
-      "username": "FPVArthur",
-      "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/50197/",
-      "races": 2,
-      "elo": 0,
+      "username": "Snoopquad",
+      "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/29103/profileImage-995.png",
+      "races": 6,
+      "elo": 1458,
       "points": 12
     },
     {
@@ -107,7 +124,7 @@
       "username": "Aphinity",
       "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/24900/profileImage-480.png",
       "races": 4,
-      "elo": 1493,
+      "elo": 1486,
       "points": 11
     },
     {
@@ -115,11 +132,19 @@
       "username": "Doodlefish",
       "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/48772/profileImage-1262.png",
       "races": 2,
-      "elo": 0,
+      "elo": 1481,
       "points": 7
     },
     {
       "position": 15,
+      "username": "crls",
+      "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/45601/",
+      "races": 1,
+      "elo": 1501,
+      "points": 4
+    },
+    {
+      "position": 16,
       "username": "VitaFPV",
       "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/35039/profileImage-29.png",
       "races": 2,
@@ -127,19 +152,11 @@
       "points": 4
     },
     {
-      "position": 16,
-      "username": "crls",
-      "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/45601/",
-      "races": 1,
-      "elo": 0,
-      "points": 4
-    },
-    {
       "position": 17,
       "username": "Akronautic",
       "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/50055/profileImage-3406.png",
       "races": 2,
-      "elo": 0,
+      "elo": 1474,
       "points": 4
     },
     {
@@ -158,6 +175,5 @@
       "elo": 1482,
       "points": 1
     }
-  ],
-  "seasons": {}
+  ]
 }

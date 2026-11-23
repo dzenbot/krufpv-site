@@ -1,0 +1,171 @@
+{
+  "year": 2024,
+  "source": "https://www.multigp.com/MultiGP/views/viewZipperSeasonResults.php?season1=2024Summer&exportjson=true&season2=2024Spring",
+  "pilots": [
+    {
+      "position": 64,
+      "username": "BonFPV",
+      "pilotId": "32707",
+      "chapterName": "KwadsRUs",
+      "season1": "2024Summer",
+      "season1Score": "32.363",
+      "season2": "2024Spring",
+      "season2Score": "37.134",
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/32707/profileImage-388.png"
+    },
+    {
+      "position": 158,
+      "username": "FWMFPV",
+      "pilotId": "24824",
+      "chapterName": "KwadsRUs",
+      "season1": "2024Summer",
+      "season1Score": "37.049",
+      "season2": "2024Spring",
+      "season2Score": "43.943936",
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/24824/profileImage-105.png"
+    },
+    {
+      "position": 215,
+      "username": "Zenith",
+      "pilotId": "20676",
+      "chapterName": "KwadsRUs",
+      "season1": "2024Summer",
+      "season1Score": "38.769152",
+      "season2": "2024Spring",
+      "season2Score": "48.439296",
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/20676/profileImage-513.png"
+    },
+    {
+      "position": 233,
+      "username": "Gab707",
+      "pilotId": "3658",
+      "chapterName": "KwadsRUs",
+      "season1": "2024Summer",
+      "season1Score": "39.489536",
+      "season2": null,
+      "season2Score": 2000000,
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/3658/_mg_9921.jpg"
+    },
+    {
+      "position": 315,
+      "username": "DCHFPV",
+      "pilotId": "25493",
+      "chapterName": "KwadsRUs",
+      "season1": "2024Summer",
+      "season1Score": "42.56",
+      "season2": "2024Spring",
+      "season2Score": "48.989184",
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/25493/profileImage-949.png"
+    },
+    {
+      "position": 442,
+      "username": "illmattak",
+      "pilotId": "21937",
+      "chapterName": "KwadsRUs",
+      "season1": "2024Summer",
+      "season1Score": "47.415296",
+      "season2": null,
+      "season2Score": 2000000,
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/21937/profileImage-440.jpg"
+    },
+    {
+      "position": 465,
+      "username": "kLawlz",
+      "pilotId": "21990",
+      "chapterName": "KwadsRUs",
+      "season1": "2024Summer",
+      "season1Score": "48.483",
+      "season2": null,
+      "season2Score": 2000000,
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/21990/profileImage-175.jpg"
+    },
+    {
+      "position": 485,
+      "username": "Sickpixel",
+      "pilotId": "34550",
+      "chapterName": "KwadsRUs",
+      "season1": "2024Summer",
+      "season1Score": "49.71008",
+      "season2": null,
+      "season2Score": 2000000,
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/34550/"
+    },
+    {
+      "position": 558,
+      "username": "Neato",
+      "pilotId": "23786",
+      "chapterName": "KwadsRUs",
+      "season1": "2024Summer",
+      "season1Score": "54.905856",
+      "season2": "2024Spring",
+      "season2Score": "69.428736",
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/23786/profileImage-965.png"
+    },
+    {
+      "position": 582,
+      "username": "Maddog",
+      "pilotId": "25988",
+      "chapterName": "KwadsRUs",
+      "season1": "2024Summer",
+      "season1Score": "57.04704",
+      "season2": "2024Spring",
+      "season2Score": "63.22304",
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/25988/profileImage-242.png"
+    },
+    {
+      "position": 603,
+      "username": "Krowfpv",
+      "pilotId": "25867",
+      "chapterName": "KwadsRUs",
+      "season1": "2024Summer",
+      "season1Score": "58.969088",
+      "season2": "2024Spring",
+      "season2Score": "71.1808",
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/25867/profileImage-113.png"
+    },
+    {
+      "position": 609,
+      "username": "plaing",
+      "pilotId": "24387",
+      "chapterName": "KwadsRUs",
+      "season1": "2024Spring",
+      "season1Score": "57.857024",
+      "season2": "2024Summer",
+      "season2Score": "62.783488",
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/24387/profileImage-49.png"
+    },
+    {
+      "position": 610,
+      "username": "VitaFPV",
+      "pilotId": "35039",
+      "chapterName": "KwadsRUs",
+      "season1": "2024Summer",
+      "season1Score": "59.170816",
+      "season2": null,
+      "season2Score": 2000000,
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/35039/profileImage-29.png"
+    },
+    {
+      "position": 682,
+      "username": "Pairadime",
+      "pilotId": "30767",
+      "chapterName": "KwadsRUs",
+      "season1": "2024Summer",
+      "season1Score": "66.116",
+      "season2": "2024Spring",
+      "season2Score": "70.073856",
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/30767/profileImage-89.png"
+    },
+    {
+      "position": 696,
+      "username": "LowJack",
+      "pilotId": "35736",
+      "chapterName": "KwadsRUs",
+      "season1": "2024Summer",
+      "season1Score": "67.436",
+      "season2": "2024Spring",
+      "season2Score": "90.710992",
+      "profilePictureUrl": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/35736/profileImage-691.png"
+    }
+  ]
+}
