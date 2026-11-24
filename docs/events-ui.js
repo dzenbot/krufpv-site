@@ -40,20 +40,23 @@ async function loadUpcomingEvents() {
     const count = upcoming.length;
     if (count > 0) {
       titleText.textContent = `${count} upcoming event${count !== 1 ? "s" : ""}`;
-      upcoming.forEach(event => {
+      upcoming.forEach((event) => {
         container.appendChild(createEventCard(event));
       });
 
       if (recentEvents.length > 0) {
         const eventsContainer = document.querySelector(".events-container");
+
         const recentGroup = document.createElement("div");
         recentGroup.className = "recent-events-group";
+
         const recentTitle = document.createElement("p");
         recentTitle.className = "section-title";
         recentTitle.textContent = "Recent events";
+
         const recentCards = document.createElement("div");
         recentCards.className = "cards-container";
-        recentEvents.forEach(event => {
+        recentEvents.forEach((event) => {
           recentCards.appendChild(createEventCard(event));
         });
         recentGroup.append(recentTitle, recentCards);
@@ -61,11 +64,12 @@ async function loadUpcomingEvents() {
       }
     } else if (recentEvents.length > 0) {
       titleText.textContent = `${recentEvents.length} recent event${recentEvents.length !== 1 ? "s" : ""}`;
-      recentEvents.forEach(event => {
+      recentEvents.forEach((event) => {
         container.appendChild(createEventCard(event));
       });
     } else {
       titleText.textContent = "Upcoming events";
+
       const emptyMessage = document.createElement("p");
       emptyMessage.className = "empty-events";
       emptyMessage.textContent = "No events scheduled yet";
@@ -73,15 +77,15 @@ async function loadUpcomingEvents() {
     }
     titleText.classList.add("visible");
     scheduleMobileEventLayout();
-
   } catch (err) {
     console.error("Error loading events:", err);
     showMessage("Failed to load events", true);
   }
 }
 
+// Drop the venue before truncating the city when the details line runs out of room.
 function updateMobileEventLayout() {
-  document.querySelectorAll(".card-date").forEach(dateRow => {
+  document.querySelectorAll(".card-date").forEach((dateRow) => {
     dateRow.classList.remove("hide-location");
     const venue = dateRow.querySelector(".event-location");
     const city = dateRow.querySelector(".event-city");
@@ -103,7 +107,6 @@ window.addEventListener("resize", scheduleMobileEventLayout);
 if (document.fonts && document.fonts.ready) {
   document.fonts.ready.then(scheduleMobileEventLayout);
 }
-
 
 function createEventCard(ev) {
   var card = document.createElement("a");
@@ -160,7 +163,7 @@ function createEventCard(ev) {
 
 // Load events when page loads
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("DOMContentLoaded", function () {
     loadUpcomingEvents();
   });
 } else {

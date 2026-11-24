@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const links = [...document.querySelectorAll("#site-nav .nav-link")];
   const homeLinks = [...document.querySelectorAll('a[href="#home"]')];
 
+  // Keep the clicked link active while smooth scrolling passes other sections.
   let navigationScrollTimer;
 
   function finishNavigationScroll() {
@@ -17,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function setActiveSection(sectionId) {
-    links.forEach(link => {
+    links.forEach((link) => {
       link.classList.toggle("active", sectionId !== "events" && link.hash === `#${sectionId}`);
     });
   }
@@ -27,15 +28,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const wordmark = header.querySelector(".wordmark");
   const galleryLink = nav.querySelector('a[href="#gallery"]');
 
+  // Restore Gallery before measuring so it can reappear as the viewport widens.
   function updateNavigationLayout() {
     galleryLink.hidden = false;
-    if (mobileLayout.matches) return;
+    if (mobileLayout.matches) {
+      return;
+    }
 
     const headerStyle = getComputedStyle(header);
-    const availableWidth = header.clientWidth -
-      parseFloat(headerStyle.paddingLeft) - parseFloat(headerStyle.paddingRight);
-    const requiredWidth = wordmark.getBoundingClientRect().width +
-      nav.getBoundingClientRect().width + 20;
+    const availableWidth =
+      header.clientWidth -
+      parseFloat(headerStyle.paddingLeft) -
+      parseFloat(headerStyle.paddingRight);
+    const requiredWidth =
+      wordmark.getBoundingClientRect().width + nav.getBoundingClientRect().width + 20;
     galleryLink.hidden = requiredWidth > availableWidth;
   }
 
@@ -54,30 +60,59 @@ document.addEventListener("DOMContentLoaded", () => {
     const open = nav.classList.toggle("open");
     menuButton.setAttribute("aria-expanded", String(open));
   });
-  window.addEventListener("scroll", () => {
-    if (navigationScrollTimer === undefined) return;
-    window.clearTimeout(navigationScrollTimer);
-    navigationScrollTimer = window.setTimeout(finishNavigationScroll, 150);
-  }, { passive: true });
-
-  links.forEach(link => link.addEventListener("click", event => {
-    closeMenu();
-    if (mobileLayout.matches || event.defaultPrevented ||
-        event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-
-    setActiveSection(link.hash.slice(1));
-    window.clearTimeout(navigationScrollTimer);
-    navigationScrollTimer = window.setTimeout(finishNavigationScroll, 250);
-  }));
-  homeLinks.forEach(link => link.addEventListener("click", () => {
-    finishNavigationScroll();
-    closeMenu();
-    setActiveSection("events");
-  }));
-  const observer = new IntersectionObserver(entries => entries.forEach(entry => {
-    if (navigationScrollTimer === undefined && entry.isIntersecting) {
-      setActiveSection(entry.target.id);
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (navigationScrollTimer === undefined) {
+        return;
+      }
+      window.clearTimeout(navigationScrollTimer);
+      navigationScrollTimer = window.setTimeout(finishNavigationScroll, 150);
+    },
+    {
+      passive: true
     }
-  }), { rootMargin: "-30% 0px -60%" });
-  document.querySelectorAll("#events, #upcoming, #standings:not([hidden]), #get-started, #gallery, #about").forEach(section => observer.observe(section));
+  );
+
+  links.forEach((link) =>
+    link.addEventListener("click", (event) => {
+      closeMenu();
+      if (
+        mobileLayout.matches ||
+        event.defaultPrevented ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      )
+        return;
+
+      setActiveSection(link.hash.slice(1));
+      window.clearTimeout(navigationScrollTimer);
+      navigationScrollTimer = window.setTimeout(finishNavigationScroll, 250);
+    })
+  );
+  homeLinks.forEach((link) =>
+    link.addEventListener("click", () => {
+      finishNavigationScroll();
+      closeMenu();
+      setActiveSection("events");
+    })
+  );
+  const observer = new IntersectionObserver(
+    (entries) =>
+      entries.forEach((entry) => {
+        if (navigationScrollTimer === undefined && entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      }),
+    {
+      rootMargin: "-30% 0px -60%"
+    }
+  );
+  document
+    .querySelectorAll(
+      "#events, #upcoming, #standings:not([hidden]), #get-started, #gallery, #about"
+    )
+    .forEach((section) => observer.observe(section));
 });

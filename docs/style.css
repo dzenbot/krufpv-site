@@ -1343,3 +1343,33 @@ footer {
     width: 150px
   }
 }
+
+.standings-category-mobile {
+  display: none
+}
+
+@media(max-width:760px) {
+  .standings-category-full {
+    display: none
+  }
+
+  .standings-category-mobile {
+    display: inline
+  }
+}
+
+.standings-description {
+  color: #555a5d;
+  font-size: 15px;
+  line-height: 1.65;
+  margin-top: 20px;
+  max-width: 850px
+}
+
+.standings-source {
+  white-space: nowrap
+}
+
+.standings-source.standings-source-overflow {
+  display: none
+}
