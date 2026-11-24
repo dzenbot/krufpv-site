@@ -249,7 +249,7 @@ img {
 }
 
 .events-section,.gallery {
-  padding: clamp(80px,10vw,150px) clamp(22px,6vw,96px)
+  padding: clamp(64px,8vw,120px) clamp(22px,6vw,96px)
 }
 
 .section-heading {
@@ -311,7 +311,7 @@ img {
   --section-gutter: clamp(22px,6vw,96px);
   --link-highlight-text: var(--acid-bright);
   background: var(--acid);
-  padding: clamp(80px,10vw,150px) var(--section-gutter)
+  padding: clamp(64px,8vw,120px) var(--section-gutter)
 }
 
 .section-heading.light {
@@ -345,19 +345,16 @@ img {
 @media (width > 760px) {
   .steps article:has(.resource-label) {
     display: grid;
-    grid-row: span 5;
+    grid-row: span 4;
     grid-template-rows: subgrid
   }
 
-  .steps article:last-child {
-    grid-row: span 5
+  .steps article {
+    grid-row: span 4
   }
 }
 
-.steps article > span {
-  color: rgba(0, 0, 0, .5);
-  font: 700 16px 'Barlow Condensed'
-}
+
 
 .steps h3,.regulations h3 {
   font: 600 36px/1 'Barlow Condensed';
@@ -616,7 +613,7 @@ body.lightbox-open {
   display: grid;
   gap: clamp(45px,8vw,130px);
   grid-template-columns: 1fr 1fr;
-  padding: clamp(80px,10vw,150px) clamp(22px,6vw,96px)
+  padding: clamp(64px,8vw,120px) clamp(22px,6vw,96px)
 }
 
 .about h2 {
@@ -995,7 +992,7 @@ footer {
     --about-gutter: clamp(22px,6vw,96px);
     gap: 0;
     grid-template-columns: minmax(0,1fr);
-    padding: 0 0 clamp(80px,10vw,150px)
+    padding: 0 0 clamp(64px,8vw,120px)
   }
 
   .about-copy,.about-image {
@@ -1085,7 +1082,7 @@ footer {
 }
 
 #standings {
-  padding: clamp(80px,10vw,150px) clamp(22px,6vw,96px);
+  padding: clamp(64px,8vw,120px) clamp(22px,6vw,96px);
   background: #fff
 }
 
@@ -1189,15 +1186,15 @@ footer {
 
 @media(max-width:760px) {
   .events-section,.gallery,#standings {
-    padding-block: 48px
+    padding-block: 40px
   }
 
   .get-started {
-    padding-top: 48px
+    padding-top: 40px
   }
 
   .about {
-    padding-bottom: 48px
+    padding-bottom: 40px
   }
 }
 

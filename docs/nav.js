@@ -2,10 +2,52 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuButton = document.querySelector(".menu-button");
   const nav = document.querySelector("#site-nav");
   const links = [...document.querySelectorAll("#site-nav .nav-link")];
-  const homeLinks = [...document.querySelectorAll('a[href="#home"]')];
 
   // Keep the clicked link active while smooth scrolling passes other sections.
   let navigationScrollTimer;
+
+  let navigationRequest = 0;
+
+  async function navigateTo(hash, updateUrl) {
+    const request = ++navigationRequest;
+    const standings = document.querySelector("#standings");
+
+    if (standings?.getAttribute("aria-busy") === "true") {
+      await new Promise((resolve) => {
+        standings.addEventListener("standings:ready", resolve, { once: true });
+      });
+    }
+
+    await document.fonts?.ready;
+    await new Promise(requestAnimationFrame);
+
+    if (request !== navigationRequest) {
+      return;
+    }
+
+    const target = document.getElementById(hash.slice(1));
+    if (!target) {
+      return;
+    }
+
+    if (updateUrl) {
+      const url = new URL(window.location.href);
+      url.hash = hash;
+      window.history.pushState(null, "", url);
+    }
+
+    const headerHeight = header.getBoundingClientRect().height;
+    const top = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    setActiveSection(target.id);
+    window.clearTimeout(navigationScrollTimer);
+    navigationScrollTimer = window.setTimeout(finishNavigationScroll, 250);
+    window.scrollTo({
+      top: Math.max(0, top),
+      behavior: mobileLayout.matches || reducedMotion || !updateUrl ? "instant" : "smooth"
+    });
+  }
 
   function finishNavigationScroll() {
     window.clearTimeout(navigationScrollTimer);
@@ -74,31 +116,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   );
 
-  links.forEach((link) =>
-    link.addEventListener("click", (event) => {
-      closeMenu();
-      if (
-        mobileLayout.matches ||
-        event.defaultPrevented ||
-        event.metaKey ||
-        event.ctrlKey ||
-        event.shiftKey ||
-        event.altKey
-      )
-        return;
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest('a[href^="#"]');
+    if (!link || event.defaultPrevented || event.metaKey || event.ctrlKey ||
+        event.shiftKey || event.altKey) {
+      return;
+    }
 
-      setActiveSection(link.hash.slice(1));
-      window.clearTimeout(navigationScrollTimer);
-      navigationScrollTimer = window.setTimeout(finishNavigationScroll, 250);
-    })
-  );
-  homeLinks.forEach((link) =>
-    link.addEventListener("click", () => {
-      finishNavigationScroll();
-      closeMenu();
-      setActiveSection("events");
-    })
-  );
+    event.preventDefault();
+    closeMenu();
+    navigateTo(link.hash, true);
+  });
+
+  window.addEventListener("popstate", () => {
+    if (window.location.hash) {
+      navigateTo(window.location.hash, false);
+    }
+  });
+
+  if (window.location.hash) {
+    navigateTo(window.location.hash, false);
+  }
+
   const observer = new IntersectionObserver(
     (entries) =>
       entries.forEach((entry) => {

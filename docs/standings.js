@@ -87,6 +87,7 @@ function loadStandings(section) {
 
   async function selectLeaderboard(item, button) {
     const currentSelection = ++selection;
+    section.setAttribute("aria-busy", "true");
     window.clearTimeout(loadingMessageTimer);
     for (const control of controls.children) {
       control.setAttribute("aria-pressed", String(control === button));
@@ -208,6 +209,11 @@ function loadStandings(section) {
       window.clearTimeout(loadingMessageTimer);
       status.classList.remove("standings-loading");
       status.textContent = "Standings are temporarily unavailable. See the series on MultiGP.";
+    } finally {
+      if (currentSelection === selection) {
+        section.setAttribute("aria-busy", "false");
+        section.dispatchEvent(new Event("standings:ready"));
+      }
     }
   }
 
