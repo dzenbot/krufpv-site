@@ -64,8 +64,8 @@ def refresh(series_id, destination, archive=False):
 
 
 def main():
-    refresh(1013, "docs/data/standings-2024-2026.json", archive=True)
-    refresh(1054, "docs/data/standings-2026-2028.json")
+    refresh(1013, "docs/data/standings-2024-2025.json", archive=True)
+    refresh(1054, "docs/data/standings-2026-2027.json")
 
 
 if __name__ == "__main__":

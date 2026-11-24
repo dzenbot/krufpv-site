@@ -6,8 +6,8 @@ on:
       - main
     paths-ignore:
       - docs/data/events.json
-      - docs/data/standings-2024-2026.json
-      - docs/data/standings-2026-2028.json
+      - docs/data/standings-2024-2025.json
+      - docs/data/standings-2026-2027.json
   schedule:
     - cron: "0 22 */2 * *"
       timezone: "America/Vancouver"
@@ -34,11 +34,11 @@ jobs:
 
       - name: Commit changes
         run: |
-          if git diff --quiet -- docs/data/events.json docs/data/standings-2024-2026.json docs/data/standings-2026-2028.json; then
+          if git diff --quiet -- docs/data/events.json docs/data/standings-2024-2025.json docs/data/standings-2026-2027.json; then
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/data/events.json docs/data/standings-2024-2026.json docs/data/standings-2026-2028.json
+          git add docs/data/events.json docs/data/standings-2024-2025.json docs/data/standings-2026-2027.json
           git commit -m "Update MultiGP events and standings"
           git push

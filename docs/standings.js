@@ -27,18 +27,18 @@ function loadStandings(section) {
 
   const series = [
     {
-      yearKey: "2028",
-      label: "2028-2026",
-      name: "200G MAX Series 2026-2028",
+      yearKey: "2027",
+      label: "2026-2027",
+      name: "200G MAX Series 2026-2027",
       id: 1054,
-      file: "data/standings-2026-2028.json"
+      file: "data/standings-2026-2027.json"
     },
     {
-      yearKey: "2026",
-      label: "2026-2024",
-      name: "200G MAX Series 2024-2026",
+      yearKey: "2025",
+      label: "2024-2025",
+      name: "200G MAX Series 2024-2025",
       id: 1013,
-      file: "data/standings-2024-2026.json"
+      file: "data/standings-2024-2025.json"
     }
   ];
   const qualifiers = [2026, 2025, 2024, 2023, 2022, 2020, 2019].map((year) => {
@@ -217,7 +217,7 @@ function loadStandings(section) {
       mobileLabel: "200G Max",
       label: "200G MAX Series",
       items: series,
-      defaultIndex: 1
+      defaultIndex: 0
     },
     {
       key: "ctt",
@@ -249,6 +249,11 @@ function loadStandings(section) {
   };
 
   function showCompetition(category, season, updateUrl) {
+    if (category.key === "200g") {
+      const previousYearKeys = { "2028": "2027", "2026": "2025" };
+      season = previousYearKeys[season] ?? season;
+    }
+
     const description = section.querySelector(".standings-description");
     description.replaceChildren(
       ...descriptions[category.key].flatMap((line, index) =>
