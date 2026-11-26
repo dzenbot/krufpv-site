@@ -10,62 +10,84 @@
   "pilots": [
     {
       "position": 1,
+      "pilotId": "20676",
       "username": "Zenith",
       "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/20676/profileImage-513.png",
       "races": 3,
       "elo": 1535,
-      "points": 30
+      "points": 30,
+      "positionChange": 0,
+      "pointsChange": 12.0
     },
     {
       "position": 2,
+      "pilotId": "25493",
       "username": "DCHFPV",
       "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/25493/profileImage-949.png",
       "races": 3,
       "elo": 1522,
-      "points": 26
+      "points": 26,
+      "positionChange": 0,
+      "pointsChange": 11.0
     },
     {
       "position": 3,
+      "pilotId": "48305",
       "username": "Nevr",
       "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/48305/profileImage-2918.png",
       "races": 3,
       "elo": 1520,
-      "points": 23
+      "points": 23,
+      "positionChange": 0,
+      "pointsChange": 8.0
     },
     {
       "position": 4,
+      "pilotId": "25867",
       "username": "Krowfpv",
       "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/25867/profileImage-113.png",
       "races": 2,
       "elo": 1514,
-      "points": 17
+      "points": 17,
+      "positionChange": 0,
+      "pointsChange": 9.0
     },
     {
       "position": 5,
+      "pilotId": "49775",
       "username": "Sasquatch_eh",
       "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/49775/",
       "races": 2,
       "elo": 1505,
-      "points": 14
+      "points": 14,
+      "positionChange": 1,
+      "pointsChange": 7.0
     },
     {
       "position": 6,
+      "pilotId": "50197",
       "username": "FPVArthur",
       "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/50197/",
       "races": 2,
       "elo": 1499,
-      "points": 12
+      "points": 12,
+      "positionChange": 1,
+      "pointsChange": 6.0
     },
     {
       "position": 7,
+      "pilotId": "30767",
       "username": "Pairadime",
       "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/30767/profileImage-89.png",
       "races": 3,
       "elo": 1490,
-      "points": 12
+      "points": 12,
+      "positionChange": -2,
+      "pointsChange": 4.0
     },
     {
       "position": 8,
+      "pilotId": "21990",
       "username": "kLawlz",
       "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/21990/profileImage-175.jpg",
       "races": 1,
@@ -74,51 +96,69 @@
     },
     {
       "position": 9,
+      "pilotId": "48772",
       "username": "Doodlefish",
       "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/48772/profileImage-1262.png",
       "races": 2,
       "elo": 1483,
-      "points": 7
+      "points": 7,
+      "positionChange": 3,
+      "pointsChange": 5.0
     },
     {
       "position": 10,
+      "pilotId": "29103",
       "username": "Snoopquad",
       "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/29103/profileImage-995.png",
       "races": 3,
       "elo": 1478,
-      "points": 7
+      "points": 7,
+      "positionChange": -2,
+      "pointsChange": 2.0
     },
     {
       "position": 11,
+      "pilotId": "45601",
       "username": "crls",
       "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/45601/",
       "races": 1,
       "elo": 1500,
-      "points": 4
+      "points": 4,
+      "positionChange": -2,
+      "pointsChange": 0.0
     },
     {
       "position": 12,
+      "pilotId": "50055",
       "username": "Akronautic",
       "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/50055/profileImage-3406.png",
       "races": 2,
       "elo": 1474,
-      "points": 4
+      "points": 4,
+      "positionChange": -2,
+      "pointsChange": 1.0
     },
     {
       "position": 13,
+      "pilotId": "35736",
       "username": "LowJack",
       "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/35736/profileImage-691.png",
       "races": 2,
       "elo": 1473,
-      "points": 4
+      "points": 4,
+      "positionChange": 0,
+      "pointsChange": 3.0
     },
     {
       "position": 14,
+      "pilotId": "24900",
       "username": "Aphinity",
       "avatar": "https://multigp-storage-new.s3.us-east-2.amazonaws.com/user/24900/profileImage-480.png",
       "races": 1,
       "elo": 1492,
-      "points": 2
+      "points": 2,
+      "positionChange": -3,
+      "pointsChange": 0.0
     }
   ]
 }

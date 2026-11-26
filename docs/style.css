@@ -1177,6 +1177,68 @@ footer {
   font-weight: 700
 }
 
+.standings-change {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  vertical-align: middle
+}
+
+.standings-change.is-up {
+  color: #26834a
+}
+
+.standings-change.is-down {
+  color: #bd4545
+}
+
+.standings-change.is-points {
+  color: #85898b
+}
+
+.standings-value-with-change {
+  position: relative;
+  font-variant-numeric: tabular-nums
+}
+
+.standings-value-with-change .standings-change {
+  position: absolute;
+  left: calc(50% + 16px);
+  top: 50%;
+  margin: 0;
+  transform: translateY(-50%)
+}
+
+.standings-table:has(.standings-value-with-change) tr > :last-child {
+  width: 110px;
+  padding-inline: 8px 36px
+}
+
+.standings-value-with-change:last-child .standings-change {
+  left: auto;
+  right: 4px;
+  width: 28px;
+  text-align: left
+}
+
+@media(max-width:760px) {
+  .standings-change {
+    display: block;
+    margin: 2px 0 0;
+    font-size: 11px;
+    line-height: 1.1
+  }
+
+  .standings-value-with-change .standings-change {
+    left: calc(50% + 12px);
+    top: 50%;
+    transform: translateY(-50%)
+  }
+}
+
 .standings-pilot-name {
   min-width: 0;
   overflow: hidden;
@@ -1369,4 +1431,20 @@ footer {
 
 .standings-source.standings-source-overflow {
   display: none
+}
+
+@media(max-width:760px) {
+  .standings-table:has(.standings-value-with-change) tr > :first-child {
+    width: 72px;
+    padding-inline: 4px
+  }
+
+  .standings-table:has(.standings-value-with-change) tr > :last-child {
+    width: 78px;
+    padding-inline: 4px 30px
+  }
+
+  .standings-table:not(.qualifier-table) tr > :nth-child(3) {
+    display: none
+  }
 }

@@ -195,7 +195,32 @@ function loadStandings(section) {
             values = [formatQualifyingTime(score)];
           }
 
-          return standingRow(pilot, values);
+          const row = standingRow(pilot, values);
+
+          // Changes are baked into the snapshot when the active series is refreshed.
+          if (item.id === 1054) {
+            row.cells[0].classList.add("standings-value-with-change");
+            row.cells[row.cells.length - 1].classList.add("standings-value-with-change");
+            const movement = pilot.positionChange || 0;
+            const pointsEarned = pilot.pointsChange || 0;
+            if (movement) {
+              const change = document.createElement("span");
+              change.className = "standings-change " + (movement > 0 ? "is-up" : "is-down");
+              change.textContent = `${movement > 0 ? "↑" : "↓"} ${Math.abs(movement)}`;
+              change.setAttribute("aria-label", `${Math.abs(movement)} places ${movement > 0 ? "up" : "down"}`);
+              row.cells[0].append(change);
+            }
+
+            if (pointsEarned > 0) {
+              const pointsChange = document.createElement("span");
+              pointsChange.className = "standings-change is-points";
+              pointsChange.textContent = `+${pointsEarned}`;
+              pointsChange.setAttribute("aria-label", `${pointsEarned} points earned`);
+              row.cells[row.cells.length - 1].append(pointsChange);
+            }
+          }
+
+          return row;
         })
       );
       table.querySelector("table").setAttribute("aria-label", item.name + " leaderboard");
@@ -279,9 +304,12 @@ function loadStandings(section) {
         const choice = document.createElement("button");
         choice.type = "button";
         choice.textContent = item.label;
-        choice.addEventListener("click", () =>
-          showCompetition(category, item.yearKey ?? item.label, true)
-        );
+        choice.addEventListener("click", () => {
+          if (choice.getAttribute("aria-pressed") === "true") {
+            return;
+          }
+          showCompetition(category, item.yearKey ?? item.label, true);
+        });
         return choice;
       })
     );
@@ -320,7 +348,12 @@ function loadStandings(section) {
     mobileLabel.textContent = category.mobileLabel;
     button.append(fullLabel, mobileLabel);
     button.dataset.competition = category.key;
-    button.addEventListener("click", () => showCompetition(category, null, true));
+    button.addEventListener("click", () => {
+      if (button.getAttribute("aria-pressed") === "true") {
+        return;
+      }
+      showCompetition(category, null, true);
+    });
     categories.append(button);
   }
   window.addEventListener("popstate", restoreSelection);
