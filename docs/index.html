@@ -10,7 +10,7 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="KwadsRUs Racing Club">
     <meta property="og:description" content="FPV drone racing in Metro Vancouver. Come fly with us.">
-    <link rel="stylesheet" href="style.css?v=20261126-5">
+    <link rel="stylesheet" href="style.css?v=20261127-14">
     <link rel="stylesheet" href="events-ui.css?v=20261122-3">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="icon" href="favicon.ico">
@@ -65,6 +65,9 @@
           <a href="https://www.facebook.com/groups/kwadsrus" target="_blank" rel="noopener" aria-label="Facebook">
             <img src="images/social-fb.png" alt="">
           </a>
+        </div>
+        <div class="members-nav" hidden>
+          <button class="members-trigger" type="button">Members</button>
         </div>
       </nav>
     </header>
@@ -384,10 +387,32 @@
         </p>
       </div>
     </footer>
+    <dialog class="members-dialog" aria-labelledby="members-title">
+      <button class="members-close" type="button" aria-label="Close members area">×</button>
+      <h2 id="members-title">Members Area</h2>
+      <form class="members-form">
+        <label for="members-email">Email</label>
+        <input id="members-email" name="email" type="email" autocomplete="username" required>
+        <label for="members-password">Password</label>
+        <input id="members-password" name="password" type="password" autocomplete="current-password" required>
+        <button class="button" type="submit">
+          <img class="members-login-icon" src="images/apple-touch-icon.png" alt="">
+          <span class="members-submit-label">Login with MultiGP</span>
+        </button>
+        <div class="members-help">
+          <button class="members-forgot members-join" type="button"><svg class="members-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><circle cx="8" cy="10" r="2"/><path d="M5 16c0-3 6-3 6 0M15 9h4m-4 4h4m-4 4h2"/></svg>Become a Member</button>
+          <button class="members-forgot" type="button"><svg class="members-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="5"/><path d="m12 12 9 9m-3-3 3-3m-6 0 3-3"/><circle cx="7" cy="7" r="1"/></svg>Forgot Password?</button>
+        </div>
+        <button class="members-forgot members-back" type="button" hidden>Cancel</button>
+        <p class="members-status" role="status"></p>
+      </form>
+    </dialog>
+    <script src="features.js?v=20261127-1"></script>
+    <script src="members.js?v=20261127-7"></script>
     <script src="ui.js?v=20261123-readable">
     </script>
     <script src="standings.js?v=20261126-5"></script>
-    <script src="nav.js?v=20261124-2">
+    <script src="nav.js?v=20261127-2">
     </script>
     <script src="events-sync.js?v=20261123-readable">
     </script>

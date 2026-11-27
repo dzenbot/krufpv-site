@@ -68,11 +68,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const mobileLayout = window.matchMedia("(max-width: 760px)");
   const header = document.querySelector(".site-header");
   const wordmark = header.querySelector(".wordmark");
-  const galleryLink = nav.querySelector('a[href="#gallery"]');
+  const optionalLinks = [
+    nav.querySelector('a[href="#gallery"]'),
+    nav.querySelector('a[href="#get-started"]')
+  ];
 
-  // Restore Gallery before measuring so it can reappear as the viewport widens.
+  // Restore optional links, then hide them in priority order until the menu fits.
   function updateNavigationLayout() {
-    galleryLink.hidden = false;
+    optionalLinks.forEach((link) => {
+      link.hidden = false;
+    });
     if (mobileLayout.matches) {
       return;
     }
@@ -82,9 +87,14 @@ document.addEventListener("DOMContentLoaded", () => {
       header.clientWidth -
       parseFloat(headerStyle.paddingLeft) -
       parseFloat(headerStyle.paddingRight);
-    const requiredWidth =
-      wordmark.getBoundingClientRect().width + nav.getBoundingClientRect().width + 20;
-    galleryLink.hidden = requiredWidth > availableWidth;
+    const logoWidth = wordmark.getBoundingClientRect().width;
+    const minimumGap = parseFloat(headerStyle.columnGap);
+    for (const link of optionalLinks) {
+      if (logoWidth + nav.getBoundingClientRect().width + minimumGap <= availableWidth) {
+        break;
+      }
+      link.hidden = true;
+    }
   }
 
   window.addEventListener("resize", updateNavigationLayout);
